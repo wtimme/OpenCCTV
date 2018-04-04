@@ -16,14 +16,15 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var centerOnDeviceLocationBarButtonItem: UIBarButtonItem!
     
-    private let viewModel = MapViewModel(maximumSearchRadiusInMeters: 2000)
+    private let viewModel = MapViewModel(maximumSearchRadiusInMeters: 4000)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.delegate = self
         
-        centerOnDeviceLocationBarButtonItem.setIcon(icon: .mapicons(.locationArrow), iconSize: 30, color: navigationController?.navigationBar.tintColor ?? .black)
+        viewModel.delegate = self
+        viewModel.centerMapOnDeviceRegion()
     }
     
     @IBAction func didTapCenterOnDeviceLocationBarButtonItem(_: AnyObject) {
@@ -35,7 +36,52 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         // Let the view model know about the new region.
-        viewModel.region = mapView.region
+        viewModel.ensureDataIsPresent(for: mapView.region)
+    }
+    
+}
+
+extension MapViewController: MapViewModelDelegate {
+    
+    func updateMapViewRegion(_ region: MKCoordinateRegion) {
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func setMapViewShowsUserLocation(_ showsUserLocation: Bool) {
+        mapView.showsUserLocation = showsUserLocation
+    }
+    
+    func askCustomerToOpenLocationSettings() {
+        let alertController = UIAlertController(title: "Unable to access the device location", message: "Go to your app settings and manually change the permission to \"While Using The App\" to allow access to our device location.", preferredStyle: .alert)
+        
+        let openSettingsAction = UIAlertAction(title: "Go to Settings", style: .default) { (_) in
+            self.openAppSettings()
+        }
+        alertController.addAction(openSettingsAction)
+        
+        let okayAction = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+        alertController.addAction(okayAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func openAppSettings() {
+        guard let url = URL(string:UIApplicationOpenSettingsURLString), UIApplication.shared.canOpenURL(url) else {
+            return
+        }
+        
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    func indicateTroubleWithLocation(_ hasTrouble: Bool) {
+        let iconColor: UIColor
+        if hasTrouble {
+            iconColor = .red
+        } else {
+            iconColor = navigationController?.navigationBar.tintColor ?? .black
+        }
+        
+        centerOnDeviceLocationBarButtonItem.setIcon(icon: .mapicons(.locationArrow), iconSize: 30, color: iconColor)
     }
     
 }
