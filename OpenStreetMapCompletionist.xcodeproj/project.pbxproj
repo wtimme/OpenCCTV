@@ -12,6 +12,7 @@
 		646FC53220753241008E0EDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 646FC53020753241008E0EDB /* Main.storyboard */; };
 		646FC53420753241008E0EDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646FC53320753241008E0EDB /* Assets.xcassets */; };
 		646FC53720753241008E0EDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 646FC53520753241008E0EDB /* LaunchScreen.storyboard */; };
+		EE8F71E51A6B51EFBFE3FF50 /* Pods_OpenStreetMapCompletionist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D48C3638DBAC4E53FAAE2F9F /* Pods_OpenStreetMapCompletionist.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		40B0783A00E1A7C6C48EA67E /* Pods-OpenStreetMapCompletionist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenStreetMapCompletionist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenStreetMapCompletionist/Pods-OpenStreetMapCompletionist.debug.xcconfig"; sourceTree = "<group>"; };
 		646FC52920753241008E0EDB /* OpenStreetMapCompletionist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenStreetMapCompletionist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		646FC52C20753241008E0EDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		646FC52E20753241008E0EDB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +37,8 @@
 		646FC53320753241008E0EDB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		646FC53620753241008E0EDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		646FC53820753241008E0EDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0A486E2F9A2224442B17492 /* Pods-OpenStreetMapCompletionist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenStreetMapCompletionist.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenStreetMapCompletionist/Pods-OpenStreetMapCompletionist.release.xcconfig"; sourceTree = "<group>"; };
+		D48C3638DBAC4E53FAAE2F9F /* Pods_OpenStreetMapCompletionist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenStreetMapCompletionist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,17 +46,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE8F71E51A6B51EFBFE3FF50 /* Pods_OpenStreetMapCompletionist.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30309D1C17475C3F62A774E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D48C3638DBAC4E53FAAE2F9F /* Pods_OpenStreetMapCompletionist.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		55D60A47E0FAB71BC9739472 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				40B0783A00E1A7C6C48EA67E /* Pods-OpenStreetMapCompletionist.debug.xcconfig */,
+				A0A486E2F9A2224442B17492 /* Pods-OpenStreetMapCompletionist.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		646FC52020753241008E0EDB = {
 			isa = PBXGroup;
 			children = (
 				646FC52B20753241008E0EDB /* OpenStreetMapCompletionist */,
 				646FC52A20753241008E0EDB /* Products */,
+				55D60A47E0FAB71BC9739472 /* Pods */,
+				30309D1C17475C3F62A774E9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,10 +108,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 646FC53B20753241008E0EDB /* Build configuration list for PBXNativeTarget "OpenStreetMapCompletionist" */;
 			buildPhases = (
+				8993C4A44E8DFA19DEB24992 /* [CP] Check Pods Manifest.lock */,
 				646FC52520753241008E0EDB /* Sources */,
 				646FC52620753241008E0EDB /* Frameworks */,
 				646FC52720753241008E0EDB /* Resources */,
 				645BF664207535AA002209CE /* Embed Frameworks */,
+				40776541A4D4B9FC2EEBC99F /* [CP] Embed Pods Frameworks */,
+				26A292A39630BA6105E1DE53 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -144,6 +171,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26A292A39630BA6105E1DE53 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenStreetMapCompletionist/Pods-OpenStreetMapCompletionist-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40776541A4D4B9FC2EEBC99F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenStreetMapCompletionist/Pods-OpenStreetMapCompletionist-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8993C4A44E8DFA19DEB24992 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OpenStreetMapCompletionist-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		646FC52520753241008E0EDB /* Sources */ = {
@@ -286,6 +364,7 @@
 		};
 		646FC53C20753241008E0EDB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40B0783A00E1A7C6C48EA67E /* Pods-OpenStreetMapCompletionist.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +379,7 @@
 		};
 		646FC53D20753241008E0EDB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0A486E2F9A2224442B17492 /* Pods-OpenStreetMapCompletionist.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
