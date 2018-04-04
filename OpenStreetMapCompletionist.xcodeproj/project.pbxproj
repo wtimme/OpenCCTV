@@ -33,6 +33,7 @@
 		40B0783A00E1A7C6C48EA67E /* Pods-OpenStreetMapCompletionist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenStreetMapCompletionist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenStreetMapCompletionist/Pods-OpenStreetMapCompletionist.debug.xcconfig"; sourceTree = "<group>"; };
 		6457007C20755D930061A81D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6457007F20755DEE0061A81D /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		645700812075743B0061A81D /* Hamburg Hbf.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hamburg Hbf.gpx"; sourceTree = "<group>"; };
 		646FC52920753241008E0EDB /* OpenStreetMapCompletionist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenStreetMapCompletionist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		646FC52C20753241008E0EDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		646FC53120753241008E0EDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 				646FC53320753241008E0EDB /* Assets.xcassets */,
 				646FC53520753241008E0EDB /* LaunchScreen.storyboard */,
 				646FC53820753241008E0EDB /* Info.plist */,
+				645700812075743B0061A81D /* Hamburg Hbf.gpx */,
 			);
 			path = OpenStreetMapCompletionist;
 			sourceTree = "<group>";
