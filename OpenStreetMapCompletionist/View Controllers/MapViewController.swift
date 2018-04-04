@@ -30,6 +30,14 @@ class MapViewController: UIViewController {
         viewModel.centerMapOnDeviceRegionIfAuthorized()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let selectedAnnotation = mapView.selectedAnnotations.first {
+            mapView.deselectAnnotation(selectedAnnotation, animated: animated)
+        }
+    }
+    
     @IBAction func didTapCenterOnDeviceLocationBarButtonItem(_: AnyObject) {
         viewModel.centerMapOnDeviceRegion()
     }
@@ -49,9 +57,7 @@ extension MapViewController: MKMapViewDelegate {
             }
             
             let safariViewController = SFSafariViewController(url: nodeURL)
-            present(safariViewController, animated: true, completion: {
-                mapView.deselectAnnotation(annotation, animated: false)
-            })
+            present(safariViewController, animated: true, completion: nil)
         }
         
     }
