@@ -10,21 +10,23 @@ import UIKit
 
 import MapKit
 import SwiftIcons
+import SwiftLocation
 
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var centerOnDeviceLocationBarButtonItem: UIBarButtonItem!
     
-    private let viewModel = MapViewModel(maximumSearchRadiusInMeters: 4000)
+    private var viewModel: MapViewModelProtocol = MapViewModel(maximumSearchRadiusInMeters: 4000,
+                                                               locatorManager: Locator)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.delegate = self
-        
         viewModel.delegate = self
-        viewModel.centerMapOnDeviceRegion()
+        
+        viewModel.centerMapOnDeviceRegionIfAuthorized()
     }
     
     @IBAction func didTapCenterOnDeviceLocationBarButtonItem(_: AnyObject) {

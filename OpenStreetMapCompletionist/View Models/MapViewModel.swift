@@ -27,17 +27,84 @@ protocol MapViewModelDelegate: class {
     
 }
 
-class MapViewModel: NSObject {
+protocol MapViewModelProtocol {
+    
+    weak var delegate: MapViewModelDelegate? { get set }
+    
+    /// Flag on whether the view model has issues determining the device location.
+    var hasIssuesDeterminingDeviceLocation: Bool { get }
+    
+    /// Centers the map on the device location. Will trigger the permission dialog if necessary.
+    func centerMapOnDeviceRegion()
+    
+    /// Centers the map on the device location, if the customer authorized us to access the location.
+    func centerMapOnDeviceRegionIfAuthorized()
+    
+    func ensureDataIsPresent(for region: MKCoordinateRegion)
+}
+
+class MapViewModel: NSObject, MapViewModelProtocol {
     
     weak var delegate: MapViewModelDelegate?
     
-    public private(set) var hasIssuesDeterminingDeviceLocation = false {
+    var hasIssuesDeterminingDeviceLocation: Bool = false {
         didSet {
             delegate?.indicateTroubleWithLocation(hasIssuesDeterminingDeviceLocation)
         }
     }
     
-    public func ensureDataIsPresent(for region: MKCoordinateRegion) {
+    init(maximumSearchRadiusInMeters: Double, locatorManager: LocatorManager) {
+        self.maximumSearchRadiusInMeters = maximumSearchRadiusInMeters
+        self.locatorManager = locatorManager
+        
+        super.init()
+        
+        startListeningForLocationAuthorizationStatusEvents()
+    }
+    
+    deinit {
+        if let token = locationAuthorizationEventToken {
+            locatorManager.events.remove(token: token)
+        }
+    }
+    
+    // MARK: Private
+    
+    private let maximumSearchRadiusInMeters: Double
+    private let locatorManager: LocatorManager
+    private var locationAuthorizationEventToken: LocatorManager.Events.Token?
+    
+    private func startListeningForLocationAuthorizationStatusEvents() {
+        locationAuthorizationEventToken = locatorManager.events.listen { [weak self] authorizationStatus in
+            print("Authorization status changed to \(authorizationStatus)")
+            
+            switch authorizationStatus {
+            case .denied:
+                self?.hasIssuesDeterminingDeviceLocation = true
+                break
+            case .restricted:
+                self?.hasIssuesDeterminingDeviceLocation = true
+                break
+            case .authorizedAlways:
+                self?.hasIssuesDeterminingDeviceLocation = false
+                self?.centerMapOnDeviceRegion()
+                break
+            case .authorizedWhenInUse:
+                self?.hasIssuesDeterminingDeviceLocation = false
+                self?.centerMapOnDeviceRegion()
+                break
+            case .notDetermined:
+                // We haven't asked the customer for permissions yet. This is not an issue.
+                self?.hasIssuesDeterminingDeviceLocation = false
+                break
+            }
+        }
+    }
+    
+    
+    // MARK: MapViewModelProtocol
+    
+    func ensureDataIsPresent(for region: MKCoordinateRegion) {
         let north = CLLocation(latitude: region.center.latitude - region.span.latitudeDelta * 0.5, longitude: region.center.longitude)
         let south = CLLocation(latitude: region.center.latitude + region.span.latitudeDelta * 0.5, longitude: region.center.longitude)
         let northSouthDistanceInMeters = north.distance(from: south)
@@ -64,8 +131,8 @@ class MapViewModel: NSObject {
 //        }
     }
     
-    public func centerMapOnDeviceRegion() {
-        Locator.currentPosition(accuracy: .room, onSuccess: { [weak self] (location) in
+    func centerMapOnDeviceRegion() {
+        locatorManager.currentPosition(accuracy: .room, onSuccess: { [weak self] (location) in
             let span = MKCoordinateSpanMake(0.025, 0.025)
             let region = MKCoordinateRegionMake(location.coordinate, span)
             
@@ -87,38 +154,13 @@ class MapViewModel: NSObject {
         }
     }
     
-    private let maximumSearchRadiusInMeters: Double
-    
-    private var locationAuthorizationEventToken: LocatorManager.Events.Token?
-    
-    init(maximumSearchRadiusInMeters: Double) {
-        self.maximumSearchRadiusInMeters = maximumSearchRadiusInMeters
-        
-        super.init()
-        
-        locationAuthorizationEventToken = Locator.events.listen { [weak self] authorizationStatus in
-            print("Authorization status changed to \(authorizationStatus)")
-            
-            switch authorizationStatus {
-            case .authorizedAlways:
-                self?.hasIssuesDeterminingDeviceLocation = false
-                self?.centerMapOnDeviceRegion()
-                break
-            case .authorizedWhenInUse:
-                self?.hasIssuesDeterminingDeviceLocation = false
-                self?.centerMapOnDeviceRegion()
-                break
-            default:
-                self?.hasIssuesDeterminingDeviceLocation = true
-                break
-            }
+    func centerMapOnDeviceRegionIfAuthorized() {
+        guard locatorManager.authorizationStatus == .authorizedAlways || locatorManager.authorizationStatus == .authorizedWhenInUse else {
+            // We don't want the permission dialog to show up, so we stop here.
+            return
         }
-    }
-    
-    deinit {
-        if let token = locationAuthorizationEventToken {
-            Locator.events.remove(token: token)
-        }
+        
+        centerMapOnDeviceRegion()
     }
 
 }
