@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-10" y="354"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="nN1-HN-pFh">
             <objects>
-                <viewController id="QoK-DF-hWg" sceneMemberID="viewController">
+                <viewController id="QoK-DF-hWg" customClass="MapViewController" customModule="OpenStreetMapCompletionist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="13j-qF-0cj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,6 +47,9 @@
                         <viewLayoutGuide key="safeArea" id="piB-mZ-7KE"/>
                     </view>
                     <navigationItem key="navigationItem" id="aXS-Uy-7M4"/>
+                    <connections>
+                        <outlet property="mapView" destination="Mg6-1Y-tvG" id="4QV-tn-a2m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUa-42-d4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
