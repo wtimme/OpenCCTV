@@ -135,7 +135,6 @@ class MapViewModel: NSObject, MapViewModelProtocol {
         SwiftOverpass.api(endpoint: "https://overpass-api.de/api/interpreter")
             .fetch(query) { (response) in
                 guard let nodes = response.nodes else {
-                    print("Unable to get nodes from response: \(response.xml)")
                     return
                 }
                 
