@@ -12,12 +12,16 @@ import SwiftOverpass
 
 class MapViewModel: NSObject {
     
-    var region: MKCoordinateRegion? {
+    public var region: MKCoordinateRegion? {
         didSet {
             if let region = region {
                 ensureDataIsPresent(for: region)
             }
         }
+    }
+    
+    public func centerMapOnDeviceRegion() {
+        // TODO: Get device location
     }
     
     private let maximumSearchRadiusInMeters: Double
@@ -53,12 +57,4 @@ class MapViewModel: NSObject {
 //        }
     }
 
-}
-
-extension MapViewModel: MKMapViewDelegate {
-    
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        region = mapView.region
-    }
-    
 }

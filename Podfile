@@ -7,5 +7,6 @@ target 'OpenStreetMapCompletionist' do
 
   # Pods for OpenStreetMapCompletionist
   pod 'SwiftOverpass', :git => 'git@github.com:wtimme/SwiftOverpassWrapper.git', :branch => 'bugfix/Fix-regular-expression-query'
+  pod 'SwiftIcons', '~> 2.0.1'
 
 end

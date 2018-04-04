@@ -13,8 +13,9 @@
         <!--Navigation Controller-->
         <scene sceneID="cZ1-nh-YHB">
             <objects>
-                <navigationController navigationBarHidden="YES" id="zpU-6H-haR" sceneMemberID="viewController">
+                <navigationController id="zpU-6H-haR" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fS5-MV-z3R">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -25,29 +26,36 @@
             </objects>
             <point key="canvasLocation" x="-10" y="354"/>
         </scene>
-        <!--Map View Controller-->
+        <!--MapViewController-->
         <scene sceneID="nN1-HN-pFh">
             <objects>
-                <viewController id="QoK-DF-hWg" customClass="MapViewController" customModule="OpenStreetMapCompletionist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QoK-DF-hWg" userLabel="MapViewController" customClass="MapViewController" customModule="OpenStreetMapCompletionist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="13j-qF-0cj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Mg6-1Y-tvG">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Mg6-1Y-tvG" firstAttribute="leading" secondItem="piB-mZ-7KE" secondAttribute="leading" id="DKT-J8-jsq"/>
                             <constraint firstAttribute="bottom" secondItem="Mg6-1Y-tvG" secondAttribute="bottom" id="DRc-LO-yQT"/>
-                            <constraint firstItem="Mg6-1Y-tvG" firstAttribute="top" secondItem="13j-qF-0cj" secondAttribute="top" id="Jzg-jV-q7V"/>
+                            <constraint firstItem="piB-mZ-7KE" firstAttribute="top" secondItem="Mg6-1Y-tvG" secondAttribute="top" id="Jwr-vE-mgv"/>
                             <constraint firstItem="Mg6-1Y-tvG" firstAttribute="trailing" secondItem="piB-mZ-7KE" secondAttribute="trailing" id="Kgt-W4-Mdq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="piB-mZ-7KE"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aXS-Uy-7M4"/>
+                    <navigationItem key="navigationItem" title="OSM Completionist" id="aXS-Uy-7M4">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="UdQ-lM-MOs">
+                            <connections>
+                                <action selector="didTapCenterOnDeviceLocationBarButtonItem:" destination="QoK-DF-hWg" id="QdD-nq-Eyc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="centerOnDeviceLocationBarButtonItem" destination="UdQ-lM-MOs" id="JEI-H9-p3p"/>
                         <outlet property="mapView" destination="Mg6-1Y-tvG" id="4QV-tn-a2m"/>
                     </connections>
                 </viewController>

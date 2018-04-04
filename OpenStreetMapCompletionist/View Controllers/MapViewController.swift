@@ -9,16 +9,33 @@
 import UIKit
 
 import MapKit
+import SwiftIcons
 
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var centerOnDeviceLocationBarButtonItem: UIBarButtonItem!
     
-    let viewModel = MapViewModel(maximumSearchRadiusInMeters: 2000)
+    private let viewModel = MapViewModel(maximumSearchRadiusInMeters: 2000)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView.delegate = viewModel
+        mapView.delegate = self
+        
+        centerOnDeviceLocationBarButtonItem.setIcon(icon: .mapicons(.locationArrow), iconSize: 30, color: navigationController?.navigationBar.tintColor ?? .black)
     }
+    
+    @IBAction func didTapCenterOnDeviceLocationBarButtonItem(_: AnyObject) {
+        viewModel.centerMapOnDeviceRegion()
+    }
+}
+
+extension MapViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        // Let the view model know about the new region.
+        viewModel.region = mapView.region
+    }
+    
 }
