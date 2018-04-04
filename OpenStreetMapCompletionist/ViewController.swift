@@ -8,11 +8,22 @@
 
 import UIKit
 
+import SwiftOverpass
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let query = SwiftOverpass.query(type: .node)
+        query.setBoudingBox(s: 53.584245, n: 53.607651, w: 10.013931, e: 10.072253)
+        query.hasTag("amenity", equals: "bicycle_parking")
+        query.tags["capacity"] = OverpassTag(key: "capacity", value: ".", isNegation: true, isRegex: true)
+        
+        SwiftOverpass.api(endpoint: "https://overpass-api.de/api/interpreter")
+            .fetch(query) { (response) in
+                
+        }
     }
 
     override func didReceiveMemoryWarning() {
