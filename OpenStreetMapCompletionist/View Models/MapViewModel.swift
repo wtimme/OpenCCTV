@@ -16,6 +16,7 @@ protocol MapViewModelDelegate: class {
     // Interact with the map view
     func updateMapViewRegion(_ region: MKCoordinateRegion)
     func setMapViewShowsUserLocation(_ showsUserLocation: Bool)
+    func addAnnotations(_ annotations: [MKAnnotation])
     
     /// The customer needs to change the location settings for our app manually.
     func askCustomerToOpenLocationSettings()
@@ -74,6 +75,8 @@ class MapViewModel: NSObject, MapViewModelProtocol {
     private let locatorManager: LocatorManager
     private var locationAuthorizationEventToken: LocatorManager.Events.Token?
     
+    private var discoveredNodes = Set<OverpassNode>()
+    
     private func startListeningForLocationAuthorizationStatusEvents() {
         locationAuthorizationEventToken = locatorManager.events.listen { [weak self] authorizationStatus in
             print("Authorization status changed to \(authorizationStatus)")
@@ -101,10 +104,7 @@ class MapViewModel: NSObject, MapViewModelProtocol {
         }
     }
     
-    
-    // MARK: MapViewModelProtocol
-    
-    func ensureDataIsPresent(for region: MKCoordinateRegion) {
+    private func doesRegionExceedMaximumSearchRadius(_ region: MKCoordinateRegion) -> Bool {
         let north = CLLocation(latitude: region.center.latitude - region.span.latitudeDelta * 0.5, longitude: region.center.longitude)
         let south = CLLocation(latitude: region.center.latitude + region.span.latitudeDelta * 0.5, longitude: region.center.longitude)
         let northSouthDistanceInMeters = north.distance(from: south)
@@ -114,21 +114,55 @@ class MapViewModel: NSObject, MapViewModelProtocol {
         let eastWestDistanceInMeters = east.distance(from: west)
         
         guard northSouthDistanceInMeters < maximumSearchRadiusInMeters, eastWestDistanceInMeters < maximumSearchRadiusInMeters else {
-            print("Won't query Overpass: N-S distance is \(northSouthDistanceInMeters) and E-W distance is \(eastWestDistanceInMeters)")
+            print("Region exceeds maximum search radius (\(maximumSearchRadiusInMeters): N-S distance is \(northSouthDistanceInMeters) and E-W distance is \(eastWestDistanceInMeters)")
+            return true
+        }
+        
+        return false
+    }
+    
+    private func queryOverpassForNodes(in region: MKCoordinateRegion) {
+        /// TODO: Query
+        let query = SwiftOverpass.query(type: .node)
+        query.setBoudingBox(s: region.center.latitude - region.span.latitudeDelta * 0.5,
+                            n: region.center.latitude + region.span.latitudeDelta * 0.5,
+                            w: region.center.longitude - region.span.longitudeDelta * 0.5,
+                            e: region.center.longitude + region.span.longitudeDelta * 0.5)
+        query.hasTag("amenity", equals: "bicycle_parking")
+        //        query.doesNotHaveTag("capacity")
+        query.tags["capacity"] = OverpassTag(key: "capacity", value: ".", isNegation: true, isRegex: true)
+        
+        SwiftOverpass.api(endpoint: "https://overpass-api.de/api/interpreter")
+            .fetch(query) { (response) in
+                guard let nodes = response.nodes else {
+                    print("Unable to get nodes from response: \(response.xml)")
+                    return
+                }
+                
+                self.addNodesToMapView(nodes)
+        }
+    }
+    
+    private func addNodesToMapView(_ nodes: [OverpassNode]) {
+        let newNodes = Set(nodes).subtracting(discoveredNodes)
+        discoveredNodes = discoveredNodes.union(newNodes)
+        
+        let annotations = newNodes.flatMap { (node) -> MKAnnotation? in
+            OverpassNodeAnnotation(node: node)
+        }
+        
+        delegate?.addAnnotations(annotations)
+    }
+    
+    // MARK: MapViewModelProtocol
+    
+    func ensureDataIsPresent(for region: MKCoordinateRegion) {
+        guard !doesRegionExceedMaximumSearchRadius(region) else {
+            print("Won't query Overpass for this region.")
             return
         }
         
-        /// TODO: Query
-//        let query = SwiftOverpass.query(type: .node)
-//        query.setBoudingBox(s: 53.584245, n: 53.607651, w: 10.013931, e: 10.072253)
-//        query.hasTag("amenity", equals: "bicycle_parking")
-//        //        query.doesNotHaveTag("capacity")
-//        query.tags["capacity"] = OverpassTag(key: "capacity", value: ".", isNegation: true, isRegex: true)
-//        
-//        SwiftOverpass.api(endpoint: "https://overpass-api.de/api/interpreter")
-//            .fetch(query) { (response) in
-//                
-//        }
+        queryOverpassForNodes(in: region)
     }
     
     func centerMapOnDeviceRegion() {
@@ -163,4 +197,16 @@ class MapViewModel: NSObject, MapViewModelProtocol {
         centerMapOnDeviceRegion()
     }
 
+}
+
+extension OverpassNode: Hashable {
+    
+    public static func ==(lhs: OverpassNode, rhs: OverpassNode) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public var hashValue: Int {
+        return Int(self.id)!
+    }
+    
 }

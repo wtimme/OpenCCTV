@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6457007D20755D930061A81D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457007C20755D930061A81D /* MapViewController.swift */; };
 		6457008020755DEE0061A81D /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457007F20755DEE0061A81D /* MapViewModel.swift */; };
+		64570084207597990061A81D /* OverpassNodeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64570083207597990061A81D /* OverpassNodeAnnotation.swift */; };
 		646FC52D20753241008E0EDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FC52C20753241008E0EDB /* AppDelegate.swift */; };
 		646FC53220753241008E0EDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 646FC53020753241008E0EDB /* Main.storyboard */; };
 		646FC53420753241008E0EDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646FC53320753241008E0EDB /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		6457007C20755D930061A81D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6457007F20755DEE0061A81D /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		645700812075743B0061A81D /* Hamburg Hbf.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hamburg Hbf.gpx"; sourceTree = "<group>"; };
+		64570083207597990061A81D /* OverpassNodeAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverpassNodeAnnotation.swift; sourceTree = "<group>"; };
 		646FC52920753241008E0EDB /* OpenStreetMapCompletionist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenStreetMapCompletionist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		646FC52C20753241008E0EDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		646FC53120753241008E0EDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,6 +91,14 @@
 			path = "View Models";
 			sourceTree = "<group>";
 		};
+		64570082207597880061A81D /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				64570083207597990061A81D /* OverpassNodeAnnotation.swift */,
+			);
+			path = Annotations;
+			sourceTree = "<group>";
+		};
 		646FC52020753241008E0EDB = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +120,7 @@
 		646FC52B20753241008E0EDB /* OpenStreetMapCompletionist */ = {
 			isa = PBXGroup;
 			children = (
+				64570082207597880061A81D /* Annotations */,
 				6457007E20755DCF0061A81D /* View Models */,
 				6457007B20755D730061A81D /* View Controllers */,
 				646FC52C20753241008E0EDB /* AppDelegate.swift */,
@@ -265,6 +276,7 @@
 				6457007D20755D930061A81D /* MapViewController.swift in Sources */,
 				646FC52D20753241008E0EDB /* AppDelegate.swift in Sources */,
 				6457008020755DEE0061A81D /* MapViewModel.swift in Sources */,
+				64570084207597990061A81D /* OverpassNodeAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
