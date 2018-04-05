@@ -46,21 +46,38 @@ protocol MapViewModelProtocol {
 
 class MapViewModel: NSObject, MapViewModelProtocol {
     
+    let locationProvider: LocationProviding
+    
     weak var delegate: MapViewModelDelegate?
     
-    var hasIssuesDeterminingDeviceLocation: Bool = false {
-        didSet {
-            delegate?.indicateTroubleWithLocation(hasIssuesDeterminingDeviceLocation)
+    var hasIssuesDeterminingDeviceLocation: Bool {
+        if case .denied = locationProvider.authorizationStatus {
+            return true
         }
+        
+        if case .restricted = locationProvider.authorizationStatus {
+            return true
+        }
+        
+        return false
     }
     
-    init(maximumSearchRadiusInMeters: Double, locatorManager: LocatorManager) {
+    init(locationProvider: LocationProviding,
+         maximumSearchRadiusInMeters: Double,
+         locatorManager: LocatorManager) {
+        self.locationProvider = locationProvider
         self.maximumSearchRadiusInMeters = maximumSearchRadiusInMeters
         self.locatorManager = locatorManager
         
         super.init()
         
         startListeningForLocationAuthorizationStatusEvents()
+    }
+    
+    convenience init(locationProvider: LocationProviding, maximumSearchRadiusInMeters: Double) {
+        self.init(locationProvider: locationProvider,
+                  maximumSearchRadiusInMeters: maximumSearchRadiusInMeters,
+                  locatorManager: Locator)
     }
     
     deinit {
@@ -83,22 +100,22 @@ class MapViewModel: NSObject, MapViewModelProtocol {
             
             switch authorizationStatus {
             case .denied:
-                self?.hasIssuesDeterminingDeviceLocation = true
+//                self?.hasIssuesDeterminingDeviceLocation = true
                 break
             case .restricted:
-                self?.hasIssuesDeterminingDeviceLocation = true
+//                self?.hasIssuesDeterminingDeviceLocation = true
                 break
             case .authorizedAlways:
-                self?.hasIssuesDeterminingDeviceLocation = false
+//                self?.hasIssuesDeterminingDeviceLocation = false
                 self?.centerMapOnDeviceRegion()
                 break
             case .authorizedWhenInUse:
-                self?.hasIssuesDeterminingDeviceLocation = false
+//                self?.hasIssuesDeterminingDeviceLocation = false
                 self?.centerMapOnDeviceRegion()
                 break
             case .notDetermined:
                 // We haven't asked the customer for permissions yet. This is not an issue.
-                self?.hasIssuesDeterminingDeviceLocation = false
+//                self?.hasIssuesDeterminingDeviceLocation = false
                 break
             }
         }
@@ -175,7 +192,7 @@ class MapViewModel: NSObject, MapViewModelProtocol {
             
             self?.delegate?.updateMapViewRegion(region)
         }) { [weak self] (error, lastKnownLocation) in
-            self?.hasIssuesDeterminingDeviceLocation = true
+//            self?.hasIssuesDeterminingDeviceLocation = true
             
             switch(error) {
             case .denied:
