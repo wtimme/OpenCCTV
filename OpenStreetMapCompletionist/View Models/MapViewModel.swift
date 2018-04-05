@@ -30,7 +30,7 @@ protocol MapViewModelDelegate: class {
 
 protocol MapViewModelProtocol {
     
-    weak var delegate: MapViewModelDelegate? { get set }
+    var delegate: MapViewModelDelegate? { get set }
     
     /// Flag on whether the view model has issues determining the device location.
     var hasIssuesDeterminingDeviceLocation: Bool { get }
@@ -146,7 +146,7 @@ class MapViewModel: NSObject, MapViewModelProtocol {
         let newNodes = Set(nodes).subtracting(discoveredNodes)
         discoveredNodes = discoveredNodes.union(newNodes)
         
-        let annotations = newNodes.flatMap { (node) -> MKAnnotation? in
+        let annotations = newNodes.compactMap { (node) -> MKAnnotation? in
             OverpassNodeAnnotation(node: node)
         }
         
