@@ -71,7 +71,7 @@ class MapViewModel: NSObject, MapViewModelProtocol {
         
         super.init()
         
-        startListeningForLocationAuthorizationStatusEvents()
+        locationProvider.delegate = self
     }
     
     convenience init(locationProvider: LocationProviding, maximumSearchRadiusInMeters: Double) {
@@ -80,46 +80,12 @@ class MapViewModel: NSObject, MapViewModelProtocol {
                   locatorManager: Locator)
     }
     
-    deinit {
-        if let token = locationAuthorizationEventToken {
-            locatorManager.events.remove(token: token)
-        }
-    }
-    
     // MARK: Private
     
     private let maximumSearchRadiusInMeters: Double
     private let locatorManager: LocatorManager
-    private var locationAuthorizationEventToken: LocatorManager.Events.Token?
     
     private var discoveredNodes = Set<OverpassNode>()
-    
-    private func startListeningForLocationAuthorizationStatusEvents() {
-        locationAuthorizationEventToken = locatorManager.events.listen { [weak self] authorizationStatus in
-            print("Authorization status changed to \(authorizationStatus)")
-            
-            switch authorizationStatus {
-            case .denied:
-//                self?.hasIssuesDeterminingDeviceLocation = true
-                break
-            case .restricted:
-//                self?.hasIssuesDeterminingDeviceLocation = true
-                break
-            case .authorizedAlways:
-//                self?.hasIssuesDeterminingDeviceLocation = false
-                self?.centerMapOnDeviceRegion()
-                break
-            case .authorizedWhenInUse:
-//                self?.hasIssuesDeterminingDeviceLocation = false
-                self?.centerMapOnDeviceRegion()
-                break
-            case .notDetermined:
-                // We haven't asked the customer for permissions yet. This is not an issue.
-//                self?.hasIssuesDeterminingDeviceLocation = false
-                break
-            }
-        }
-    }
     
     private func doesRegionExceedMaximumSearchRadius(_ region: MKCoordinateRegion) -> Bool {
         let north = CLLocation(latitude: region.center.latitude - region.span.latitudeDelta * 0.5, longitude: region.center.longitude)
@@ -182,7 +148,7 @@ class MapViewModel: NSObject, MapViewModelProtocol {
     }
     
     func centerMapOnDeviceRegion() {
-        locatorManager.currentPosition(accuracy: .room, onSuccess: { [weak self] (location) in
+        locatorManager.currentPosition(accuracy: .house, onSuccess: { [weak self] (location) in
             let span = MKCoordinateSpanMake(0.025, 0.025)
             let region = MKCoordinateRegionMake(location.coordinate, span)
             
@@ -214,6 +180,27 @@ class MapViewModel: NSObject, MapViewModelProtocol {
     }
 
 }
+
+extension MapViewModel: LocationProviderDelegate {
+    
+    func locationProviderDidRecognizeAuthorizationStatusChange(_ authorizationStatus: CLAuthorizationStatus) {
+        print("Authorization status changed to \(authorizationStatus)")
+        
+        switch authorizationStatus {
+            case .authorizedAlways:
+                centerMapOnDeviceRegion()
+                break
+            case .authorizedWhenInUse:
+                centerMapOnDeviceRegion()
+                break
+        default:
+            // Ignore
+            break
+        }
+    }
+    
+}
+
 
 extension OverpassNode: Hashable {
     

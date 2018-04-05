@@ -50,4 +50,8 @@ class MapViewModelTestCase: XCTestCase {
         XCTAssertTrue(viewModel.hasIssuesDeterminingDeviceLocation)
     }
     
+    func testViewModelShouldTellDelegateToCenterOnDeviceLocationWhenAuthorizationStatusChangesToAuthorizedWhenInUse() {
+        
+    }
+    
 }
