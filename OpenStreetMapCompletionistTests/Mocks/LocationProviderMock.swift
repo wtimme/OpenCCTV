@@ -13,7 +13,7 @@ import CoreLocation
 
 class LocationProviderMock: NSObject, LocationProviding {
     
-    var mockedLocation: CLLocation?
+    var mockedDeviceLocationCoordinate: CLLocationCoordinate2D?
     var mockedError: Error?
     
     var authorizationStatus: CLAuthorizationStatus = .notDetermined
@@ -21,7 +21,14 @@ class LocationProviderMock: NSObject, LocationProviding {
     var delegate: LocationProviderDelegate?
     
     func deviceLocation(_ completion: @escaping (CLLocation?, Error?) -> Void) {
-        completion(mockedLocation, mockedError)
+        let location: CLLocation?
+        if let deviceCoordinate = mockedDeviceLocationCoordinate {
+            location = CLLocation(latitude: deviceCoordinate.latitude, longitude: deviceCoordinate.longitude)
+        } else {
+            location = nil
+        }
+        
+        completion(location, mockedError)
     }
 
 }

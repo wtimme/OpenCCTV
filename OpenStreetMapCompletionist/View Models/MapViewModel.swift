@@ -148,24 +148,20 @@ class MapViewModel: NSObject, MapViewModelProtocol {
     }
     
     func centerMapOnDeviceRegion() {
-        locatorManager.currentPosition(accuracy: .house, onSuccess: { [weak self] (location) in
-            let span = MKCoordinateSpanMake(0.025, 0.025)
-            let region = MKCoordinateRegionMake(location.coordinate, span)
-            
-            // As we got a location, we can safely assume that we have the permissions
-            // and display the user location on the map.
-            self?.delegate?.setMapViewShowsUserLocation(true)
-            
-            self?.delegate?.updateMapViewRegion(region)
-        }) { [weak self] (error, lastKnownLocation) in
-//            self?.hasIssuesDeterminingDeviceLocation = true
-            
-            switch(error) {
-            case .denied:
+        locationProvider.deviceLocation { [weak self] (location, error) in
+            if let locationError = error as? LocationError, case .denied = locationError  {
                 self?.delegate?.askCustomerToOpenLocationSettings()
-                break;
-            default:
-                print("Failed to determine the current position: \(error)")
+            } else if let deviceLocation = location {
+                let span = MKCoordinateSpanMake(0.025, 0.025)
+                let region = MKCoordinateRegionMake(deviceLocation.coordinate, span)
+                
+                // As we got a location, we can safely assume that we have the permissions
+                // and display the user location on the map.
+                self?.delegate?.setMapViewShowsUserLocation(true)
+                
+                self?.delegate?.updateMapViewRegion(region)
+            } else {
+                print("Failed to determine the current position: \(error.debugDescription)")
             }
         }
     }
