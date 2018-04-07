@@ -28,6 +28,7 @@ class MapViewController: UIViewController {
         viewModel.delegate = self
         
         viewModel.centerMapOnDeviceRegionIfAuthorized()
+        centerOnDeviceLocationBarButtonItem.setIcon(icon: .mapicons(.locationArrow), iconSize: 20)
     }
     
     override func viewWillAppear(_ animated: Bool) {
