@@ -10,5 +10,7 @@ target 'OpenStreetMapCompletionist' do
   pod 'SwiftOverpass', :git => 'git@github.com:wtimme/SwiftOverpassWrapper.git', :branch => 'bugfix/Fix-regular-expression-query'
   pod 'SwiftIcons', '~> 2.0.1'
   pod 'SwiftLocation', '~> 3.2.1'
+  
+  pod 'SwiftFormat/CLI', '~> 0.33.5'
 
 end

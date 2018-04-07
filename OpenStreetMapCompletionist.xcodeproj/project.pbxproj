@@ -217,6 +217,7 @@
 			buildConfigurationList = 646FC53B20753241008E0EDB /* Build configuration list for PBXNativeTarget "OpenStreetMapCompletionist" */;
 			buildPhases = (
 				8993C4A44E8DFA19DEB24992 /* [CP] Check Pods Manifest.lock */,
+				645B7BF92078C99C004FA7BF /* ShellScript */,
 				646FC52520753241008E0EDB /* Sources */,
 				646FC52620753241008E0EDB /* Frameworks */,
 				646FC52720753241008E0EDB /* Resources */,
@@ -355,6 +356,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenStreetMapCompletionist/Pods-OpenStreetMapCompletionist-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		645B7BF92078C99C004FA7BF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" --disable \"sortedImports,trailingCommas\" \"${SRCROOT}/\" --exclude \"${PODS_ROOT}\" --wraparguments afterfirst";
 		};
 		8993C4A44E8DFA19DEB24992 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
