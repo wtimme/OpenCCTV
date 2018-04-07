@@ -63,27 +63,18 @@ class MapViewModel: NSObject, MapViewModelProtocol {
     }
     
     init(locationProvider: LocationProviding,
-         maximumSearchRadiusInMeters: Double,
-         locatorManager: LocatorManager) {
+         maximumSearchRadiusInMeters: Double) {
         self.locationProvider = locationProvider
         self.maximumSearchRadiusInMeters = maximumSearchRadiusInMeters
-        self.locatorManager = locatorManager
         
         super.init()
         
         locationProvider.delegate = self
     }
     
-    convenience init(locationProvider: LocationProviding, maximumSearchRadiusInMeters: Double) {
-        self.init(locationProvider: locationProvider,
-                  maximumSearchRadiusInMeters: maximumSearchRadiusInMeters,
-                  locatorManager: Locator)
-    }
-    
     // MARK: Private
     
     private let maximumSearchRadiusInMeters: Double
-    private let locatorManager: LocatorManager
     
     private var discoveredNodes = Set<OverpassNode>()
     
@@ -167,7 +158,7 @@ class MapViewModel: NSObject, MapViewModelProtocol {
     }
     
     func centerMapOnDeviceRegionIfAuthorized() {
-        guard locatorManager.authorizationStatus == .authorizedAlways || locatorManager.authorizationStatus == .authorizedWhenInUse else {
+        guard locationProvider.authorizationStatus == .authorizedAlways || locationProvider.authorizationStatus == .authorizedWhenInUse else {
             // We don't want the permission dialog to show up, so we stop here.
             return
         }

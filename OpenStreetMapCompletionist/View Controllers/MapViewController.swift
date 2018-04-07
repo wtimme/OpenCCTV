@@ -19,8 +19,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var centerOnDeviceLocationBarButtonItem: UIBarButtonItem!
     
     private var viewModel: MapViewModelProtocol = MapViewModel(locationProvider: LocationProvider(locatorManager: Locator),
-                                                               maximumSearchRadiusInMeters: 4000,
-                                                               locatorManager: Locator)
+                                                               maximumSearchRadiusInMeters: 4000)
 
     override func viewDidLoad() {
         super.viewDidLoad()
