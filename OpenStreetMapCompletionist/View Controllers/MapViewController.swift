@@ -11,7 +11,6 @@ import UIKit
 import MapKit
 import SwiftIcons
 import SwiftLocation
-import SafariServices
 
 class MapViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
@@ -51,12 +50,8 @@ extension MapViewController: MKMapViewDelegate {
 
     func mapView(_: MKMapView, didSelect view: MKAnnotationView) {
         if let annotation = view.annotation as? OverpassNodeAnnotation {
-            guard let nodeURL = URL(string: "https://www.openstreetmap.org/node/\(annotation.nodeId)") else {
-                return
-            }
-
-            let safariViewController = SFSafariViewController(url: nodeURL)
-            present(safariViewController, animated: true, completion: nil)
+            let nodeFormViewController = NodeFormViewController(nodeId: annotation.nodeId)
+            show(nodeFormViewController, sender: view)
         }
     }
 }
