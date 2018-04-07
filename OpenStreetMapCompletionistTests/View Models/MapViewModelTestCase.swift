@@ -14,6 +14,7 @@ import CoreLocation
 
 class MapViewModelTestCase: XCTestCase {
     var locationProviderMock: LocationProviderMock!
+    var osmDataProviderMock: OSMDataProviderMock!
     var viewModelDelegateMock: MapViewModelDelegateMock!
     var viewModel: MapViewModel!
 
@@ -21,10 +22,11 @@ class MapViewModelTestCase: XCTestCase {
         super.setUp()
 
         locationProviderMock = LocationProviderMock()
+        osmDataProviderMock = OSMDataProviderMock()
         viewModelDelegateMock = MapViewModelDelegateMock()
 
         viewModel = MapViewModel(locationProvider: locationProviderMock,
-                                 maximumSearchRadiusInMeters: 4000)
+                                 osmDataProvider: osmDataProviderMock)
         viewModel.delegate = viewModelDelegateMock
     }
 

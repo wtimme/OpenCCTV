@@ -8,7 +8,6 @@
 
 import MapKit
 
-import SwiftOverpass
 import SwiftLocation
 
 protocol MapViewModelDelegate: class {
@@ -29,6 +28,8 @@ protocol MapViewModelDelegate: class {
 protocol MapViewModelProtocol {
     var delegate: MapViewModelDelegate? { get set }
 
+    func regionDidChange(_ region: MKCoordinateRegion)
+
     /// Flag on whether the view model has issues determining the device location.
     var hasIssuesDeterminingDeviceLocation: Bool { get }
 
@@ -37,12 +38,11 @@ protocol MapViewModelProtocol {
 
     /// Centers the map on the device location, if the customer authorized us to access the location.
     func centerMapOnDeviceRegionIfAuthorized()
-
-    func ensureDataIsPresent(for region: MKCoordinateRegion)
 }
 
 class MapViewModel: NSObject, MapViewModelProtocol {
     let locationProvider: LocationProviding
+    let osmDataProvider: OSMDataProviding
 
     weak var delegate: MapViewModelDelegate?
 
@@ -58,80 +58,24 @@ class MapViewModel: NSObject, MapViewModelProtocol {
         return false
     }
 
-    init(locationProvider: LocationProviding,
-         maximumSearchRadiusInMeters: Double) {
+    init(locationProvider: LocationProviding, osmDataProvider: OSMDataProviding) {
         self.locationProvider = locationProvider
-        self.maximumSearchRadiusInMeters = maximumSearchRadiusInMeters
+        self.osmDataProvider = osmDataProvider
 
         super.init()
 
         locationProvider.delegate = self
-    }
 
-    // MARK: Private
-
-    private let maximumSearchRadiusInMeters: Double
-
-    private var discoveredNodes = Set<OverpassNode>()
-
-    private func doesRegionExceedMaximumSearchRadius(_ region: MKCoordinateRegion) -> Bool {
-        let north = CLLocation(latitude: region.center.latitude - region.span.latitudeDelta * 0.5, longitude: region.center.longitude)
-        let south = CLLocation(latitude: region.center.latitude + region.span.latitudeDelta * 0.5, longitude: region.center.longitude)
-        let northSouthDistanceInMeters = north.distance(from: south)
-
-        let east = CLLocation(latitude: region.center.latitude, longitude: region.center.longitude - region.span.longitudeDelta * 0.5)
-        let west = CLLocation(latitude: region.center.latitude, longitude: region.center.longitude + region.span.longitudeDelta * 0.5)
-        let eastWestDistanceInMeters = east.distance(from: west)
-
-        guard northSouthDistanceInMeters < maximumSearchRadiusInMeters, eastWestDistanceInMeters < maximumSearchRadiusInMeters else {
-            print("Region exceeds maximum search radius (\(maximumSearchRadiusInMeters): N-S distance is \(northSouthDistanceInMeters) and E-W distance is \(eastWestDistanceInMeters)")
-            return true
-        }
-
-        return false
-    }
-
-    private func queryOverpassForNodes(in region: MKCoordinateRegion) {
-        /// TODO: Query
-        let query = SwiftOverpass.query(type: .node)
-        query.setBoudingBox(s: region.center.latitude - region.span.latitudeDelta * 0.5,
-                            n: region.center.latitude + region.span.latitudeDelta * 0.5,
-                            w: region.center.longitude - region.span.longitudeDelta * 0.5,
-                            e: region.center.longitude + region.span.longitudeDelta * 0.5)
-        query.hasTag("amenity", equals: "bicycle_parking")
-        //        query.doesNotHaveTag("capacity")
-        query.tags["capacity"] = OverpassTag(key: "capacity", value: ".", isNegation: true, isRegex: true)
-
-        SwiftOverpass.api(endpoint: "https://overpass-api.de/api/interpreter")
-            .fetch(query) { response in
-                guard let nodes = response.nodes else {
-                    return
-                }
-
-                self.addNodesToMapView(nodes)
-            }
-    }
-
-    private func addNodesToMapView(_ nodes: [OverpassNode]) {
-        let newNodes = Set(nodes).subtracting(discoveredNodes)
-        discoveredNodes = discoveredNodes.union(newNodes)
-
-        let annotations = newNodes.compactMap { (node) -> MKAnnotation? in
-            OverpassNodeAnnotation(node: node)
-        }
-
-        delegate?.addAnnotations(annotations)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceiveOSMDataProviderAddedAnnotationsNotification(_:)),
+                                               name: .osmDataProviderDidAddAnnotations,
+                                               object: nil)
     }
 
     // MARK: MapViewModelProtocol
 
-    func ensureDataIsPresent(for region: MKCoordinateRegion) {
-        guard !doesRegionExceedMaximumSearchRadius(region) else {
-            print("Won't query Overpass for this region.")
-            return
-        }
-
-        queryOverpassForNodes(in: region)
+    func regionDidChange(_ region: MKCoordinateRegion) {
+        osmDataProvider.ensureDataIsPresent(for: region)
     }
 
     func centerMapOnDeviceRegion() {
@@ -161,6 +105,16 @@ class MapViewModel: NSObject, MapViewModelProtocol {
 
         centerMapOnDeviceRegion()
     }
+
+    // MARK: Notifications
+
+    @objc func didReceiveOSMDataProviderAddedAnnotationsNotification(_ note: Notification) {
+        guard let annotations = note.object as? [MKAnnotation] else {
+            return
+        }
+
+        delegate?.addAnnotations(annotations)
+    }
 }
 
 extension MapViewModel: LocationProviderDelegate {
@@ -178,15 +132,5 @@ extension MapViewModel: LocationProviderDelegate {
             // Ignore
             break
         }
-    }
-}
-
-extension OverpassNode: Hashable {
-    public static func == (lhs: OverpassNode, rhs: OverpassNode) -> Bool {
-        return lhs.id == rhs.id
-    }
-
-    public var hashValue: Int {
-        return Int(id)!
     }
 }

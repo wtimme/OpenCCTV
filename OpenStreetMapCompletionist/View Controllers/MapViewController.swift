@@ -17,7 +17,8 @@ class MapViewController: UIViewController {
     @IBOutlet var centerOnDeviceLocationBarButtonItem: UIBarButtonItem!
 
     private var viewModel: MapViewModelProtocol = MapViewModel(locationProvider: LocationProvider(locatorManager: Locator),
-                                                               maximumSearchRadiusInMeters: 4000)
+                                                               osmDataProvider: OverpassOSMDataProvider(interpreterURL: URL(string: "https://overpass-api.de/api/interpreter")!,
+                                                                                                        maximumSearchRadiusInMeters: 4000))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated _: Bool) {
         // Let the view model know about the new region.
-        viewModel.ensureDataIsPresent(for: mapView.region)
+        viewModel.regionDidChange(mapView.region)
     }
 
     func mapView(_: MKMapView, didSelect view: MKAnnotationView) {
