@@ -55,7 +55,7 @@ class LocationProvider: NSObject, LocationProviding {
     }
 
     func deviceLocation(_ completion: @escaping (CLLocation?, Error?) -> Void) {
-        locatorManager.currentPosition(accuracy: .room, onSuccess: { location in
+        locatorManager.currentPosition(accuracy: .block, onSuccess: { location in
             completion(location, nil)
         }) { error, lastKnownLocation in
             completion(lastKnownLocation, error)
