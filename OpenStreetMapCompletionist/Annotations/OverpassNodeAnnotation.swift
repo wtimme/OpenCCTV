@@ -8,18 +8,12 @@
 
 import MapKit
 
-import SwiftOverpass
-
 class OverpassNodeAnnotation: NSObject, MKAnnotation {
     let nodeId: Int
     let coordinate: CLLocationCoordinate2D
 
-    init?(node: OverpassNode) {
-        guard let nodeId = Int(node.id) else {
-            return nil
-        }
-
-        self.nodeId = nodeId
-        coordinate = CLLocationCoordinate2D(latitude: node.latitude, longitude: node.longitude)
+    init?(node: Node) {
+        nodeId = node.id
+        coordinate = node.coordinate
     }
 }

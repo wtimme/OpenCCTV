@@ -10,8 +10,18 @@ import Foundation
 
 import CoreLocation
 
-struct Node {
+struct Node: Hashable {
     let id: Int
     let coordinate: CLLocationCoordinate2D
     let tags: [String: String]
+
+    // MARK: Hashable
+
+    public static func == (lhs: Node, rhs: Node) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    public var hashValue: Int {
+        return id
+    }
 }

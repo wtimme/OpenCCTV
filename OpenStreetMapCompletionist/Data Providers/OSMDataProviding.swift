@@ -13,7 +13,7 @@ import SwiftOverpass
 
 protocol OSMDataProviding: class {
     func ensureDataIsPresent(for region: MKCoordinateRegion)
-    func node(id: Int) -> OverpassNode?
+    func node(id: Int) -> Node?
 }
 
 class OverpassOSMDataProvider: NSObject, OSMDataProviding {
@@ -26,7 +26,7 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
 
     private let interpreterURL: URL
     private let maximumSearchRadiusInMeters: Double
-    private var discoveredNodes = Set<OverpassNode>()
+    private var discoveredNodes = Set<Node>()
 
     private func doesRegionExceedMaximumSearchRadius(_ region: MKCoordinateRegion) -> Bool {
         let north = CLLocation(latitude: region.center.latitude - region.span.latitudeDelta * 0.5, longitude: region.center.longitude)
@@ -58,15 +58,18 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
 
         SwiftOverpass.api(endpoint: interpreterURL.absoluteString)
             .fetch(query) { response in
-                guard let nodes = response.nodes else {
+                guard let swiftOverpassNodes = response.nodes else {
                     return
                 }
+
+                // Create our own objects from the nodes.
+                let nodes = swiftOverpassNodes.compactMap { Node(swiftOverpassNode: $0) }
 
                 self.addNodesToMapView(nodes)
             }
     }
 
-    private func addNodesToMapView(_ nodes: [OverpassNode]) {
+    private func addNodesToMapView(_ nodes: [Node]) {
         let newNodes = Set(nodes).subtracting(discoveredNodes)
         discoveredNodes = discoveredNodes.union(newNodes)
 
@@ -89,14 +92,8 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
         queryOverpassForNodes(in: region)
     }
 
-    func node(id: Int) -> OverpassNode? {
-        return discoveredNodes.first(where: { (node) -> Bool in
-            guard let nodeId = Int(node.id) else {
-                return false
-            }
-
-            return nodeId == id
-        })
+    func node(id: Int) -> Node? {
+        return discoveredNodes.first(where: { $0.id == id })
     }
 }
 
@@ -104,12 +101,19 @@ extension Notification.Name {
     static let osmDataProviderDidAddAnnotations = Notification.Name("osmDataProviderDidAddAnnotations")
 }
 
-extension OverpassNode: Hashable {
-    public static func == (lhs: OverpassNode, rhs: OverpassNode) -> Bool {
-        return lhs.id == rhs.id
-    }
+extension Node {
+    init?(swiftOverpassNode: OverpassNode) {
+        guard let id = Int(swiftOverpassNode.id) else {
+            return nil
+        }
 
-    public var hashValue: Int {
-        return Int(id)!
+        let coordinate = CLLocationCoordinate2D(latitude: swiftOverpassNode.latitude, longitude: swiftOverpassNode.longitude)
+        guard CLLocationCoordinate2DIsValid(coordinate) else {
+            return nil
+        }
+
+        self.id = id
+        self.coordinate = coordinate
+        tags = swiftOverpassNode.tags
     }
 }
