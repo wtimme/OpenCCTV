@@ -13,6 +13,7 @@ import SwiftOverpass
 
 protocol OSMDataProviding: class {
     func ensureDataIsPresent(for region: MKCoordinateRegion)
+    func node(id: Int) -> OverpassNode?
 }
 
 class OverpassOSMDataProvider: NSObject, OSMDataProviding {
@@ -86,6 +87,16 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
         }
 
         queryOverpassForNodes(in: region)
+    }
+
+    func node(id: Int) -> OverpassNode? {
+        return discoveredNodes.first(where: { (node) -> Bool in
+            guard let nodeId = Int(node.id) else {
+                return false
+            }
+
+            return nodeId == id
+        })
     }
 }
 

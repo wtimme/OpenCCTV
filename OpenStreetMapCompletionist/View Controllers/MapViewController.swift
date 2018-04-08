@@ -16,15 +16,24 @@ class MapViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var centerOnDeviceLocationBarButtonItem: UIBarButtonItem!
 
-    private var viewModel: MapViewModelProtocol = MapViewModel(locationProvider: LocationProvider(locatorManager: Locator),
-                                                               osmDataProvider: OverpassOSMDataProvider(interpreterURL: URL(string: "https://overpass-api.de/api/interpreter")!,
-                                                                                                        maximumSearchRadiusInMeters: 4000))
+    private let dataProvider: OSMDataProviding = OverpassOSMDataProvider(interpreterURL: URL(string: "https://overpass-api.de/api/interpreter")!,
+                                                                         maximumSearchRadiusInMeters: 4000)
+    private let viewModel: MapViewModelProtocol
+
+    required init?(coder aDecoder: NSCoder) {
+        let viewModel = MapViewModel(locationProvider: LocationProvider(locatorManager: Locator),
+                                     osmDataProvider: dataProvider)
+        self.viewModel = viewModel
+
+        super.init(coder: aDecoder)
+
+        viewModel.delegate = self
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         mapView.delegate = self
-        viewModel.delegate = self
 
         viewModel.centerMapOnDeviceRegionIfAuthorized()
         centerOnDeviceLocationBarButtonItem.setIcon(icon: .mapicons(.locationArrow), iconSize: 20)
@@ -50,8 +59,11 @@ extension MapViewController: MKMapViewDelegate {
     }
 
     func mapView(_: MKMapView, didSelect view: MKAnnotationView) {
-        if let annotation = view.annotation as? OverpassNodeAnnotation {
-            let nodeFormViewController = NodeFormViewController(nodeId: annotation.nodeId)
+        if
+            let annotation = view.annotation as? OverpassNodeAnnotation,
+            let node = dataProvider.node(id: annotation.nodeId) {
+            let nodeFormViewController = NodeFormViewController(node: node)
+
             show(nodeFormViewController, sender: view)
         }
     }

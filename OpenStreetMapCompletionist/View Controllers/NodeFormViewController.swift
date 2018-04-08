@@ -10,12 +10,13 @@ import Eureka
 
 import SafariServices
 import SwiftIcons
+import SwiftOverpass
 
 class NodeFormViewController: FormViewController {
-    let nodeId: Int
+    let node: OverpassNode
 
-    init(nodeId: Int) {
-        self.nodeId = nodeId
+    init(node: OverpassNode) {
+        self.node = node
 
         super.init(style: .grouped)
     }
@@ -38,12 +39,12 @@ class NodeFormViewController: FormViewController {
             <<< IntRow { row in
                 row.title = "Node ID"
                 row.disabled = true
-                row.value = nodeId
+                row.value = Int(node.id)!
             }
     }
 
     @objc func didTapOpenOnOpenStreetMapButton(_: Any?) {
-        guard let nodeDetailsURL = URL(string: "https://www.openstreetmap.org/node/\(nodeId)") else {
+        guard let nodeDetailsURL = URL(string: "https://www.openstreetmap.org/node/\(Int(node.id)!)") else {
             return
         }
 
