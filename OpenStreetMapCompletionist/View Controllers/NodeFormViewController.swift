@@ -41,6 +41,16 @@ class NodeFormViewController: FormViewController {
                 row.disabled = true
                 row.value = Int(node.id)!
             }
+
+        let tagSection = Section("Tags")
+        for tag in node.tags {
+            tagSection
+                <<< TextRow { row in
+                    row.title = tag.key
+                    row.value = tag.value
+                }
+        }
+        form +++ tagSection
     }
 
     @objc func didTapOpenOnOpenStreetMapButton(_: Any?) {
