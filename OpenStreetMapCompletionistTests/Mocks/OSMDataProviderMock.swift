@@ -13,8 +13,13 @@ import MapKit
 
 class OSMDataProviderMock: NSObject, OSMDataProviding {
     var lastRegionToEnsureDataFor: MKCoordinateRegion?
+    var nodes = [Int: Node]()
 
     func ensureDataIsPresent(for region: MKCoordinateRegion) {
         lastRegionToEnsureDataFor = region
+    }
+
+    func node(id: Int) -> Node? {
+        return nodes[id]
     }
 }
