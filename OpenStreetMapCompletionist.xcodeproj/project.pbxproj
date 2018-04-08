@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		64019CAD207A1C90002CFEF1 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64019CAC207A1C90002CFEF1 /* Node.swift */; };
+		64019CB1207A210B002CFEF1 /* NodeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64019CB0207A210B002CFEF1 /* NodeAnnotationView.swift */; };
 		6457007D20755D930061A81D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457007C20755D930061A81D /* MapViewController.swift */; };
 		6457008020755DEE0061A81D /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457007F20755DEE0061A81D /* MapViewModel.swift */; };
 		64570084207597990061A81D /* OverpassNodeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64570083207597990061A81D /* OverpassNodeAnnotation.swift */; };
@@ -20,6 +21,7 @@
 		646FC53720753241008E0EDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 646FC53520753241008E0EDB /* LaunchScreen.storyboard */; };
 		647C420A2076B7300002B068 /* MapViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647C42092076B7300002B068 /* MapViewModelTestCase.swift */; };
 		647C42102076B9BD0002B068 /* LocationProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647C420F2076B9BD0002B068 /* LocationProviderMock.swift */; };
+		64822FE6207A248E003698AB /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64822FE5207A248E003698AB /* UIColor+Palette.swift */; };
 		64FDDE3120793F29001428B3 /* OSMDataProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDDE3020793F29001428B3 /* OSMDataProviding.swift */; };
 		64FDDE3320794557001428B3 /* OSMDataProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDDE3220794557001428B3 /* OSMDataProviderMock.swift */; };
 		EE8F71E51A6B51EFBFE3FF50 /* Pods_OpenStreetMapCompletionist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D48C3638DBAC4E53FAAE2F9F /* Pods_OpenStreetMapCompletionist.framework */; };
@@ -52,6 +54,7 @@
 		40B0783A00E1A7C6C48EA67E /* Pods-OpenStreetMapCompletionist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenStreetMapCompletionist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenStreetMapCompletionist/Pods-OpenStreetMapCompletionist.debug.xcconfig"; sourceTree = "<group>"; };
 		4C9A709A1EE0EDDF12BBD5CF /* Pods-AppAndTests-OpenStreetMapCompletionist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppAndTests-OpenStreetMapCompletionist.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppAndTests-OpenStreetMapCompletionist/Pods-AppAndTests-OpenStreetMapCompletionist.release.xcconfig"; sourceTree = "<group>"; };
 		64019CAC207A1C90002CFEF1 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		64019CB0207A210B002CFEF1 /* NodeAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeAnnotationView.swift; sourceTree = "<group>"; };
 		6457007C20755D930061A81D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6457007F20755DEE0061A81D /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		645700812075743B0061A81D /* Hamburg Hbf.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Hamburg Hbf.gpx"; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		647C42082076B7300002B068 /* OpenStreetMapCompletionistTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenStreetMapCompletionistTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		647C42092076B7300002B068 /* MapViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModelTestCase.swift; sourceTree = "<group>"; };
 		647C420F2076B9BD0002B068 /* LocationProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviderMock.swift; sourceTree = "<group>"; };
+		64822FE5207A248E003698AB /* UIColor+Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		64FDDE3020793F29001428B3 /* OSMDataProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMDataProviding.swift; sourceTree = "<group>"; };
 		64FDDE3220794557001428B3 /* OSMDataProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMDataProviderMock.swift; sourceTree = "<group>"; };
 		88854F2F6C4D6DE5A04E06AB /* Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppAndTests-OpenStreetMapCompletionist/Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +139,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		64019CAE207A2082002CFEF1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				64019CAF207A208D002CFEF1 /* Annotations */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		64019CAF207A208D002CFEF1 /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				64019CB0207A210B002CFEF1 /* NodeAnnotationView.swift */,
+			);
+			path = Annotations;
+			sourceTree = "<group>";
+		};
 		6457007B20755D730061A81D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,11 +212,13 @@
 		646FC52B20753241008E0EDB /* OpenStreetMapCompletionist */ = {
 			isa = PBXGroup;
 			children = (
+				64822FE3207A247D003698AB /* Extensions */,
 				64019CAA207A1C84002CFEF1 /* Overpass */,
 				645B7C0320791DB8004FA7BF /* Data Providers */,
 				64570082207597880061A81D /* Annotations */,
 				6457007E20755DCF0061A81D /* View Models */,
 				6457007B20755D730061A81D /* View Controllers */,
+				64019CAE207A2082002CFEF1 /* Views */,
 				646FC52C20753241008E0EDB /* AppDelegate.swift */,
 				646FC53020753241008E0EDB /* Main.storyboard */,
 				646FC53320753241008E0EDB /* Assets.xcassets */,
@@ -234,6 +256,22 @@
 				64FDDE3220794557001428B3 /* OSMDataProviderMock.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		64822FE3207A247D003698AB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				64822FE4207A2482003698AB /* UIColor */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		64822FE4207A2482003698AB /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				64822FE5207A248E003698AB /* UIColor+Palette.swift */,
+			);
+			path = UIColor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,10 +466,12 @@
 				646FC52D20753241008E0EDB /* AppDelegate.swift in Sources */,
 				6457008020755DEE0061A81D /* MapViewModel.swift in Sources */,
 				64019CAD207A1C90002CFEF1 /* Node.swift in Sources */,
+				64019CB1207A210B002CFEF1 /* NodeAnnotationView.swift in Sources */,
 				64570084207597990061A81D /* OverpassNodeAnnotation.swift in Sources */,
 				645B7C0920792106004FA7BF /* NodeFormViewController.swift in Sources */,
 				64FDDE3120793F29001428B3 /* OSMDataProviding.swift in Sources */,
 				645B7C0520791DB8004FA7BF /* LocationProvider.swift in Sources */,
+				64822FE6207A248E003698AB /* UIColor+Palette.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,6 +37,8 @@ class MapViewController: UIViewController {
 
         viewModel.centerMapOnDeviceRegionIfAuthorized()
         centerOnDeviceLocationBarButtonItem.setIcon(icon: .mapicons(.locationArrow), iconSize: 20)
+
+        mapView.register(NodeAnnotationView.self, forAnnotationViewWithReuseIdentifier: NodeAnnotationView.reuseIdentifier)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +68,15 @@ extension MapViewController: MKMapViewDelegate {
 
             show(nodeFormViewController, sender: view)
         }
+    }
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            // Use the default annotation for the user location
+            return nil
+        }
+
+        return mapView.dequeueReusableAnnotationView(withIdentifier: NodeAnnotationView.reuseIdentifier, for: annotation)
     }
 }
 
