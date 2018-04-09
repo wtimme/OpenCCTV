@@ -11,6 +11,7 @@
 		64019CB1207A210B002CFEF1 /* NodeAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64019CB0207A210B002CFEF1 /* NodeAnnotationView.swift */; };
 		6435EE7B207BF5F600A97726 /* OAuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE7A207BF5F600A97726 /* OAuthHandler.swift */; };
 		6435EE7D207BFAEA00A97726 /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE7C207BFAEA00A97726 /* KeychainHandler.swift */; };
+		6435EE7F207C07CC00A97726 /* MenuFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE7E207C07CC00A97726 /* MenuFormViewController.swift */; };
 		6435EE81207C193F00A97726 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE80207C193F00A97726 /* Environment.swift */; };
 		6457007D20755D930061A81D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457007C20755D930061A81D /* MapViewController.swift */; };
 		6457008020755DEE0061A81D /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6457007F20755DEE0061A81D /* MapViewModel.swift */; };
@@ -60,6 +61,7 @@
 		64019CB0207A210B002CFEF1 /* NodeAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeAnnotationView.swift; sourceTree = "<group>"; };
 		6435EE7A207BF5F600A97726 /* OAuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthHandler.swift; sourceTree = "<group>"; };
 		6435EE7C207BFAEA00A97726 /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
+		6435EE7E207C07CC00A97726 /* MenuFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuFormViewController.swift; sourceTree = "<group>"; };
 		6435EE80207C193F00A97726 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		6457007C20755D930061A81D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6457007F20755DEE0061A81D /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				6457007C20755D930061A81D /* MapViewController.swift */,
 				645B7C0820792106004FA7BF /* NodeFormViewController.swift */,
+				6435EE7E207C07CC00A97726 /* MenuFormViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 			files = (
 				6457007D20755D930061A81D /* MapViewController.swift in Sources */,
 				646FC52D20753241008E0EDB /* AppDelegate.swift in Sources */,
+				6435EE7F207C07CC00A97726 /* MenuFormViewController.swift in Sources */,
 				6435EE81207C193F00A97726 /* Environment.swift in Sources */,
 				6435EE7D207BFAEA00A97726 /* KeychainHandler.swift in Sources */,
 				6457008020755DEE0061A81D /* MapViewModel.swift in Sources */,
