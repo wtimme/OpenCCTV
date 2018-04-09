@@ -17,58 +17,18 @@ protocol OAuthHandling {
 }
 
 class OAuthHandler: NSObject, OAuthHandling {
-    enum Environment {
-        /// master.apis.dev.openstreetmap.org
-        case development
-
-        /// www.openstreetmap.org
-        case live
-    }
-
     private let oauthSwift: OAuth1Swift
     private let keychainHandler: KeychainHandling
 
-    init(consumerKey: String,
-         consumerSecret: String,
-         requestTokenURLString: String,
-         authorizeURLString: String,
-         accessTokenURLString: String,
+    init(environment: Environment,
          keychainHandler: KeychainHandling) {
-        oauthSwift = OAuth1Swift(consumerKey: consumerKey,
-                                 consumerSecret: consumerSecret,
-                                 requestTokenUrl: requestTokenURLString,
-                                 authorizeUrl: authorizeURLString,
-                                 accessTokenUrl: accessTokenURLString)
+        oauthSwift = OAuth1Swift(consumerKey: environment.oauthConsumerKey,
+                                 consumerSecret: environment.oauthConsumerSecret,
+                                 requestTokenUrl: environment.oauthBaseURL.appendingPathComponent("/oauth/request_token").absoluteString,
+                                 authorizeUrl: environment.oauthBaseURL.appendingPathComponent("/oauth/authorize").absoluteString,
+                                 accessTokenUrl: environment.oauthBaseURL.appendingPathComponent("/oauth/access_token").absoluteString)
 
         self.keychainHandler = keychainHandler
-    }
-
-    convenience init(environment: Environment,
-                     consumerKey: String,
-                     consumerSecret: String,
-                     keychainHandler: KeychainHandling) {
-        let requestTokenURLString: String
-        let authorizeURLString: String
-        let accessTokenURLString: String
-        switch environment {
-        case .development:
-            requestTokenURLString = "https://master.apis.dev.openstreetmap.org/oauth/request_token"
-            authorizeURLString = "https://master.apis.dev.openstreetmap.org/oauth/authorize"
-            accessTokenURLString = "https://master.apis.dev.openstreetmap.org/oauth/access_token"
-            break
-        case .live:
-            requestTokenURLString = "https://master.apis.dev.openstreetmap.org/oauth/request_token"
-            authorizeURLString = "https://master.apis.dev.openstreetmap.org/oauth/authorize"
-            accessTokenURLString = "https://master.apis.dev.openstreetmap.org/oauth/access_token"
-            break
-        }
-
-        self.init(consumerKey: consumerKey,
-                  consumerSecret: consumerSecret,
-                  requestTokenURLString: requestTokenURLString,
-                  authorizeURLString: authorizeURLString,
-                  accessTokenURLString: accessTokenURLString,
-                  keychainHandler: keychainHandler)
     }
 
     // MARK: OAuthHandling

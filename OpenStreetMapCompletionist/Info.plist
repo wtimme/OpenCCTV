@@ -2,6 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>OAuth Environments</key>
+	<dict>
+		<key>Development</key>
+		<dict>
+			<key>Base URL</key>
+			<string>https://master.apis.dev.openstreetmap.org/</string>
+			<key>Consumer Key</key>
+			<string></string>
+			<key>Consumer Secret</key>
+			<string></string>
+		</dict>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
