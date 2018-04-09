@@ -17,33 +17,16 @@ protocol OSMDataProviding: class {
 }
 
 class OverpassOSMDataProvider: NSObject, OSMDataProviding {
-    init(interpreterURL: URL, maximumSearchRadiusInMeters: Double) {
+    init(interpreterURL: URL, downloadStrategy: OSMDataDownloadStrategy) {
         self.interpreterURL = interpreterURL
-        self.maximumSearchRadiusInMeters = maximumSearchRadiusInMeters
+        self.downloadStrategy = downloadStrategy
     }
 
     // MARK: Private
 
     private let interpreterURL: URL
-    private let maximumSearchRadiusInMeters: Double
+    private let downloadStrategy: OSMDataDownloadStrategy
     private var discoveredNodes = Set<Node>()
-
-    private func doesRegionExceedMaximumSearchRadius(_ region: MKCoordinateRegion) -> Bool {
-        let north = CLLocation(latitude: region.center.latitude - region.span.latitudeDelta * 0.5, longitude: region.center.longitude)
-        let south = CLLocation(latitude: region.center.latitude + region.span.latitudeDelta * 0.5, longitude: region.center.longitude)
-        let northSouthDistanceInMeters = north.distance(from: south)
-
-        let east = CLLocation(latitude: region.center.latitude, longitude: region.center.longitude - region.span.longitudeDelta * 0.5)
-        let west = CLLocation(latitude: region.center.latitude, longitude: region.center.longitude + region.span.longitudeDelta * 0.5)
-        let eastWestDistanceInMeters = east.distance(from: west)
-
-        guard northSouthDistanceInMeters < maximumSearchRadiusInMeters, eastWestDistanceInMeters < maximumSearchRadiusInMeters else {
-            print("Region exceeds maximum search radius (\(maximumSearchRadiusInMeters): N-S distance is \(northSouthDistanceInMeters) and E-W distance is \(eastWestDistanceInMeters)")
-            return true
-        }
-
-        return false
-    }
 
     private func queryOverpassForNodes(in region: MKCoordinateRegion) {
         /// TODO: Query
@@ -84,8 +67,8 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
     // MARK: OSMDataProviding
 
     func ensureDataIsPresent(for region: MKCoordinateRegion) {
-        guard !doesRegionExceedMaximumSearchRadius(region) else {
-            print("Won't query Overpass for this region.")
+        guard downloadStrategy.allowsDownload(of: region) else {
+            print("Won't query Overpass: Download strategy doesn't allow a region of this size.")
             return
         }
 

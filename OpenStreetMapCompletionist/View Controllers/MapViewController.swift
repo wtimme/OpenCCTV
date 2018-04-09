@@ -17,7 +17,7 @@ class MapViewController: UIViewController {
     @IBOutlet var centerOnDeviceLocationBarButtonItem: UIBarButtonItem!
 
     private let dataProvider: OSMDataProviding = OverpassOSMDataProvider(interpreterURL: URL(string: "https://overpass-api.de/api/interpreter")!,
-                                                                         maximumSearchRadiusInMeters: 4000)
+                                                                         downloadStrategy: OSMDataDownloadStrategy(maximumRadiusInMeters: 4000))
     private let viewModel: MapViewModelProtocol
 
     required init?(coder aDecoder: NSCoder) {
