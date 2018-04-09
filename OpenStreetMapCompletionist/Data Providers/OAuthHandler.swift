@@ -24,9 +24,9 @@ class OAuthHandler: NSObject, OAuthHandling {
          keychainHandler: KeychainHandling) {
         oauthSwift = OAuth1Swift(consumerKey: environment.oauthConsumerKey,
                                  consumerSecret: environment.oauthConsumerSecret,
-                                 requestTokenUrl: environment.oauthBaseURL.appendingPathComponent("/oauth/request_token").absoluteString,
-                                 authorizeUrl: environment.oauthBaseURL.appendingPathComponent("/oauth/authorize").absoluteString,
-                                 accessTokenUrl: environment.oauthBaseURL.appendingPathComponent("/oauth/access_token").absoluteString)
+                                 requestTokenUrl: environment.oauthBaseURL.appendingPathComponent("oauth/request_token").absoluteString,
+                                 authorizeUrl: environment.oauthBaseURL.appendingPathComponent("oauth/authorize").absoluteString,
+                                 accessTokenUrl: environment.oauthBaseURL.appendingPathComponent("oauth/access_token").absoluteString)
 
         self.keychainHandler = keychainHandler
     }
