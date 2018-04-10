@@ -37,13 +37,26 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Mg6-1Y-tvG">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usB-Nx-cPZ" userLabel="Copyright Label">
+                                <rect key="frame" x="192" y="644" width="171" height="18"/>
+                                <color key="backgroundColor" red="0.96078431610000004" green="0.96078431610000004" blue="0.96078431610000004" alpha="0.60105415239726023" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                <inset key="contentEdgeInsets" minX="4" minY="2" maxX="4" maxY="2"/>
+                                <state key="normal" title="© OpenStreetMap contributors"/>
+                                <connections>
+                                    <action selector="didTapOpenStreetMapCopyrightButton:" destination="QoK-DF-hWg" eventType="touchUpInside" id="FM7-S1-kwm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="usB-Nx-cPZ" firstAttribute="bottom" secondItem="piB-mZ-7KE" secondAttribute="bottom" constant="-5" id="2Ih-Lp-yag"/>
                             <constraint firstItem="Mg6-1Y-tvG" firstAttribute="leading" secondItem="piB-mZ-7KE" secondAttribute="leading" id="DKT-J8-jsq"/>
                             <constraint firstAttribute="bottom" secondItem="Mg6-1Y-tvG" secondAttribute="bottom" id="DRc-LO-yQT"/>
                             <constraint firstItem="piB-mZ-7KE" firstAttribute="top" secondItem="Mg6-1Y-tvG" secondAttribute="top" id="Jwr-vE-mgv"/>
                             <constraint firstItem="Mg6-1Y-tvG" firstAttribute="trailing" secondItem="piB-mZ-7KE" secondAttribute="trailing" id="Kgt-W4-Mdq"/>
+                            <constraint firstItem="usB-Nx-cPZ" firstAttribute="trailing" secondItem="piB-mZ-7KE" secondAttribute="trailing" constant="-12" id="fUN-pn-08d"/>
+                            <constraint firstItem="usB-Nx-cPZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="piB-mZ-7KE" secondAttribute="leading" id="y4b-o2-99y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="piB-mZ-7KE"/>
                     </view>

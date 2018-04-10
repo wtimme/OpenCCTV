@@ -11,6 +11,7 @@ import UIKit
 import MapKit
 import SwiftIcons
 import SwiftLocation
+import SafariServices
 
 class MapViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
@@ -51,6 +52,12 @@ class MapViewController: UIViewController {
 
     @IBAction func didTapCenterOnDeviceLocationBarButtonItem(_: AnyObject) {
         viewModel.centerMapOnDeviceRegion()
+    }
+
+    @IBAction func didTapOpenStreetMapCopyrightButton(_: AnyObject) {
+        let safariViewController = SFSafariViewController(url: URL(string: "https://www.openstreetmap.org/copyright")!)
+
+        present(safariViewController, animated: true, completion: nil)
     }
 }
 
