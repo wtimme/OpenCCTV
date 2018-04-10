@@ -4,6 +4,9 @@ PODS:
   - Eureka (4.1.1)
   - KeychainAccess (3.1.0)
   - OAuthSwift (1.2.0)
+  - SQLite.swift (0.11.4):
+    - SQLite.swift/standard (= 0.11.4)
+  - SQLite.swift/standard (0.11.4)
   - SwiftFormat/CLI (0.33.5)
   - SwiftIcons (2.0.1)
   - SwiftLocation (3.2.1):
@@ -17,6 +20,7 @@ DEPENDENCIES:
   - Eureka (~> 4.1.1)
   - KeychainAccess (~> 3.1.0)
   - OAuthSwift (~> 1.2.0)
+  - SQLite.swift (~> 0.11.4)
   - SwiftFormat/CLI (~> 0.33.5)
   - SwiftIcons (~> 2.0.1)
   - SwiftLocation (~> 3.2.1)
@@ -29,6 +33,7 @@ SPEC REPOS:
     - Eureka
     - KeychainAccess
     - OAuthSwift
+    - SQLite.swift
     - SwiftFormat
     - SwiftIcons
     - SwiftLocation
@@ -50,12 +55,13 @@ SPEC CHECKSUMS:
   Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   OAuthSwift: 7fd6855b8e4d58eb5a30d156ea9bed7a8aecd1ca
+  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   SwiftFormat: 13fd81206cf4453c19f1a5c51768c8c0d9165c30
   SwiftIcons: e475a56ae2c2da40672dbf16061ca5dd5cee7dbb
   SwiftLocation: 603153e718a5b4a1e1f114346c2d5e13c16b69da
   SwiftOverpass: c51be67304756a15c13629b2d9eee0df05c97ce3
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 4d84ab742dbf287633534f016c8aea65d47a9317
+PODFILE CHECKSUM: b643cf61bdd7667e2c26adce9924f1cfe91ef87a
 
 COCOAPODS: 1.5.0

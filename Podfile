@@ -14,6 +14,7 @@ target 'OpenStreetMapCompletionist' do
   
   pod 'OAuthSwift', '~> 1.2.0'
   pod 'KeychainAccess', '~> 3.1.0'
+  pod 'SQLite.swift', '~> 0.11.4'
   
   pod 'SwiftFormat/CLI', '~> 0.33.5'
 
