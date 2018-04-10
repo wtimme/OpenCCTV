@@ -40,6 +40,8 @@ class MapViewController: UIViewController {
         centerOnDeviceLocationBarButtonItem.setIcon(icon: .mapicons(.locationArrow), iconSize: 20)
 
         mapView.register(NodeAnnotationView.self, forAnnotationViewWithReuseIdentifier: NodeAnnotationView.reuseIdentifier)
+
+        positionMapAttributionLabel()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +50,12 @@ class MapViewController: UIViewController {
         if let selectedAnnotation = mapView.selectedAnnotations.first {
             mapView.deselectAnnotation(selectedAnnotation, animated: animated)
         }
+    }
+
+    /// Makes sure that the "Legal" label at the bottom left corner of the map is correctly positioned on iPhone X.
+    /// With the map view being fullscreen, the label's position is too far down on the iPhone X.
+    private func positionMapAttributionLabel() {
+        additionalSafeAreaInsets = UIEdgeInsetsMake(0.0, 0.0, 1.0, 0.0)
     }
 
     @IBAction func didTapCenterOnDeviceLocationBarButtonItem(_: AnyObject) {
