@@ -15,7 +15,8 @@ struct WikiPage {
 }
 
 protocol TagProviding {
-    func wikiPage(key: String, value: String, language: String) -> WikiPage?
+    func wikiPage(key: String, value: String?) -> WikiPage?
+    func potentialValues(key: String) -> [String]
 }
 
 class SQLiteTagProvider: NSObject, TagProviding {
@@ -33,9 +34,16 @@ class SQLiteTagProvider: NSObject, TagProviding {
 
     // MARK: TagProviding
 
-    func wikiPage(key: String, value: String, language: String) -> WikiPage? {
+    func wikiPage(key: String, value: String?) -> WikiPage? {
         do {
-            for row in try db.prepare("SELECT description FROM wikipages WHERE key = '\(key)' AND value = '\(value)' AND lang = '\(language)'") {
+            let query: String
+            if let value = value {
+                query = "SELECT description FROM wikipages WHERE key = '\(key)' AND value = '\(value)' AND lang = 'en'"
+            } else {
+                query = "SELECT description FROM wikipages WHERE key = '\(key)' AND lang = 'en'"
+            }
+
+            for row in try db.prepare(query) {
                 guard let description = row[0] as? String, !description.isEmpty else {
                     continue
                 }
@@ -43,9 +51,32 @@ class SQLiteTagProvider: NSObject, TagProviding {
                 return WikiPage(description: description)
             }
 
-            return nil
+            if value != nil {
+                // Try to use the page for the key.
+                return wikiPage(key: key, value: nil)
+            }
         } catch {
             return nil
         }
+
+        return nil
+    }
+
+    func potentialValues(key: String) -> [String] {
+        var values = Set<String>()
+
+        do {
+            for row in try db.prepare("SELECT value FROM wikipages WHERE key = '\(key)' AND value NOT NULL AND lang = 'en'") {
+                guard let discoveredValue = row[0] as? String, !discoveredValue.isEmpty else {
+                    continue
+                }
+
+                values.insert(discoveredValue)
+            }
+        } catch {
+            // Ignore the error.
+        }
+
+        return values.sorted()
     }
 }
