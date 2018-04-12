@@ -75,6 +75,7 @@
                     <connections>
                         <outlet property="centerOnDeviceLocationBarButtonItem" destination="UdQ-lM-MOs" id="JEI-H9-p3p"/>
                         <outlet property="mapView" destination="Mg6-1Y-tvG" id="4QV-tn-a2m"/>
+                        <segue destination="IfF-bw-R13" kind="presentation" identifier="ShowNodeDetails" id="Tgt-yq-wNh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUa-42-d4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -95,7 +96,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oYe-bl-wVG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1946" y="354"/>
+            <point key="canvasLocation" x="1940" y="34"/>
         </scene>
         <!--Menu-->
         <scene sceneID="rly-JR-Rzp">
@@ -117,7 +118,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4pn-dh-9YM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2961" y="354"/>
+            <point key="canvasLocation" x="2956" y="34"/>
+        </scene>
+        <!--Node Details Navigation-->
+        <scene sceneID="8bK-Dz-xRo">
+            <objects>
+                <navigationController id="IfF-bw-R13" userLabel="Node Details Navigation" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tcr-Be-S2A">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="eWs-sY-9Dr" kind="relationship" relationship="rootViewController" id="a1n-Pr-Pau"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jOt-uQ-J5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1937" y="708"/>
+        </scene>
+        <!--Node Details-->
+        <scene sceneID="98A-G7-k3r">
+            <objects>
+                <viewController id="eWs-sY-9Dr" customClass="NodeFormViewController" customModule="OpenStreetMapCompletionist" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6tC-o1-hXB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JAV-8x-ncf"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Node Details" id="585-bD-b1R">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bSH-L1-SxY">
+                            <connections>
+                                <action selector="didTapDoneButton:" destination="eWs-sY-9Dr" id="yXv-NN-dEl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DbV-YD-c2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2956" y="707"/>
         </scene>
     </scenes>
 </document>

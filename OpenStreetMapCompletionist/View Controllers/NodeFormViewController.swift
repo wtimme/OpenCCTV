@@ -12,7 +12,8 @@ import SafariServices
 import SwiftIcons
 
 class NodeFormViewController: FormViewController {
-    let node: Node
+    var node: Node!
+
     let tagProvider: TagProviding? = {
         guard let databasePath = Bundle.main.path(forResource: "taginfo-wiki", ofType: "db") else {
             return nil
@@ -20,16 +21,6 @@ class NodeFormViewController: FormViewController {
 
         return SQLiteTagProvider(databasePath: databasePath)
     }()
-
-    init(node: Node) {
-        self.node = node
-
-        super.init(style: .grouped)
-    }
-
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,6 +98,10 @@ class NodeFormViewController: FormViewController {
                     })
                 }
         }
+    }
+
+    @IBAction func didTapDoneButton(_: UIControl) {
+        dismiss(animated: true, completion: nil)
     }
 
     private func didTapAddTag() {

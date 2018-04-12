@@ -67,6 +67,18 @@ class MapViewController: UIViewController {
 
         present(safariViewController, animated: true, completion: nil)
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if
+            segue.identifier == "ShowNodeDetails",
+            let selectedNode = sender as? Node,
+            let destinationNavigationController = segue.destination as? UINavigationController,
+            let formViewController = destinationNavigationController.topViewController as? NodeFormViewController {
+            formViewController.node = selectedNode
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -79,9 +91,7 @@ extension MapViewController: MKMapViewDelegate {
         if
             let annotation = view.annotation as? OverpassNodeAnnotation,
             let node = dataProvider.node(id: annotation.nodeId) {
-            let nodeFormViewController = NodeFormViewController(node: node)
-
-            show(nodeFormViewController, sender: view)
+            performSegue(withIdentifier: "ShowNodeDetails", sender: node)
         }
     }
 
