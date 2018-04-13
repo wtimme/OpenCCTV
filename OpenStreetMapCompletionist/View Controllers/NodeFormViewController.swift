@@ -45,37 +45,12 @@ class NodeFormViewController: FormViewController {
                 $0.value = "\(node.coordinate.longitude)"
             }
 
-        for tag in node.tags {
-            let sectionFooter: String
-            if let description = tagProvider?.wikiPage(key: tag.key, value: tag.value)?.description {
-                sectionFooter = description
-            } else {
-                sectionFooter = ""
+        for keyValueTag in node.tags {
+            guard let tag = tagProvider?.wikiPage(key: keyValueTag.key, value: keyValueTag.value) else {
+                continue
             }
 
-            let tagDetailsSection = Section(footer: sectionFooter)
-
-            if let potentialValues = tagProvider?.potentialValues(key: tag.key), !potentialValues.isEmpty {
-                tagDetailsSection
-                    <<< PushRow<String>() {
-                        $0.title = tag.key
-                        $0.cell.accessoryType = .disclosureIndicator
-                        $0.selectorTitle = "Change \(tag.key)"
-                        $0.options = potentialValues
-                        $0.value = tag.value
-                        $0.cellUpdate({ _, row in
-                            row.section?.footer?.title = self.tagProvider?.wikiPage(key: tag.key, value: row.value)?.description
-                        })
-                    }
-            } else {
-                tagDetailsSection
-                    <<< TextRow {
-                        $0.title = tag.key
-                        $0.value = tag.value
-                    }
-            }
-
-            form +++ tagDetailsSection
+            form +++ tagSection(tag: tag)
         }
 
         form +++ Section()
@@ -83,7 +58,7 @@ class NodeFormViewController: FormViewController {
                 $0.title = "Add Tag"
                 $0.cell.accessoryType = .disclosureIndicator
                 $0.onCellSelection({ _, _ in
-                    self.didTapAddTag()
+                    self.performSegue(withIdentifier: "ShowTagSearch", sender: nil)
                 })
             }
 
@@ -100,11 +75,61 @@ class NodeFormViewController: FormViewController {
         }
     }
 
+    private func tagSection(tag: WikiPage) -> Section {
+        let section = Section(footer: tag.description ?? "")
+
+        if let potentialValues = tagProvider?.potentialValues(key: tag.key), !potentialValues.isEmpty {
+            section
+                <<< PushRow<String>() {
+                    $0.title = tag.key
+                    $0.cell.accessoryType = .disclosureIndicator
+                    $0.selectorTitle = "Change \(tag.key)"
+                    $0.options = potentialValues
+                    $0.value = tag.value
+                    $0.cellUpdate({ _, row in
+                        row.section?.footer?.title = self.tagProvider?.wikiPage(key: tag.key, value: row.value)?.description
+                    })
+                }
+        } else {
+            section
+                <<< TextRow {
+                    $0.title = tag.key
+                    $0.value = tag.value
+                }
+        }
+
+        return section
+    }
+
+    private func addTagSectionToForm(tag: WikiPage) {
+        let indexOfNewSection = form.allSections.count - 2
+
+        form.insert(tagSection(tag: tag), at: indexOfNewSection)
+    }
+
     @IBAction func didTapDoneButton(_: UIControl) {
         dismiss(animated: true, completion: nil)
     }
 
-    private func didTapAddTag() {
-        print("TODO: Show key/value search")
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if
+            segue.identifier == "ShowTagSearch",
+            let destinationViewController = segue.destination as? TagListTableViewController,
+            let tagProvider = tagProvider {
+            destinationViewController.tagProvider = tagProvider
+            destinationViewController.delegate = self
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+}
+
+extension NodeFormViewController: TagSelectionDelegate {
+    func tagSelectionDidFinish(with tag: WikiPage?) {
+        navigationController?.popToViewController(self, animated: true)
+
+        if let selectedTag = tag {
+            addTagSectionToForm(tag: selectedTag)
+        }
     }
 }
