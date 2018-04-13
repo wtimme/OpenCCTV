@@ -13,7 +13,7 @@ import CoreLocation
 struct Node: Hashable {
     let id: Int
     let coordinate: CLLocationCoordinate2D
-    let tags: [String: String]
+    let rawTags: [(key: String, value: String?)]
 
     // MARK: Hashable
 

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol TagSelectionDelegate: class {
-    func tagSelectionDidFinish(with tag: WikiPage?)
+    func tagSelectionDidFinish(with tag: Tag?)
 }

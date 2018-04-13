@@ -13,6 +13,7 @@ import SwiftIcons
 
 class NodeFormViewController: FormViewController {
     var node: Node!
+    var tags = [String: Tag]()
 
     let tagProvider: TagProviding? = {
         guard let databasePath = Bundle.main.path(forResource: "taginfo-wiki", ofType: "db") else {
@@ -45,13 +46,8 @@ class NodeFormViewController: FormViewController {
                 $0.value = "\(node.coordinate.longitude)"
             }
 
-        for keyValueTag in node.tags {
-            guard let tag = tagProvider?.wikiPage(key: keyValueTag.key, value: keyValueTag.value) else {
-                continue
-            }
-
-            form +++ tagSection(tag: tag)
-        }
+        let tagSections = makeTagSections(node.rawTags)
+        form.append(contentsOf: tagSections)
 
         form +++ Section()
             <<< LabelRow {
@@ -75,19 +71,59 @@ class NodeFormViewController: FormViewController {
         }
     }
 
-    private func tagSection(tag: WikiPage) -> Section {
+    private func makeTagSections(_ keyValueTags: [(key: String, value: String?)]) -> [Section] {
+        var sections = [Section]()
+
+        for rawTag in keyValueTags {
+            let tagSection = Section(footer: "Searching wiki for details...") {
+                $0.tag = rawTag.key
+            }
+                <<< LabelRow {
+                    $0.title = rawTag.key
+                    $0.value = rawTag.value
+                    $0.cell.accessoryType = .disclosureIndicator
+                    $0.onCellSelection({ _, row in
+                        guard let section = row.section, let tagKey = section.tag, let selectedTag = self.tags[tagKey] else {
+                            return
+                        }
+
+                        self.performSegue(withIdentifier: "ShowTagDetails", sender: selectedTag)
+                    })
+                }
+
+            sections.append(tagSection)
+
+            // Start searching for details.
+            tagProvider?.findSingleTag(rawTag, { [weak self] requestedRawTag, resolvedTag in
+                if let tag = resolvedTag {
+                    self?.tags[tag.key] = tag
+                }
+
+                self?.updateTagDetails(rawTag: requestedRawTag, resolvedTag: resolvedTag)
+            })
+        }
+
+        return sections
+    }
+
+    private func updateTagDetails(rawTag: (key: String, value: String?), resolvedTag: Tag?) {
+        guard let section = form.sectionBy(tag: rawTag.key) else { return }
+
+        section.footer?.title = resolvedTag?.description ?? ""
+        section.reload()
+    }
+
+    private func tagSection(tag: Tag) -> Section {
         let section = Section(footer: tag.description ?? "")
 
         if let potentialValues = tagProvider?.potentialValues(key: tag.key), !potentialValues.isEmpty {
             section
-                <<< PushRow<String>() {
+                <<< LabelRow {
                     $0.title = tag.key
-                    $0.cell.accessoryType = .disclosureIndicator
-                    $0.selectorTitle = "Change \(tag.key)"
-                    $0.options = potentialValues
                     $0.value = tag.value
-                    $0.cellUpdate({ _, row in
-                        row.section?.footer?.title = self.tagProvider?.wikiPage(key: tag.key, value: row.value)?.description
+                    $0.cell.accessoryType = .disclosureIndicator
+                    $0.onCellSelection({ _, _ in
+                        self.performSegue(withIdentifier: "ShowTagDetails", sender: tag)
                     })
                 }
         } else {
@@ -101,7 +137,7 @@ class NodeFormViewController: FormViewController {
         return section
     }
 
-    private func addTagSectionToForm(tag: WikiPage) {
+    private func addTagSectionToForm(tag: Tag) {
         let indexOfNewSection = form.allSections.count - 2
 
         form.insert(tagSection(tag: tag), at: indexOfNewSection)
@@ -118,6 +154,10 @@ class NodeFormViewController: FormViewController {
             let tagProvider = tagProvider {
             destinationViewController.tagProvider = tagProvider
             destinationViewController.delegate = self
+        } else if
+            segue.identifier == "ShowTagDetails",
+            let selectedTag = sender as? Tag {
+            segue.destination.title = selectedTag.tag
         } else {
             super.prepare(for: segue, sender: sender)
         }
@@ -125,7 +165,7 @@ class NodeFormViewController: FormViewController {
 }
 
 extension NodeFormViewController: TagSelectionDelegate {
-    func tagSelectionDidFinish(with tag: WikiPage?) {
+    func tagSelectionDidFinish(with tag: Tag?) {
         navigationController?.popToViewController(self, animated: true)
 
         if let selectedTag = tag {

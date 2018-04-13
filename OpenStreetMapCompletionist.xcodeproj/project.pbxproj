@@ -180,8 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				6457007C20755D930061A81D /* MapViewController.swift */,
-				645B7C0820792106004FA7BF /* NodeFormViewController.swift */,
 				6435EE7E207C07CC00A97726 /* MenuFormViewController.swift */,
+				645B7C0820792106004FA7BF /* NodeFormViewController.swift */,
 				649FE42D207FF712009F5137 /* TagListTableViewController.swift */,
 			);
 			path = "View Controllers";

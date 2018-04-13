@@ -10,7 +10,7 @@ import Foundation
 
 import SQLite
 
-struct WikiPage {
+struct Tag {
     let key: String
     let value: String?
     let description: String?
@@ -29,8 +29,8 @@ struct WikiPage {
 }
 
 protocol TagProviding {
-    func wikiPage(key: String, value: String?) -> WikiPage?
-    func wikiPages(matching searchText: String, completion: @escaping (_: String, _: [WikiPage]) -> Void)
+    func findSingleTag(_ parameters: (key: String, value: String?), _ completion: @escaping ((key: String, value: String?), Tag?) -> Void)
+    func findTags(matching searchTerm: String, _ completion: @escaping ((key: String, value: String?), [Tag]) -> Void)
 
     func potentialValues(key: String) -> [String]
 }
@@ -50,32 +50,134 @@ class SQLiteTagProvider: NSObject, TagProviding {
 
     // MARK: TagProviding
 
-    func wikiPage(key: String, value: String?) -> WikiPage? {
-        do {
-            let query: String
-            if let value = value {
-                query = "SELECT description FROM wikipages WHERE key = '\(key)' AND value = '\(value)' AND lang = 'en'"
-            } else {
-                query = "SELECT description FROM wikipages WHERE key = '\(key)' AND lang = 'en'"
-            }
+    func findSingleTag(_ parameters: (key: String, value: String?), _ completion: @escaping ((key: String, value: String?), Tag?) -> Void) {
+        findTags(parameters, exactMatch: true) { parameters, tags in
+            completion(parameters, tags.first)
+        }
+    }
 
-            for row in try db.prepare(query) {
-                guard let description = row[0] as? String, !description.isEmpty else {
-                    continue
+    func findTags(matching searchTerm: String, _ completion: @escaping ((key: String, value: String?), [Tag]) -> Void) {
+        findTags((key: searchTerm, value: searchTerm), exactMatch: false, completion)
+    }
+
+    private func findTags(_ parameters: (key: String, value: String?), exactMatch: Bool, _ completion: @escaping ((key: String, value: String?), [Tag]) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            let bindings: [Binding]
+            let condition: String
+            var limit: String?
+
+            if !exactMatch {
+                bindings = ["%\(parameters.key)%", "%\(parameters.value ?? parameters.key)%"]
+                condition = """
+                (
+                    w.tag LIKE ?1
+                    OR
+                    w.tag LIKE ?2
+                    OR
+                    w.key LIKE ?1
+                    OR
+                    w.key LIKE ?2
+                    OR
+                    w.value LIKE ?1
+                    OR
+                    w.value LIKE ?2
+                    OR
+                    w.description LIKE ?1
+                    OR
+                    w.description LIKE ?2
+                )
+                """
+            } else {
+                if let value = parameters.value {
+                    bindings = [parameters.key, value]
+                    condition = """
+                    (
+                    w.key = ?1
+                    AND
+                    w.value = ?2
+                    )
+                    """
+                } else {
+                    bindings = [parameters.key]
+                    condition = """
+                    w.key = ?1
+                    """
                 }
 
-                return WikiPage(key: key, value: value, description: description)
+                limit = """
+                LIMIT
+                1
+                """
             }
 
-            if value != nil {
-                // Try to use the page for the key.
-                return wikiPage(key: key, value: nil)
+            let query = """
+            SELECT
+                COALESCE(
+                    (
+                        SELECT
+                            lang_count
+                        FROM
+                            wikipages_tags
+                        WHERE
+                            wikipages_tags.key = w.key
+                            AND
+                            (
+                                wikipages_tags.value = w.value
+                                OR
+                                wikipages_tags.value IS NULL AND w.value IS NULL
+                            )
+
+                    ), 0
+                ) AS number_of_translations,
+                w.key,
+                w.value,
+                w.description,
+                w.image,
+                w.tags_combination,
+                w.tags_linked,
+                w.lang
+            FROM
+                wikipages w
+            WHERE
+                w.on_node = 1
+                AND
+                ((w.lang = "en" AND w.description IS NOT NULL) OR w.lang = "en")
+                AND
+                \(condition)
+            GROUP BY
+                w.tag
+            ORDER BY
+                number_of_translations DESC,
+                w.key DESC
+            \(limit ?? "")
+            """
+
+            DispatchQueue.global(qos: .background).async {
+                var matchingTags = [Tag]()
+                do {
+                    for row in try self.db.prepare(query, bindings) {
+                        guard let key = row[1] as? String else {
+                            // We need to at least have a key.
+                            print("Skipping row, as it has no key: \(row)")
+                            continue
+                        }
+
+                        let value = row[2] as? String
+                        let description = row[3] as? String
+
+                        let tag = Tag(key: key, value: value, description: description)
+
+                        matchingTags.append(tag)
+                    }
+                } catch {
+                    // Ignore the error.
+                }
+
+                DispatchQueue.main.async {
+                    completion(parameters, matchingTags)
+                }
             }
-        } catch {
-            return nil
         }
-
-        return nil
     }
 
     func potentialValues(key: String) -> [String] {
@@ -94,84 +196,5 @@ class SQLiteTagProvider: NSObject, TagProviding {
         }
 
         return values.sorted()
-    }
-
-    func wikiPages(matching searchText: String, completion: @escaping (String, [WikiPage]) -> Void) {
-        let query = """
-        SELECT
-            COALESCE(
-                (
-                    SELECT
-                        lang_count
-                    FROM
-                        wikipages_tags
-                    WHERE
-                        wikipages_tags.key = w.key
-                        AND
-                        (
-                            wikipages_tags.value = w.value
-                            OR
-                            wikipages_tags.value IS NULL AND w.value IS NULL
-                        )
-
-                ), 0
-            ) AS number_of_translations,
-            w.key,
-            w.value,
-            w.description,
-            w.image,
-            w.tags_combination,
-            w.tags_linked,
-            w.lang
-        FROM
-            wikipages w
-        WHERE
-            w.on_node = 1
-            AND
-            ((w.lang = "en" AND w.description IS NOT NULL) OR w.lang = "en")
-            AND
-            (
-                w.tag LIKE ?1
-                OR
-                w.key LIKE ?1
-                OR
-                w.value LIKE ?1
-                OR
-                w.description LIKE ?1
-            )
-        GROUP BY
-            w.tag
-        ORDER BY
-            number_of_translations DESC,
-            w.key DESC
-        """
-
-        let searchTextForLikeQuery = "%\(searchText)%"
-
-        DispatchQueue.global(qos: .background).async {
-            var pages = [WikiPage]()
-            do {
-                for row in try self.db.prepare(query, [searchTextForLikeQuery]) {
-                    guard let key = row[1] as? String else {
-                        // We need to at least have a key.
-                        print("Skipping row, as it has no key: \(row)")
-                        continue
-                    }
-
-                    let value = row[2] as? String
-                    let description = row[3] as? String
-
-                    let singlePage = WikiPage(key: key, value: value, description: description)
-
-                    pages.append(singlePage)
-                }
-            } catch {
-                // Ignore the error.
-            }
-
-            DispatchQueue.main.async {
-                completion(searchText, pages)
-            }
-        }
     }
 }

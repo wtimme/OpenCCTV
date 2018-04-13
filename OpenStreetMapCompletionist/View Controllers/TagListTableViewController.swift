@@ -14,8 +14,8 @@ class TagListTableViewController: UITableViewController, UISearchResultsUpdating
     var tagProvider: TagProviding!
     weak var delegate: TagSelectionDelegate?
 
-    var tagsWithExistingValue = [WikiPage]()
-    var tagsWithoutExistingValue = [WikiPage]()
+    var tagsWithExistingValue = [Tag]()
+    var tagsWithoutExistingValue = [Tag]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class TagListTableViewController: UITableViewController, UISearchResultsUpdating
         }
     }
 
-    private func tagForRow(at indexPath: IndexPath) -> WikiPage? {
+    private func tagForRow(at indexPath: IndexPath) -> Tag? {
         if 0 == indexPath.section && indexPath.row < tagsWithExistingValue.count {
             return tagsWithExistingValue[indexPath.row]
         } else if 1 == indexPath.section && indexPath.row < tagsWithoutExistingValue.count {
@@ -54,12 +54,12 @@ class TagListTableViewController: UITableViewController, UISearchResultsUpdating
         return nil
     }
 
-    private func filterAndDisplay(pages: [WikiPage]) {
-        tagsWithExistingValue = pages.filter { !$0.isMissingValue }
-        tagsWithoutExistingValue = pages.filter { $0.isMissingValue }
+    private func filterAndDisplay(_ tags: [Tag]) {
+        tagsWithExistingValue = tags.filter { !$0.isMissingValue }
+        tagsWithoutExistingValue = tags.filter { $0.isMissingValue }
 
         tableView.reloadData()
-        tableView.scrollRectToVisible(CGRect.zero, animated: false)
+        tableView.scrollRectToVisible(CGRect.zero, animated: true)
     }
 
     // MARK: - Table view data source
@@ -123,10 +123,10 @@ class TagListTableViewController: UITableViewController, UISearchResultsUpdating
     // MARK: UIViewController
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let selectedTag: WikiPage?
+        let selectedTag: Tag?
         if let indexPath = tableView.indexPathForSelectedRow {
             selectedTag = tagForRow(at: indexPath)
-        } else if let wikiPageSender = sender as? WikiPage {
+        } else if let wikiPageSender = sender as? Tag {
             selectedTag = wikiPageSender
         } else {
             selectedTag = nil
@@ -152,7 +152,7 @@ class TagListTableViewController: UITableViewController, UISearchResultsUpdating
             !searchText.isEmpty
         else {
             searchController.searchBar.isLoading = false
-            filterAndDisplay(pages: [])
+            filterAndDisplay([])
             tableView.reloadData()
 
             // Without a search term, there's no need to start the query.
@@ -162,11 +162,11 @@ class TagListTableViewController: UITableViewController, UISearchResultsUpdating
         // Indicate that we're loading the results.
         searchController.searchBar.isLoading = true
 
-        tagProvider.wikiPages(matching: searchText) { [weak self] resultSearchText, pages in
+        tagProvider.findTags(matching: searchText) { [weak self] parameters, tags in
             guard
                 let currentSearchText = self?.searchController.searchBar.text,
-                currentSearchText.range(of: resultSearchText) != nil,
-                currentSearchText == resultSearchText
+                currentSearchText.range(of: parameters.key) != nil,
+                currentSearchText == parameters.key
             else {
                 // The search text was changed; we no longer care about the result.
                 return
@@ -174,10 +174,10 @@ class TagListTableViewController: UITableViewController, UISearchResultsUpdating
 
             self?.searchController.searchBar.isLoading = false
 
-            self?.filterAndDisplay(pages: pages)
+            self?.filterAndDisplay(tags)
             self?.tableView.reloadData()
 
-            if resultSearchText == self?.searchController.searchBar.text {
+            if parameters.key == self?.searchController.searchBar.text {
                 // We finished loading the results for the current search term; stop indicate loading activity.
                 self?.searchController.searchBar.isLoading = false
             }
