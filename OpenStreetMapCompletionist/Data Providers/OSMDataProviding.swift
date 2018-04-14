@@ -97,8 +97,6 @@ extension Node {
 
         self.id = id
         self.coordinate = coordinate
-        rawTags = swiftOverpassNode.tags.map({ keyValuePair -> (key: String, value: String?) in
-            (key: keyValuePair.key, value: keyValuePair.value)
-        })
+        self.rawTags = swiftOverpassNode.tags
     }
 }

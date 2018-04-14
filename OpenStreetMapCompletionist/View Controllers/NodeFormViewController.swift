@@ -71,16 +71,17 @@ class NodeFormViewController: FormViewController {
         }
     }
 
-    private func makeTagSections(_ keyValueTags: [(key: String, value: String?)]) -> [Section] {
+    private func makeTagSections(_ keyValueTags: [String: String]) -> [Section] {
         var sections = [Section]()
 
-        for rawTag in keyValueTags {
+        for (key, value) in keyValueTags {
             let tagSection = Section(footer: "Searching wiki for details...") {
-                $0.tag = rawTag.key
+                $0.tag = sectionTag(key)
             }
                 <<< LabelRow {
-                    $0.title = rawTag.key
-                    $0.value = rawTag.value
+                    $0.tag = key
+                    $0.title = key
+                    $0.value = value
                     $0.cell.accessoryType = .disclosureIndicator
                     $0.onCellSelection({ _, row in
                         guard let section = row.section, let tagKey = section.tag, let selectedTag = self.tags[tagKey] else {
@@ -94,7 +95,7 @@ class NodeFormViewController: FormViewController {
             sections.append(tagSection)
 
             // Start searching for details.
-            tagProvider?.findSingleTag(rawTag, { [weak self] requestedRawTag, resolvedTag in
+            tagProvider?.findSingleTag((key: key, value: value), { [weak self] requestedRawTag, resolvedTag in
                 if let tag = resolvedTag {
                     self?.tags[tag.key] = tag
                 }
@@ -107,18 +108,28 @@ class NodeFormViewController: FormViewController {
     }
 
     private func updateTagDetails(rawTag: (key: String, value: String?), resolvedTag: Tag?) {
-        guard let section = form.sectionBy(tag: rawTag.key) else { return }
+        guard let section = form.sectionBy(tag: sectionTag(rawTag.key)) else { return }
 
         section.footer?.title = resolvedTag?.description ?? ""
         section.reload()
     }
+    
+    private func sectionTag(_ tag: Tag) -> String {
+        return sectionTag(tag.key)
+    }
+    
+    private func sectionTag(_ key: String) -> String {
+        return "\(key)_section"
+    }
 
-    private func tagSection(tag: Tag) -> Section {
+    private func makeSection(tag: Tag) -> Section {
         let section = Section(footer: tag.description ?? "")
+        section.tag = sectionTag(tag)
 
         if let potentialValues = tagProvider?.potentialValues(key: tag.key), !potentialValues.isEmpty {
             section
                 <<< LabelRow {
+                    $0.tag = tag.key
                     $0.title = tag.key
                     $0.value = tag.value
                     $0.cell.accessoryType = .disclosureIndicator
@@ -129,7 +140,7 @@ class NodeFormViewController: FormViewController {
         } else {
             section
                 <<< TextRow {
-                    $0.tag = "\(tag.key)_value"
+                    $0.tag = tag.key
                     $0.title = tag.key
                     $0.value = tag.value
                 }
@@ -141,7 +152,7 @@ class NodeFormViewController: FormViewController {
     private func addTagSectionToForm(tag: Tag) {
         let indexOfNewSection = form.allSections.count - 2
 
-        form.insert(tagSection(tag: tag), at: indexOfNewSection)
+        form.insert(makeSection(tag: tag), at: indexOfNewSection)
     }
 
     @IBAction func didTapDoneButton(_: UIControl) {

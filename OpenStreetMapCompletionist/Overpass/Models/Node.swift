@@ -13,12 +13,20 @@ import CoreLocation
 struct Node: Hashable {
     let id: Int
     let coordinate: CLLocationCoordinate2D
-    let rawTags: [(key: String, value: String?)]
+    let rawTags: [String: String]
 
     // MARK: Hashable
 
     public static func == (lhs: Node, rhs: Node) -> Bool {
-        return lhs.id == rhs.id
+        guard lhs.id == rhs.id else { return false }
+        
+        guard lhs.rawTags.count == rhs.rawTags.count  else { return false }
+        
+        for (key, value) in lhs.rawTags {
+            guard rhs.rawTags[key] == value else { return false }
+        }
+        
+        return true
     }
 
     public var hashValue: Int {
