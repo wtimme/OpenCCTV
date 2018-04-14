@@ -32,6 +32,7 @@
 		649FE42E207FF713009F5137 /* TagListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FE42D207FF712009F5137 /* TagListTableViewController.swift */; };
 		649FE43120800D31009F5137 /* UISearchBar+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FE43020800D31009F5137 /* UISearchBar+Loading.swift */; };
 		649FE43320802A0A009F5137 /* TagListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FE43220802A0A009F5137 /* TagListViewModel.swift */; };
+		649FE43620810861009F5137 /* DirectionEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FE43520810861009F5137 /* DirectionEditorViewController.swift */; };
 		64FDDE3120793F29001428B3 /* OSMDataProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDDE3020793F29001428B3 /* OSMDataProviding.swift */; };
 		64FDDE3320794557001428B3 /* OSMDataProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDDE3220794557001428B3 /* OSMDataProviderMock.swift */; };
 		EE8F71E51A6B51EFBFE3FF50 /* Pods_OpenStreetMapCompletionist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D48C3638DBAC4E53FAAE2F9F /* Pods_OpenStreetMapCompletionist.framework */; };
@@ -94,6 +95,7 @@
 		649FE42D207FF712009F5137 /* TagListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListTableViewController.swift; sourceTree = "<group>"; };
 		649FE43020800D31009F5137 /* UISearchBar+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Loading.swift"; sourceTree = "<group>"; };
 		649FE43220802A0A009F5137 /* TagListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewModel.swift; sourceTree = "<group>"; };
+		649FE43520810861009F5137 /* DirectionEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionEditorViewController.swift; sourceTree = "<group>"; };
 		64FDDE3020793F29001428B3 /* OSMDataProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMDataProviding.swift; sourceTree = "<group>"; };
 		64FDDE3220794557001428B3 /* OSMDataProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMDataProviderMock.swift; sourceTree = "<group>"; };
 		88854F2F6C4D6DE5A04E06AB /* Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppAndTests-OpenStreetMapCompletionist/Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		6457007B20755D730061A81D /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				649FE4342081084C009F5137 /* Editors */,
 				6457007C20755D930061A81D /* MapViewController.swift */,
 				6435EE7E207C07CC00A97726 /* MenuFormViewController.swift */,
 				645B7C0820792106004FA7BF /* NodeFormViewController.swift */,
@@ -310,6 +313,14 @@
 				649FE43020800D31009F5137 /* UISearchBar+Loading.swift */,
 			);
 			path = UISearchBar;
+			sourceTree = "<group>";
+		};
+		649FE4342081084C009F5137 /* Editors */ = {
+			isa = PBXGroup;
+			children = (
+				649FE43520810861009F5137 /* DirectionEditorViewController.swift */,
+			);
+			path = Editors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -464,7 +475,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" --disable \"sortedImports,trailingCommas\" \"${SRCROOT}/\" --exclude \"${PODS_ROOT}\" --wraparguments afterfirst";
+			shellScript = "#\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" --disable \"sortedImports,trailingCommas\" \"${SRCROOT}/\" --exclude \"${PODS_ROOT}\" --wraparguments afterfirst";
 		};
 		8993C4A44E8DFA19DEB24992 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -508,6 +519,7 @@
 				64FDDE3120793F29001428B3 /* OSMDataProviding.swift in Sources */,
 				645B7C0520791DB8004FA7BF /* LocationProvider.swift in Sources */,
 				64822FE6207A248E003698AB /* UIColor+Palette.swift in Sources */,
+				649FE43620810861009F5137 /* DirectionEditorViewController.swift in Sources */,
 				649FE42E207FF713009F5137 /* TagListTableViewController.swift in Sources */,
 				6435EE7B207BF5F600A97726 /* OAuthHandler.swift in Sources */,
 			);
