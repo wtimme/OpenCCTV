@@ -125,10 +125,11 @@ class NodeFormViewController: FormViewController {
                     $0.onCellSelection({ _, _ in
                         self.performSegue(withIdentifier: "ShowTagDetails", sender: tag)
                     })
-                }
+            }
         } else {
             section
                 <<< TextRow {
+                    $0.tag = "\(tag.key)_value"
                     $0.title = tag.key
                     $0.value = tag.value
                 }
@@ -170,6 +171,10 @@ extension NodeFormViewController: TagSelectionDelegate {
 
         if let selectedTag = tag {
             addTagSectionToForm(tag: selectedTag)
+            
+            if let row = form.rowBy(tag: "\(selectedTag.key)_value") as? TextRow {
+                row.cell.textField.becomeFirstResponder()
+            }
         }
     }
 }
