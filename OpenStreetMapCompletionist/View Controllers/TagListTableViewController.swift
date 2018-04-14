@@ -104,14 +104,8 @@ class TagListTableViewController: UITableViewController, UISearchResultsUpdating
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selectedTag = tagForRow(at: indexPath) else { return }
-
-        if selectedTag.isMissingValue {
-            performSegue(withIdentifier: "ShowTagDetails", sender: selectedTag)
-        } else {
-            print("TAG SELECTED")
-
-            delegate?.tagSelectionDidFinish(with: selectedTag)
-        }
+        
+        delegate?.tagSelectionDidFinish(with: selectedTag)
     }
 
     override func tableView(_: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
