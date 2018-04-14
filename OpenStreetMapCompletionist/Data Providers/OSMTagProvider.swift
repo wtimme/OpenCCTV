@@ -15,6 +15,7 @@ struct Tag {
     let value: String?
     let description: String?
     let suggestedKeys: [String]
+    let thumbURLParts: (prefix: String, suffix: String)?
 
     var tag: String {
         if let value = value {
@@ -26,6 +27,14 @@ struct Tag {
 
     var isMissingValue: Bool {
         return value?.isEmpty ?? true
+    }
+    
+    func thumbnailImageURL(width: CGFloat) -> URL? {
+        guard let urlParts = thumbURLParts else { return nil}
+        
+        let scaledWidth = UIScreen.main.scale * width
+        
+        return URL(string: "\(urlParts.prefix)\(Int(scaledWidth))\(urlParts.suffix)")
     }
 }
 
@@ -133,12 +142,14 @@ class SQLiteTagProvider: NSObject, TagProviding {
                 w.key,
                 w.value,
                 w.description,
-                w.image,
                 w.tags_combination,
                 w.tags_linked,
+                wiki_images.thumb_url_prefix,
+                wiki_images.thumb_url_suffix,
                 w.lang
             FROM
                 wikipages w
+            LEFT JOIN wiki_images ON w.image = wiki_images.image
             WHERE
                 w.on_node = 1
                 AND
@@ -168,11 +179,19 @@ class SQLiteTagProvider: NSObject, TagProviding {
                         let suggestedKeys = (row[5] as? String ?? "").components(separatedBy: ",").compactMap({ (key) -> String? in
                             return 0 < key.count ? key : nil
                         })
+                        
+                        let thumbURLParts: (prefix: String, suffix: String)?
+                        if let prefix = row[6] as? String, let suffix = row[7] as? String {
+                            thumbURLParts = (prefix: prefix, suffix: suffix)
+                        } else {
+                            thumbURLParts = nil
+                        }
 
                         let tag = Tag(key: key,
                                       value: value,
                                       description: description,
-                                      suggestedKeys: suggestedKeys)
+                                      suggestedKeys: suggestedKeys,
+                                      thumbURLParts: thumbURLParts)
 
                         matchingTags.append(tag)
                     }
