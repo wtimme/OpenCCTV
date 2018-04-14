@@ -6,8 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -174,56 +172,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TagListTableViewCell" id="XuV-4d-GAq" customClass="TagListTableViewCell" customModule="OpenStreetMapCompletionist" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TagListCell" textLabel="BgY-g4-mdt" detailTextLabel="j0B-z2-aPD" rowHeight="88" style="IBUITableViewCellStyleSubtitle" id="XuV-4d-GAq">
+                                <rect key="frame" x="0.0" y="28" width="375" height="88"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XuV-4d-GAq" id="YoI-Ob-jkJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="87.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="man_made=surveillance" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTt-0P-FEe" userLabel="Title Label">
-                                            <rect key="frame" x="16" y="11" width="193.5" height="20.5"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="man_made=surveillance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BgY-g4-mdt">
+                                            <rect key="frame" x="16" y="9" width="184.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjH-jU-eGT">
-                                            <rect key="frame" x="16" y="37.5" width="325" height="182"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j0B-z2-aPD">
+                                            <rect key="frame" x="16" y="32.5" width="322" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <string key="text">A surveillance camera or other types of surveillance equipment. These may be publicly or privately operated, and may be monitoring a public or private space.</string>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        </textView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera-132px.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="4Hk-1L-lfV">
-                                            <rect key="frame" x="16" y="37.5" width="176" height="176"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="4Hk-1L-lfV" secondAttribute="height" multiplier="1:1" id="Gzd-tD-LtA"/>
-                                                <constraint firstAttribute="width" constant="88" id="jOQ-ar-dOh"/>
-                                            </constraints>
-                                        </imageView>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="wTt-0P-FEe" firstAttribute="top" secondItem="YoI-Ob-jkJ" secondAttribute="topMargin" id="7HR-jX-rsQ"/>
-                                        <constraint firstItem="yjH-jU-eGT" firstAttribute="leading" secondItem="YoI-Ob-jkJ" secondAttribute="leadingMargin" id="ADQ-yY-QIG"/>
-                                        <constraint firstItem="wTt-0P-FEe" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="YoI-Ob-jkJ" secondAttribute="trailing" id="J0n-Ej-bCh"/>
-                                        <constraint firstItem="4Hk-1L-lfV" firstAttribute="top" secondItem="wTt-0P-FEe" secondAttribute="bottom" constant="6" id="JX9-kX-d6g"/>
-                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4Hk-1L-lfV" secondAttribute="bottom" constant="10" id="MVP-ba-U5J"/>
-                                        <constraint firstItem="wTt-0P-FEe" firstAttribute="leading" secondItem="YoI-Ob-jkJ" secondAttribute="leadingMargin" id="Oxn-u6-G7S"/>
-                                        <constraint firstAttribute="trailing" secondItem="yjH-jU-eGT" secondAttribute="trailing" id="Tqu-zi-Rom"/>
-                                        <constraint firstItem="4Hk-1L-lfV" firstAttribute="leading" secondItem="YoI-Ob-jkJ" secondAttribute="leadingMargin" id="cGM-rH-JfE"/>
-                                        <constraint firstItem="yjH-jU-eGT" firstAttribute="bottom" secondItem="YoI-Ob-jkJ" secondAttribute="bottom" constant="-4" id="nbC-TI-wUf"/>
-                                        <constraint firstItem="yjH-jU-eGT" firstAttribute="top" secondItem="wTt-0P-FEe" secondAttribute="bottom" constant="6" id="wnh-ai-eFq"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="descriptionTextView" destination="yjH-jU-eGT" id="hF9-ex-Ut3"/>
-                                    <outlet property="thumbnailImageView" destination="4Hk-1L-lfV" id="Al1-BC-0Z4"/>
-                                    <outlet property="thumbnailImageViewWidthConstraint" destination="jOQ-ar-dOh" id="rqC-Em-g1c"/>
-                                    <outlet property="titleLabel" destination="wTt-0P-FEe" id="vgr-kx-gWM"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
-                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="OZ4-jQ-xxc" id="UuS-lf-Pf7"/>
                             <outlet property="delegate" destination="OZ4-jQ-xxc" id="1au-gS-Ik3"/>
@@ -320,9 +294,6 @@
             </objects>
         </scene>
     </scenes>
-    <resources>
-        <image name="camera-132px.jpg" width="132" height="176"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="S7Q-lY-QNX"/>
         <segue reference="Ase-Rj-wv4"/>

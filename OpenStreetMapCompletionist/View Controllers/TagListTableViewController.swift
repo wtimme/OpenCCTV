@@ -8,8 +8,6 @@
 
 import UIKit
 
-import SDWebImage
-
 class TagListTableViewController: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate {
     let searchController = UISearchController(searchResultsController: nil)
 
@@ -75,13 +73,9 @@ class TagListTableViewController: UITableViewController, UISearchResultsUpdating
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TagListTableViewCell", for: indexPath) as? TagListTableViewCell else {
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TagListCell", for: indexPath)
 
         if let tag = tagForRow(at: indexPath) {
-            cell.update(tag: tag)
-            return cell
             if tag.isMissingValue {
                 // When the user selects this tag, we'll present another view controller
                 // that allows them to specify a value.
@@ -94,12 +88,6 @@ class TagListTableViewController: UITableViewController, UISearchResultsUpdating
 
             cell.textLabel?.text = tag.tag
             cell.detailTextLabel?.text = tag.description
-            
-            if let thumbnailImageURL = tag.thumbnailImageURL(width: 44) {
-                cell.imageView?.sd_setImage(with: thumbnailImageURL, completed: nil)
-            } else {
-                cell.imageView?.image = nil
-            }
         } else {
             cell.textLabel?.text = nil
             cell.detailTextLabel?.text = nil
