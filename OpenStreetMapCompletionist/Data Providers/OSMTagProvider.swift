@@ -14,6 +14,7 @@ struct Tag {
     let key: String
     let value: String?
     let description: String?
+    let suggestedKeys: [String]
 
     var tag: String {
         if let value = value {
@@ -164,8 +165,14 @@ class SQLiteTagProvider: NSObject, TagProviding {
 
                         let value = row[2] as? String
                         let description = row[3] as? String
+                        let suggestedKeys = (row[5] as? String ?? "").components(separatedBy: ",").compactMap({ (key) -> String? in
+                            return 0 < key.count ? key : nil
+                        })
 
-                        let tag = Tag(key: key, value: value, description: description)
+                        let tag = Tag(key: key,
+                                      value: value,
+                                      description: description,
+                                      suggestedKeys: suggestedKeys)
 
                         matchingTags.append(tag)
                     }
