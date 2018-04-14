@@ -19,6 +19,9 @@ class MapViewController: UIViewController {
 
     private let dataProvider: OSMDataProviding = OverpassOSMDataProvider(interpreterURL: URL(string: "https://overpass-api.de/api/interpreter")!,
                                                                          downloadStrategy: OSMDataDownloadStrategy(maximumRadiusInMeters: 4000))
+    
+    private let changeHandler: OSMChangeHandling = InMemoryChangeHandler()
+    
     private let viewModel: MapViewModelProtocol
 
     required init?(coder aDecoder: NSCoder) {
@@ -74,7 +77,13 @@ class MapViewController: UIViewController {
             let selectedNode = sender as? Node,
             let destinationNavigationController = segue.destination as? UINavigationController,
             let formViewController = destinationNavigationController.topViewController as? NodeFormViewController {
-            formViewController.node = selectedNode
+            formViewController.changeHandler = changeHandler
+            
+            if let updatedNode = changeHandler.get(id: selectedNode.id) {
+                formViewController.node = updatedNode
+            } else {
+                formViewController.node = selectedNode
+            }
         } else {
             super.prepare(for: segue, sender: sender)
         }
