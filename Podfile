@@ -11,6 +11,7 @@ target 'OpenStreetMapCompletionist' do
   pod 'SwiftIcons', '~> 2.0.1'
   pod 'SwiftLocation', '~> 3.2.1'
   pod 'Eureka', '~> 4.1.1'
+  pod 'SDWebImage', '~> 4.0'
   
   pod 'OAuthSwift', '~> 1.2.0'
   pod 'KeychainAccess', '~> 3.1.0'
