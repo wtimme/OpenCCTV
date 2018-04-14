@@ -90,8 +90,12 @@ class NodeFormViewController: FormViewController {
                         guard let section = row.section, let tagKey = section.tag, let selectedTag = self.tags[tagKey] else {
                             return
                         }
-
-                        self.performSegue(withIdentifier: "ShowTagDetails", sender: selectedTag)
+                        
+                        if key == "direction" {
+                            self.performSegue(withIdentifier: "ShowDirectionEditor", sender: nil)
+                        } else {
+                            self.performSegue(withIdentifier: "ShowTagDetails", sender: selectedTag)
+                        }
                     })
                 }
 
@@ -137,7 +141,11 @@ class NodeFormViewController: FormViewController {
                     $0.value = tag.value
                     $0.cell.accessoryType = .disclosureIndicator
                     $0.onCellSelection({ _, _ in
-                        self.performSegue(withIdentifier: "ShowTagDetails", sender: tag)
+                        if tag.key == "direction" {
+                            self.performSegue(withIdentifier: "ShowDirectionEditor", sender: tag)
+                        } else {
+                            self.performSegue(withIdentifier: "ShowTagDetails", sender: tag)
+                        }
                     })
             }
         } else {

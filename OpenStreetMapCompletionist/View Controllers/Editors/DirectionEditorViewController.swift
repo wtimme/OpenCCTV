@@ -27,7 +27,7 @@ class DirectionEditorViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        headingRequest = Locator.subscribeHeadingUpdates(accuracy: 30, onUpdate: { (heading) -> (Void) in
+        headingRequest = Locator.subscribeHeadingUpdates(accuracy: 50, onUpdate: { (heading) -> (Void) in
             self.headingString = String(format: "%.0f", heading.trueHeading)
         }) { (serviceState) -> (Void) in
             print("Failed to update heading: \(serviceState)")
