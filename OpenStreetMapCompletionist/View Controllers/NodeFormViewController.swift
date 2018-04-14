@@ -12,8 +12,11 @@ import SafariServices
 import SwiftIcons
 
 class NodeFormViewController: FormViewController {
+    
     var node: Node!
     private var tags = [String: Tag]()
+    
+    var changeHandler: OSMChangeHandling?
 
     let tagProvider: TagProviding? = {
         guard let databasePath = Bundle.main.path(forResource: "taginfo-wiki", ofType: "db") else {
@@ -156,7 +159,23 @@ class NodeFormViewController: FormViewController {
     }
 
     @IBAction func didTapDoneButton(_: UIControl) {
+        let updatedNode = nodeFromForm()
+        if updatedNode != node {
+            changeHandler?.add(updatedNode)
+        }
+        
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func nodeFromForm() -> Node {
+        var rawTags = [String: String]()
+        for keyValuePair in form.values() {
+            guard let value = keyValuePair.value as? String else { continue }
+            
+            rawTags[keyValuePair.key] = value
+        }
+        
+        return Node(id: node.id, coordinate: node.coordinate, rawTags: rawTags)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
