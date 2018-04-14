@@ -35,6 +35,7 @@
 		649FE43320802A0A009F5137 /* TagListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FE43220802A0A009F5137 /* TagListViewModel.swift */; };
 		649FE43620810861009F5137 /* DirectionEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FE43520810861009F5137 /* DirectionEditorViewController.swift */; };
 		64F1C41B2082070600B85FB2 /* OSMChangeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F1C41A2082070600B85FB2 /* OSMChangeHandler.swift */; };
+		64F1C41F208209D300B85FB2 /* NodeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F1C41E208209D300B85FB2 /* NodeTestCase.swift */; };
 		64FDDE3120793F29001428B3 /* OSMDataProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDDE3020793F29001428B3 /* OSMDataProviding.swift */; };
 		64FDDE3320794557001428B3 /* OSMDataProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDDE3220794557001428B3 /* OSMDataProviderMock.swift */; };
 		EE8F71E51A6B51EFBFE3FF50 /* Pods_OpenStreetMapCompletionist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D48C3638DBAC4E53FAAE2F9F /* Pods_OpenStreetMapCompletionist.framework */; };
@@ -100,6 +101,7 @@
 		649FE43220802A0A009F5137 /* TagListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewModel.swift; sourceTree = "<group>"; };
 		649FE43520810861009F5137 /* DirectionEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionEditorViewController.swift; sourceTree = "<group>"; };
 		64F1C41A2082070600B85FB2 /* OSMChangeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMChangeHandler.swift; sourceTree = "<group>"; };
+		64F1C41E208209D300B85FB2 /* NodeTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTestCase.swift; sourceTree = "<group>"; };
 		64FDDE3020793F29001428B3 /* OSMDataProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMDataProviding.swift; sourceTree = "<group>"; };
 		64FDDE3220794557001428B3 /* OSMDataProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMDataProviderMock.swift; sourceTree = "<group>"; };
 		88854F2F6C4D6DE5A04E06AB /* Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppAndTests-OpenStreetMapCompletionist/Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig"; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 		647C41FE2076B7110002B068 /* OpenStreetMapCompletionistTests */ = {
 			isa = PBXGroup;
 			children = (
+				64F1C41C208209C000B85FB2 /* Overpass */,
 				647C420E2076B9AC0002B068 /* Mocks */,
 				647C42072076B7190002B068 /* View Models */,
 				647C42082076B7300002B068 /* OpenStreetMapCompletionistTests-Bridging-Header.h */,
@@ -336,6 +339,22 @@
 				649FE43520810861009F5137 /* DirectionEditorViewController.swift */,
 			);
 			path = Editors;
+			sourceTree = "<group>";
+		};
+		64F1C41C208209C000B85FB2 /* Overpass */ = {
+			isa = PBXGroup;
+			children = (
+				64F1C41D208209C500B85FB2 /* Models */,
+			);
+			path = Overpass;
+			sourceTree = "<group>";
+		};
+		64F1C41D208209C500B85FB2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				64F1C41E208209D300B85FB2 /* NodeTestCase.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -551,6 +570,7 @@
 				645B7BF82078BDD7004FA7BF /* MapViewModelDelegateMock.swift in Sources */,
 				647C420A2076B7300002B068 /* MapViewModelTestCase.swift in Sources */,
 				64FDDE3320794557001428B3 /* OSMDataProviderMock.swift in Sources */,
+				64F1C41F208209D300B85FB2 /* NodeTestCase.swift in Sources */,
 				647C42102076B9BD0002B068 /* LocationProviderMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
