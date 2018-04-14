@@ -183,8 +183,8 @@ extension NodeFormViewController: TagSelectionDelegate {
         if let selectedTag = tag {
             addTagSectionToForm(tag: selectedTag)
             
-            if let row = form.rowBy(tag: "\(selectedTag.key)_value") as? TextRow {
-                row.cell.textField.becomeFirstResponder()
+            if let textRow = form.rowBy(tag: selectedTag.key) as? TextRow {
+                textRow.cell.textField.becomeFirstResponder()
             }
         }
     }
