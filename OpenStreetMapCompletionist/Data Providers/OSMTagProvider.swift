@@ -198,6 +198,12 @@ class SQLiteTagProvider: NSObject, TagProviding {
                 } catch {
                     // Ignore the error.
                 }
+                
+                guard 0 < matchingTags.count || nil == parameters.value else {
+                    // If we were not able to find matching tags with the value, let's try without.
+                    self.findTags((key: parameters.key, value: nil), exactMatch: exactMatch, completion)
+                    return
+                }
 
                 DispatchQueue.main.async {
                     completion(parameters, matchingTags)
