@@ -13,7 +13,7 @@ import SwiftIcons
 
 class NodeFormViewController: FormViewController {
     var node: Node!
-    var tags = [String: Tag]()
+    private var tags = [String: Tag]()
 
     let tagProvider: TagProviding? = {
         guard let databasePath = Bundle.main.path(forResource: "taginfo-wiki", ofType: "db") else {
