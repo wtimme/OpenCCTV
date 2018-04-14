@@ -10,12 +10,13 @@ import Foundation
 
 protocol OSMChangeHandling {
     func add(_ node: Node)
+    var changedNodes: [Int: Node] { get }
     func get(id: Int) -> Node?
 }
 
 class InMemoryChangeHandler: NSObject, OSMChangeHandling {
     
-    private var changedNodes = [Int: Node]()
+    public private(set) var changedNodes = [Int: Node]()
     
     // MARK: OSMChangeHandling
     

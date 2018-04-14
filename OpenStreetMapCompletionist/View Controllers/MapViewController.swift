@@ -84,6 +84,12 @@ class MapViewController: UIViewController {
             } else {
                 formViewController.node = selectedNode
             }
+        } else if
+            segue.identifier == "ShowChanges",
+            let destinationNavigationController = segue.destination as? UINavigationController,
+            let changesViewController = destinationNavigationController.topViewController as? ChangesViewController {
+            changesViewController.changeHandler = changeHandler
+            changesViewController.nodeDataProvider = dataProvider
         } else {
             super.prepare(for: segue, sender: sender)
         }
