@@ -134,7 +134,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jOt-uQ-J5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1937" y="708"/>
+            <point key="canvasLocation" x="1940" y="806"/>
         </scene>
         <!--Node Details-->
         <scene sceneID="98A-G7-k3r">
@@ -156,16 +156,17 @@
                     <connections>
                         <segue destination="OZ4-jQ-xxc" kind="show" identifier="ShowTagSearch" id="Ro3-7R-A6Q"/>
                         <segue destination="cRY-0k-J77" kind="show" identifier="ShowTagDetails" id="Dz4-JF-eMh"/>
+                        <segue destination="bkr-WX-zTo" kind="show" identifier="ShowDirectionEditor" id="6lb-SB-r3Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DbV-YD-c2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2956" y="707"/>
+            <point key="canvasLocation" x="2959" y="805"/>
         </scene>
-        <!--Add Tag-->
+        <!--Search Wiki-->
         <scene sceneID="kwF-Rp-wq2">
             <objects>
-                <tableViewController title="Add Tag" id="OZ4-jQ-xxc" customClass="TagListTableViewController" customModule="OpenStreetMapCompletionist" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Search Wiki" id="OZ4-jQ-xxc" customClass="TagListTableViewController" customModule="OpenStreetMapCompletionist" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="R6M-ab-bm0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,6 +206,7 @@
                     <connections>
                         <outlet property="searchDisplayController" destination="xDR-ga-oqh" id="GRY-eP-V2D"/>
                         <segue destination="cRY-0k-J77" kind="show" identifier="ShowTagDetails" id="S7Q-lY-QNX"/>
+                        <segue destination="bkr-WX-zTo" kind="show" identifier="ShowDirectionEditor" id="Ase-Rj-wv4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RuM-ND-sQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -217,7 +219,37 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3820" y="707"/>
+            <point key="canvasLocation" x="3823" y="805"/>
+        </scene>
+        <!--Direction-->
+        <scene sceneID="jmo-xJ-Lx0">
+            <objects>
+                <viewController title="Direction" id="bkr-WX-zTo" customClass="DirectionEditorViewController" customModule="OpenStreetMapCompletionist" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fAa-Tk-W6k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Measuring..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3v-Wd-5rI">
+                                <rect key="frame" x="117.5" y="108" width="140" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="s3v-Wd-5rI" firstAttribute="centerX" secondItem="fAa-Tk-W6k" secondAttribute="centerX" id="Qm7-cC-CQb"/>
+                            <constraint firstItem="s3v-Wd-5rI" firstAttribute="top" secondItem="sEg-py-WG3" secondAttribute="top" constant="44" id="idF-I4-pQy"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="sEg-py-WG3"/>
+                    </view>
+                    <connections>
+                        <outlet property="directionLabel" destination="s3v-Wd-5rI" id="Sv5-0F-tTR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ef3-kA-VGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2983" y="1859"/>
         </scene>
         <!--Tag Details-->
         <scene sceneID="5ye-gr-JNO">
@@ -232,7 +264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T5D-S5-OAE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3820" y="1477"/>
+            <point key="canvasLocation" x="3849" y="1859"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="1Qq-Nr-LJ0">
@@ -263,6 +295,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Dz4-JF-eMh"/>
+        <segue reference="S7Q-lY-QNX"/>
+        <segue reference="Ase-Rj-wv4"/>
     </inferredMetricsTieBreakers>
 </document>
