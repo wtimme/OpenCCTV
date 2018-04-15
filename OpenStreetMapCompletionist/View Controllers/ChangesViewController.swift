@@ -39,8 +39,12 @@ class ChangesViewController: FormViewController {
                     $0.cell.textLabel?.numberOfLines = 0
                 }
         } else {
-            for node in changeHandler.changedNodes.values {
-                form +++ makeNodeSection(node: node)
+            let nodeDiffs = changeHandler.changedNodes.values.map { (node) -> NodeDiff in
+                return NodeDiff(node: node, originalNode: nodeDataProvider.node(id: node.id))
+            }
+            
+            for diff in nodeDiffs {
+                form +++ makeNodeDiffSection(diff)
             }
             
             form +++ Section(header: "Commit message", footer: "Specifying a useful commit message helps other mappers review and understand your changes.")
@@ -50,8 +54,8 @@ class ChangesViewController: FormViewController {
         }
     }
     
-    private func makeNodeSection(node: Node) -> Section {
-        let sectionTitle = "Node \(node.id)"
+    private func makeNodeDiffSection(_ diff: NodeDiff) -> Section {
+        let sectionTitle = "Node \(diff.nodeId)"
         
         let nodeSection = Section(sectionTitle)
         
@@ -61,31 +65,7 @@ class ChangesViewController: FormViewController {
                 $0.value = true
             }
     
-        var addedTags = [String: String]()
-        var updatedTags = [String: String]()
-        var removedTags = [String: String]()
-        
-        if let originalNode = nodeDataProvider.node(id: node.id) {
-            
-            addedTags = node.rawTags.filter({ (key, value) -> Bool in
-                return nil == originalNode.rawTags[key]
-            })
-            
-            updatedTags = node.rawTags.filter({ (key, value) -> Bool in
-                guard let originalValue = originalNode.rawTags[key] else { return false }
-                
-                return originalValue != value
-            })
-            
-            removedTags = originalNode.rawTags.filter({ (key, value) -> Bool in
-                return nil == node.rawTags[key]
-            })
-        } else {
-            // All tags are new.
-            addedTags = node.rawTags
-        }
-        
-        for (key, value) in addedTags {
+        for (key, value) in diff.addedTags {
             nodeSection
                 <<< LabelRow {
                     $0.title = "Add"
@@ -93,7 +73,7 @@ class ChangesViewController: FormViewController {
             }
         }
         
-        for (key, value) in updatedTags {
+        for (key, value) in diff.updatedTags {
             nodeSection
                 <<< LabelRow {
                     $0.title = "Updated"
@@ -101,7 +81,7 @@ class ChangesViewController: FormViewController {
             }
         }
         
-        for (key, value) in removedTags {
+        for (key, value) in diff.removedTags {
             nodeSection
                 <<< LabelRow {
                     $0.title = "Removed"
@@ -113,7 +93,7 @@ class ChangesViewController: FormViewController {
             <<< ButtonRow {
                 $0.title = "Node Details"
                 $0.onCellSelection({ (_, _) in
-                    self.performSegue(withIdentifier: "ShowNodeDetails", sender: node)
+                    self.performSegue(withIdentifier: "ShowNodeDetails", sender: diff)
                 })
             }
         
@@ -127,7 +107,8 @@ class ChangesViewController: FormViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if
             segue.identifier == "ShowNodeDetails",
-            let node = sender as? Node,
+            let diff = sender as? NodeDiff,
+            let node = nodeDataProvider.node(id: diff.nodeId),
             let formViewController = segue.destination as? NodeFormViewController
         {
             formViewController.node = node
