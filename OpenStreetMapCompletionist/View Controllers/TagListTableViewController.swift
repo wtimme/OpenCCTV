@@ -150,11 +150,11 @@ class TagListTableViewController: UITableViewController, UISearchResultsUpdating
         // Indicate that we're loading the results.
         searchController.searchBar.isLoading = true
 
-        tagProvider.findTags(matching: searchText) { [weak self] parameters, tags in
+        tagProvider.findTags(matching: searchText) { [weak self] (providedSearchTerm, tags) in
             guard
                 let currentSearchText = self?.searchController.searchBar.text,
-                currentSearchText.range(of: parameters.key) != nil,
-                currentSearchText == parameters.key
+                currentSearchText.range(of: providedSearchTerm) != nil,
+                currentSearchText == providedSearchTerm
             else {
                 // The search text was changed; we no longer care about the result.
                 return
@@ -165,7 +165,7 @@ class TagListTableViewController: UITableViewController, UISearchResultsUpdating
             self?.filterAndDisplay(tags)
             self?.tableView.reloadData()
 
-            if parameters.key == self?.searchController.searchBar.text {
+            if providedSearchTerm == self?.searchController.searchBar.text {
                 // We finished loading the results for the current search term; stop indicate loading activity.
                 self?.searchController.searchBar.isLoading = false
             }

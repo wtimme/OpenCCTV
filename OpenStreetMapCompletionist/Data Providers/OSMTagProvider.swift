@@ -40,7 +40,7 @@ struct Tag {
 
 protocol TagProviding {
     func findSingleTag(_ parameters: (key: String, value: String?), _ completion: @escaping ((key: String, value: String?), Tag?) -> Void)
-    func findTags(matching searchTerm: String, _ completion: @escaping ((key: String, value: String?), [Tag]) -> Void)
+    func findTags(matching searchTerm: String, _ completion: @escaping (String, [Tag]) -> Void)
 
     func potentialValues(key: String) -> [String]
 }
@@ -66,8 +66,10 @@ class SQLiteTagProvider: NSObject, TagProviding {
         }
     }
 
-    func findTags(matching searchTerm: String, _ completion: @escaping ((key: String, value: String?), [Tag]) -> Void) {
-        findTags((key: searchTerm, value: searchTerm), exactMatch: false, completion)
+    func findTags(matching searchTerm: String, _ completion: @escaping (String, [Tag]) -> Void) {
+        findTags((key: searchTerm, value: searchTerm), exactMatch: false) { (parameters, tags) in
+            completion(searchTerm, tags)
+        }
     }
 
     private func findTags(_ parameters: (key: String, value: String?), exactMatch: Bool, _ completion: @escaping ((key: String, value: String?), [Tag]) -> Void) {
