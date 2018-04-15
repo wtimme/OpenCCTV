@@ -19,5 +19,9 @@ class ChangeReviewViewModel: NSObject {
     var isUploadButtonEnabled: Bool {
         return 0 < changeHandler.changedNodes.count
     }
+    
+    var isExplanatorySectionVisible: Bool {
+        return 0 == changeHandler.changedNodes.count
+    }
 
 }

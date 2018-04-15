@@ -30,14 +30,24 @@ class ChangesViewController: FormViewController {
     }
     
     private func setupForm() {
-        for node in changeHandler.changedNodes.values {
-            form +++ makeNodeSection(node: node)
-        }
-        
-        form +++ Section(header: "Commit message", footer: "Specifying a useful commit message helps other mappers review and understand your changes.")
-            <<< TextAreaRow {
-                $0.placeholder = "Add tags to a couple of nodes"
+        if viewModel.isExplanatorySectionVisible {
+            form +++ Section("No changes yet")
+                <<< LabelRow {
+                    $0.title = """
+                    Changes to nodes will appear here. You can review and edit them before uploading them to OpenStreetMap.
+                    """
+                    $0.cell.textLabel?.numberOfLines = 0
+                }
+        } else {
+            for node in changeHandler.changedNodes.values {
+                form +++ makeNodeSection(node: node)
             }
+            
+            form +++ Section(header: "Commit message", footer: "Specifying a useful commit message helps other mappers review and understand your changes.")
+                <<< TextAreaRow {
+                    $0.placeholder = "Add tags to a couple of nodes"
+            }
+        }
     }
     
     private func makeNodeSection(node: Node) -> Section {

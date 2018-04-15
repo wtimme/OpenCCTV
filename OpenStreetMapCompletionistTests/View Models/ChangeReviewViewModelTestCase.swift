@@ -33,6 +33,16 @@ class ChangeReviewViewModelTestCase: XCTestCase {
         XCTAssertTrue(viewModel.isUploadButtonEnabled)
     }
     
+    func testExplanatorySectionIsVisibleWhenThereAreNoChangedNodes() {
+        XCTAssertTrue(viewModel.isExplanatorySectionVisible)
+    }
+    
+    func testExplanatorySectionIsNotVisibleWhenThereAreChangedNodes() {
+        changeHandlerMock.changedNodes[1] = makeNode()
+        
+        XCTAssertFalse(viewModel.isExplanatorySectionVisible)
+    }
+    
     // MARK: Helper
     
     private func makeNode() -> Node {
