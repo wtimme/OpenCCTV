@@ -30,6 +30,7 @@
 		646914752083792E0053AA53 /* NodeDiffTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646914742083792E0053AA53 /* NodeDiffTestCase.swift */; };
 		6469147720837F260053AA53 /* ChangeReviewViewModelDelegateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469147620837F260053AA53 /* ChangeReviewViewModelDelegateMock.swift */; };
 		6469147A208385270053AA53 /* ChangeHandlerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64691479208385270053AA53 /* ChangeHandlerTestCase.swift */; };
+		6469147E208392A00053AA53 /* TagProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6469147D208392A00053AA53 /* TagProviderMock.swift */; };
 		646FC52D20753241008E0EDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646FC52C20753241008E0EDB /* AppDelegate.swift */; };
 		646FC53220753241008E0EDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 646FC53020753241008E0EDB /* Main.storyboard */; };
 		646FC53420753241008E0EDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646FC53320753241008E0EDB /* Assets.xcassets */; };
@@ -98,6 +99,7 @@
 		646914742083792E0053AA53 /* NodeDiffTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeDiffTestCase.swift; sourceTree = "<group>"; };
 		6469147620837F260053AA53 /* ChangeReviewViewModelDelegateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeReviewViewModelDelegateMock.swift; sourceTree = "<group>"; };
 		64691479208385270053AA53 /* ChangeHandlerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeHandlerTestCase.swift; sourceTree = "<group>"; };
+		6469147D208392A00053AA53 /* TagProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagProviderMock.swift; sourceTree = "<group>"; };
 		646FC52920753241008E0EDB /* OpenStreetMapCompletionist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenStreetMapCompletionist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		646FC52C20753241008E0EDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		646FC53120753241008E0EDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				64FDDE3220794557001428B3 /* OSMDataProviderMock.swift */,
 				64691470208372C60053AA53 /* ChangeHandlerMock.swift */,
 				6469147620837F260053AA53 /* ChangeReviewViewModelDelegateMock.swift */,
+				6469147D208392A00053AA53 /* TagProviderMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				646914752083792E0053AA53 /* NodeDiffTestCase.swift in Sources */,
 				64F1C41F208209D300B85FB2 /* NodeTestCase.swift in Sources */,
 				6469146F2083724E0053AA53 /* ChangeReviewViewModelTestCase.swift in Sources */,
+				6469147E208392A00053AA53 /* TagProviderMock.swift in Sources */,
 				6469147A208385270053AA53 /* ChangeHandlerTestCase.swift in Sources */,
 				647C42102076B9BD0002B068 /* LocationProviderMock.swift in Sources */,
 			);
