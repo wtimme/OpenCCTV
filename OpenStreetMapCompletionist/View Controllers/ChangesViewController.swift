@@ -10,12 +10,26 @@ import Eureka
 
 class ChangesViewController: FormViewController {
     
-    var changeHandler: OSMChangeHandling!
+    var changeHandler: OSMChangeHandling! {
+        didSet {
+            viewModel = ChangeReviewViewModel(changeHandler: changeHandler)
+        }
+    }
     var nodeDataProvider: OSMDataProviding!
+    
+    private var viewModel: ChangeReviewViewModel!
+    
+    @IBOutlet var uploadBarButtonItem: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupForm()
+        
+        uploadBarButtonItem.isEnabled = viewModel.isUploadButtonEnabled
+    }
+    
+    private func setupForm() {
         for node in changeHandler.changedNodes.values {
             form +++ makeNodeSection(node: node)
         }

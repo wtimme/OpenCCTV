@@ -163,6 +163,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Upload" id="7rk-dG-EYo"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="uploadBarButtonItem" destination="7rk-dG-EYo" id="5ct-aM-uPj"/>
                         <segue destination="eWs-sY-9Dr" kind="show" identifier="ShowNodeDetails" id="qti-t9-0oO"/>
                     </connections>
                 </viewController>
