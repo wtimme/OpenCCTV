@@ -87,7 +87,7 @@ class NodeFormViewController: FormViewController {
                     $0.value = value
                     $0.cell.accessoryType = .disclosureIndicator
                     $0.onCellSelection({ _, row in
-                        guard let section = row.section, let tagKey = section.tag, let selectedTag = self.tags[tagKey] else {
+                        guard let tagKey = row.tag, let selectedTag = self.tags[tagKey] else {
                             return
                         }
                         
