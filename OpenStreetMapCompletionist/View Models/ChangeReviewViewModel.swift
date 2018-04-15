@@ -9,7 +9,12 @@
 import Foundation
 
 protocol ChangeReviewViewModelDelegate: class {
+    
+    /// Tells the delegate to update its subviews using the values from the view model.
+    func updateViewFromViewModel()
+    
     func showDetailsForNode(_ node: Node)
+    
 }
 
 class ChangeReviewViewModel: NSObject {
@@ -25,11 +30,23 @@ class ChangeReviewViewModel: NSObject {
     }
     
     var isUploadButtonEnabled: Bool {
-        return 0 < changeHandler.changedNodes.count
+        return 0 < changeHandler.stagedNodeIds.count
     }
     
     var isExplanatorySectionVisible: Bool {
         return 0 == changeHandler.changedNodes.count
+    }
+    
+    func stageNode(id: Int) {
+        changeHandler.stage(nodeId: id)
+        
+        delegate?.updateViewFromViewModel()
+    }
+    
+    func unstageNode(id: Int) {
+        changeHandler.unstage(nodeId: id)
+        
+        delegate?.updateViewFromViewModel()
     }
     
     func isNodeStaged(id: Int) -> Bool {

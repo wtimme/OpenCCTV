@@ -31,14 +31,26 @@ class ChangeReviewViewModelTestCase: XCTestCase {
         viewModel.delegate = delegateMock
     }
     
-    func testUploadButtonShouldBeDisabledWhenThereAreNoChangedNodes() {
+    func testUploadButtonShouldBeDisabledWhenThereAreNoStagedNodes() {
         XCTAssertFalse(viewModel.isUploadButtonEnabled)
     }
     
-    func testUploadButtonShouldBeEnabledWhenThereAreChangedNodes() {
-        changeHandlerMock.changedNodes[1] = makeNode()
+    func testUploadButtonShouldBeEnabledWhenThereAreStagedNodes() {
+        changeHandlerMock.stagedNodeIds.insert(1)
         
         XCTAssertTrue(viewModel.isUploadButtonEnabled)
+    }
+    
+    func testDelegateShouldHaveBeenAskedToUpdateViewAfterStaging() {
+        viewModel.stageNode(id: 1)
+        
+        XCTAssertTrue(delegateMock.wasAskedToUpdateView)
+    }
+    
+    func testDelegateShouldHaveBeenAskedToUpdateViewAfterUnstaging() {
+        viewModel.unstageNode(id: 1)
+        
+        XCTAssertTrue(delegateMock.wasAskedToUpdateView)
     }
     
     func testExplanatorySectionIsVisibleWhenThereAreNoChangedNodes() {
@@ -64,6 +76,28 @@ class ChangeReviewViewModelTestCase: XCTestCase {
         viewModel.presentDetailsForNode(id: 1)
         
         XCTAssertEqual(delegateMock.nodeToPresent, node)
+    }
+    
+    func testIsNodeStagedShouldAskChangeHandler() {
+        XCTAssertFalse(viewModel.isNodeStaged(id: 1))
+        
+        changeHandlerMock.stagedNodeIds.insert(1)
+        
+        XCTAssertTrue(viewModel.isNodeStaged(id: 1))
+    }
+    
+    func testStageNodeShouldTellChangeHandlerToStageIt() {
+        viewModel.stageNode(id: 2)
+        
+        XCTAssertTrue(changeHandlerMock.stagedNodeIds.contains(2))
+    }
+    
+    func testUnstageNodeShouldTellChagneHandlerToUnstageIt() {
+        changeHandlerMock.stagedNodeIds.insert(3)
+        
+        viewModel.unstageNode(id: 3)
+        
+        XCTAssertFalse(changeHandlerMock.stagedNodeIds.contains(3))
     }
     
     // MARK: Helper

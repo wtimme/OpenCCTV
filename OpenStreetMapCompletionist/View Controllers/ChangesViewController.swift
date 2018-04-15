@@ -61,7 +61,16 @@ class ChangesViewController: FormViewController {
         nodeSection
             <<< SwitchRow {
                 $0.title = "Include in changeset"
-                $0.value = true
+                $0.value = viewModel.isNodeStaged(id: diff.nodeId)
+                $0.onChange({ (row) in
+                    let isEnabled = row.value ?? false
+                    
+                    if isEnabled {
+                        self.viewModel.stageNode(id: diff.nodeId)
+                    } else {
+                        self.viewModel.unstageNode(id: diff.nodeId)
+                    }
+                })
             }
     
         for (key, value) in diff.addedTags {
@@ -117,6 +126,10 @@ class ChangesViewController: FormViewController {
 }
 
 extension ChangesViewController: ChangeReviewViewModelDelegate {
+    
+    func updateViewFromViewModel() {
+        uploadBarButtonItem.isEnabled = viewModel.isUploadButtonEnabled
+    }
     
     func showDetailsForNode(_ node: Node) {
         self.performSegue(withIdentifier: "ShowNodeDetails", sender: node)

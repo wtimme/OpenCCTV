@@ -11,9 +11,15 @@ import Foundation
 @testable import OpenStreetMapCompletionist
 
 class ChangeReviewViewModelDelegateMock: NSObject, ChangeReviewViewModelDelegate {
-    
     /// The `Node` that the delegate was asked to present.
     var nodeToPresent: Node?
+    
+    public private(set) var wasAskedToUpdateView = false
+    
+    func updateViewFromViewModel() {
+        wasAskedToUpdateView = true
+    }
+    
 
     func showDetailsForNode(_ node: Node) {
         nodeToPresent = node
