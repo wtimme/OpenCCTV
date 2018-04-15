@@ -21,5 +21,17 @@ class ChangeHandlerMock: NSObject, OSMChangeHandling {
     func get(id: Int) -> Node? {
         return changedNodes[id]
     }
+    
+    // MARK: Staging
+    
+    var stagedNodeIds = Set<Int>()
+    
+    func stage(nodeId: Int) {
+        stagedNodeIds.insert(nodeId)
+    }
+    
+    func unstage(nodeId: Int) {
+        stagedNodeIds.remove(nodeId)
+    }
 
 }

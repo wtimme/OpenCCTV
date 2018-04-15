@@ -32,6 +32,10 @@ class ChangeReviewViewModel: NSObject {
         return 0 == changeHandler.changedNodes.count
     }
     
+    func isNodeStaged(id: Int) -> Bool {
+        return changeHandler.stagedNodeIds.contains(id)
+    }
+    
     func presentDetailsForNode(id: Int) {
         guard let node = changeHandler.get(id: id) else { return }
         
