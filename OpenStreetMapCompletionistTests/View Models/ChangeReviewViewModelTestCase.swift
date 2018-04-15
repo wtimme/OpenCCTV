@@ -28,10 +28,15 @@ class ChangeReviewViewModelTestCase: XCTestCase {
     }
     
     func testUploadButtonShouldBeEnabledWhenThereAreChangedNodes() {
-        let node = Node(id: 1, coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700), rawTags: [:])
-        changeHandlerMock.changedNodes[1] = node
+        changeHandlerMock.changedNodes[1] = makeNode()
         
         XCTAssertTrue(viewModel.isUploadButtonEnabled)
+    }
+    
+    // MARK: Helper
+    
+    private func makeNode() -> Node {
+        return Node(id: 1, coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700), rawTags: [:])
     }
     
 }
