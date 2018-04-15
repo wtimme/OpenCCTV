@@ -10,19 +10,18 @@ import Eureka
 
 class ChangesViewController: FormViewController {
     
-    var changeHandler: OSMChangeHandling! {
-        didSet {
-            viewModel = ChangeReviewViewModel(changeHandler: changeHandler)
-        }
-    }
+    var changeHandler: OSMChangeHandling!
     var nodeDataProvider: OSMDataProviding!
-    
     private var viewModel: ChangeReviewViewModel!
     
     @IBOutlet var uploadBarButtonItem: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel = ChangeReviewViewModel(changeHandler: changeHandler,
+                                          nodeDataProvider: nodeDataProvider)
+        viewModel.delegate = self
         
         setupForm()
         
@@ -93,7 +92,7 @@ class ChangesViewController: FormViewController {
             <<< ButtonRow {
                 $0.title = "Node Details"
                 $0.onCellSelection({ (_, _) in
-                    self.performSegue(withIdentifier: "ShowNodeDetails", sender: diff)
+                    self.viewModel.presentDetailsForNode(id: diff.nodeId)
                 })
             }
         
@@ -107,8 +106,7 @@ class ChangesViewController: FormViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if
             segue.identifier == "ShowNodeDetails",
-            let diff = sender as? NodeDiff,
-            let node = nodeDataProvider.node(id: diff.nodeId),
+            let node = sender as? Node,
             let formViewController = segue.destination as? NodeFormViewController
         {
             formViewController.node = node
@@ -116,4 +114,12 @@ class ChangesViewController: FormViewController {
         }
     }
 
+}
+
+extension ChangesViewController: ChangeReviewViewModelDelegate {
+    
+    func showDetailsForNode(_ node: Node) {
+        self.performSegue(withIdentifier: "ShowNodeDetails", sender: node)
+    }
+    
 }

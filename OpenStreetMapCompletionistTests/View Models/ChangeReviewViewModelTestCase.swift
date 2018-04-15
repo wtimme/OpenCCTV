@@ -14,13 +14,21 @@ import CoreLocation
 class ChangeReviewViewModelTestCase: XCTestCase {
     
     var changeHandlerMock: ChangeHandlerMock!
+    var nodeDataProviderMock: OSMDataProviderMock!
     var viewModel: ChangeReviewViewModel!
+    
+    var delegateMock: ChangeReviewViewModelDelegateMock!
     
     override func setUp() {
         super.setUp()
         
         changeHandlerMock = ChangeHandlerMock()
-        viewModel = ChangeReviewViewModel(changeHandler: changeHandlerMock)
+        nodeDataProviderMock = OSMDataProviderMock()
+        viewModel = ChangeReviewViewModel(changeHandler: changeHandlerMock,
+                                          nodeDataProvider: nodeDataProviderMock)
+        
+        delegateMock = ChangeReviewViewModelDelegateMock()
+        viewModel.delegate = delegateMock
     }
     
     func testUploadButtonShouldBeDisabledWhenThereAreNoChangedNodes() {
@@ -41,6 +49,21 @@ class ChangeReviewViewModelTestCase: XCTestCase {
         changeHandlerMock.changedNodes[1] = makeNode()
         
         XCTAssertFalse(viewModel.isExplanatorySectionVisible)
+    }
+    
+    func testDelegateShouldNotBeAskedToShowDetailsForNodeThatDoesNotExist() {
+        viewModel.presentDetailsForNode(id: 404)
+        
+        XCTAssertNil(delegateMock.nodeToPresent)
+    }
+    
+    func testDelegateShouldHaveBeenAskedToShowDetailsForNodeThatExists() {
+        let node = makeNode()
+        
+        changeHandlerMock.changedNodes[1] = node
+        viewModel.presentDetailsForNode(id: 1)
+        
+        XCTAssertEqual(delegateMock.nodeToPresent, node)
     }
     
     // MARK: Helper
