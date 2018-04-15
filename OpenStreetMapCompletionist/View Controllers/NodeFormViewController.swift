@@ -161,9 +161,21 @@ class NodeFormViewController: FormViewController {
     }
 
     private func addTagSectionToForm(tag: Tag) {
-        let indexOfNewSection = form.allSections.count - 2
-
-        form.insert(makeSection(tag: tag), at: indexOfNewSection)
+        if let existingRow = form.rowBy(tag: tag.key) {
+            if let labelRow = existingRow as? LabelRow {
+                labelRow.value = tag.value
+                
+                if let section = form.sectionBy(tag: sectionTag(tag)) {
+                    section.footer?.title = tag.description
+                    
+                    section.reload()
+                }
+            }
+        } else {
+            let indexOfNewSection = form.allSections.count - 2
+            
+            form.insert(makeSection(tag: tag), at: indexOfNewSection)
+        }
     }
 
     @IBAction func didTapDoneButton(_: UIControl) {
