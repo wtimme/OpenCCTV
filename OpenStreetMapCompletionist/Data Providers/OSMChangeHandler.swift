@@ -18,6 +18,10 @@ protocol OSMChangeHandling {
     func unstage(nodeId: Int)
 }
 
+extension Notification.Name {
+    public static let ChangeHandlerDidAddUpdatedNode = NSNotification.Name("ChangeHandlerDidAddUpdatedNode")
+}
+
 class InMemoryChangeHandler: NSObject, OSMChangeHandling {
     
     public private(set) var changedNodes = [Int: Node]()
@@ -28,6 +32,10 @@ class InMemoryChangeHandler: NSObject, OSMChangeHandling {
         let existingNode = get(id: node.id)
         
         changedNodes[node.id] = node
+        
+        if nil == existingNode || node != existingNode {
+            NotificationCenter.default.post(name: .ChangeHandlerDidAddUpdatedNode, object: node)
+        }
         
         if nil == existingNode {
             // Automatically stage nodes that were just modified for the first time.
