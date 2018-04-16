@@ -92,7 +92,7 @@ class ChangeReviewViewModelTestCase: XCTestCase {
         XCTAssertTrue(changeHandlerMock.stagedNodeIds.contains(2))
     }
     
-    func testUnstageNodeShouldTellChagneHandlerToUnstageIt() {
+    func testUnstageNodeShouldTellChangeHandlerToUnstageIt() {
         changeHandlerMock.stagedNodeIds.insert(3)
         
         viewModel.unstageNode(id: 3)
