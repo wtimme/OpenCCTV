@@ -13,6 +13,11 @@ protocol ChangeReviewViewModelDelegate: class {
     /// Tells the delegate to update its subviews using the values from the view model.
     func updateViewFromViewModel()
     
+    /// Is called when a Node was changed and the corresponding section needs to be updated visually.
+    ///
+    /// - Parameter node: The Node to update the section for.
+    func reloadSection(for node: Node)
+    
     func showDetailsForNode(_ node: Node)
     
 }
@@ -27,6 +32,16 @@ class ChangeReviewViewModel: NSObject {
     init(changeHandler: OSMChangeHandling, nodeDataProvider: OSMDataProviding) {
         self.changeHandler = changeHandler
         self.nodeDataProvider = nodeDataProvider
+        
+        super.init()
+        
+        NotificationCenter.default.addObserver(forName: .ChangeHandlerDidAddUpdatedNode,
+                                               object: nil,
+                                               queue: nil) { [weak self] (notification) in
+                                                guard let node = notification.object as? Node else { return }
+                                                
+                                                self?.delegate?.reloadSection(for: node)
+        }
     }
     
     var isUploadButtonEnabled: Bool {

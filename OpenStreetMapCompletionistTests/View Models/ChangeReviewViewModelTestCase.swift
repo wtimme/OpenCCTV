@@ -100,6 +100,15 @@ class ChangeReviewViewModelTestCase: XCTestCase {
         XCTAssertFalse(changeHandlerMock.stagedNodeIds.contains(3))
     }
     
+    func testViewModelShouldAskToReloadSectionWhenItReceivedChangeHandlerDidAddUpdatedNodeNotification() {
+        let updatedNode = makeNode()
+        
+        NotificationCenter.default.post(name: .ChangeHandlerDidAddUpdatedNode,
+                                        object: updatedNode)
+        
+        XCTAssertEqual(delegateMock.nodeToReloadSectionFor, updatedNode)
+    }
+    
     // MARK: Helper
     
     private func makeNode() -> Node {

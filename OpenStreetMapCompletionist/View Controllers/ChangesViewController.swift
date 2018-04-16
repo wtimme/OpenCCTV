@@ -59,7 +59,9 @@ class ChangesViewController: FormViewController {
     private func makeNodeDiffSection(_ diff: NodeDiff) -> Section {
         let sectionTitle = "Node \(diff.nodeId)"
         
-        let nodeSection = Section(sectionTitle)
+        let nodeSection = Section(sectionTitle) {
+            $0.tag = "\(diff.nodeId)"
+        }
         
         nodeSection
             <<< SwitchRow {
@@ -129,6 +131,23 @@ class ChangesViewController: FormViewController {
 }
 
 extension ChangesViewController: ChangeReviewViewModelDelegate {
+    
+    func reloadSection(for node: Node) {
+        guard
+            let section = form.sectionBy(tag: "\(node.id)"),
+            let sectionIndex = form.index(of: section)
+            else {
+                return
+        }
+        
+        // Remove the old section.
+        form.remove(at: sectionIndex)
+        
+        // Add an updated one.
+        let updatedSection = makeNodeSection(node)
+        form.insert(updatedSection, at: sectionIndex)
+    }
+    
     
     func updateViewFromViewModel() {
         uploadBarButtonItem.isEnabled = viewModel.isUploadButtonEnabled
