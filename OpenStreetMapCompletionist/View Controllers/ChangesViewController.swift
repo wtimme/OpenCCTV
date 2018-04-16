@@ -38,12 +38,8 @@ class ChangesViewController: FormViewController {
                     $0.cell.textLabel?.numberOfLines = 0
                 }
         } else {
-            let nodeDiffs = changeHandler.changedNodes.values.map { (node) -> NodeDiff in
-                return NodeDiff(node: node, originalNode: nodeDataProvider.node(id: node.id))
-            }
-            
-            for diff in nodeDiffs {
-                form +++ makeNodeDiffSection(diff)
+            for node in changeHandler.changedNodes.values {
+                form +++ makeNodeSection(node)
             }
             
             form +++ Section(header: "Commit message", footer: "Specifying a useful commit message helps other mappers review and understand your changes.")
@@ -51,6 +47,13 @@ class ChangesViewController: FormViewController {
                     $0.placeholder = "Add tags to a couple of nodes"
             }
         }
+    }
+    
+    private func makeNodeSection(_ node: Node) -> Section {
+        let originalNode = nodeDataProvider.node(id: node.id)
+        let diff = NodeDiff(node: node, originalNode: originalNode)
+        
+        return makeNodeDiffSection(diff)
     }
     
     private func makeNodeDiffSection(_ diff: NodeDiff) -> Section {
