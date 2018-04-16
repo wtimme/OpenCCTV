@@ -25,10 +25,14 @@ class InMemoryChangeHandler: NSObject, OSMChangeHandling {
     // MARK: OSMChangeHandling
     
     func add(_ node: Node) {
+        let existingNode = get(id: node.id)
+        
         changedNodes[node.id] = node
         
-        // Automatically stage nodes.
-        stage(nodeId: node.id)
+        if nil == existingNode {
+            // Automatically stage nodes that were just modified for the first time.
+            stage(nodeId: node.id)
+        }
     }
     
     func get(id: Int) -> Node? {

@@ -29,6 +29,20 @@ class ChangeHandlerTestCase: XCTestCase {
         XCTAssertTrue(changeHandler.stagedNodeIds.contains(node.id))
     }
     
+    func testAddNodeShouldNotStageNodesThatAreAlreadyRegisteredAsUpdated() {
+        let node = makeNode()
+        
+        changeHandler.add(node)
+        
+        // Manually unstage the Node.
+        changeHandler.unstage(nodeId: node.id)
+        
+        // Add the Node once again.
+        changeHandler.add(node)
+        
+        XCTAssertFalse(changeHandler.stagedNodeIds.contains(node.id))
+    }
+    
     // MARK: Helper
     
     private func makeNode() -> Node {
