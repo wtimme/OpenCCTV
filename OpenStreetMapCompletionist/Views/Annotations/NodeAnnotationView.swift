@@ -20,7 +20,7 @@ class NodeAnnotationView: MKAnnotationView {
         image = UIImage(icon: .mapicons(MapiconsType.bicycling),
                         size: CGSize(width: NodeAnnotationView.annotationDimension, height: NodeAnnotationView.annotationDimension))
         
-        backgroundColor = UIColor(red: 57/255, green: 42/255, blue: 89/255, alpha: 0.1)
+        backgroundColor = UIColor(white: 1, alpha: 0.9)
         layer.cornerRadius = 4.0
         layer.borderColor = UIColor(white: 0.1, alpha: 0.8).cgColor
         layer.borderWidth = 0.5
