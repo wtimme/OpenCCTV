@@ -157,7 +157,11 @@ class NodeFormViewController: FormViewController {
             changeHandler?.add(updatedNode)
         }
         
-        dismiss(animated: true, completion: nil)
+        if 1 < navigationController?.viewControllers.count ?? 1 {
+            navigationController?.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     private func nodeFromForm() -> Node {
