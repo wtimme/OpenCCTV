@@ -81,22 +81,12 @@ class NodeFormViewController: FormViewController {
             let tagSection = Section(footer: "Searching wiki for details...") {
                 $0.tag = sectionTag(key)
             }
-                <<< LabelRow {
+            
+            tagSection
+                <<< TextRow {
                     $0.tag = key
                     $0.title = key
                     $0.value = value
-                    $0.cell.accessoryType = .disclosureIndicator
-                    $0.onCellSelection({ _, row in
-                        guard let tagKey = row.tag, let selectedTag = self.tags[tagKey] else {
-                            return
-                        }
-                        
-                        if key == "direction" {
-                            self.performSegue(withIdentifier: "ShowDirectionEditor", sender: nil)
-                        } else {
-                            self.performSegue(withIdentifier: "ShowTagDetails", sender: selectedTag)
-                        }
-                    })
                 }
 
             sections.append(tagSection)
@@ -133,28 +123,11 @@ class NodeFormViewController: FormViewController {
         let section = Section(footer: tag.description ?? "")
         section.tag = sectionTag(tag)
 
-        if let potentialValues = tagProvider?.potentialValues(key: tag.key), !potentialValues.isEmpty {
-            section
-                <<< LabelRow {
-                    $0.tag = tag.key
-                    $0.title = tag.key
-                    $0.value = tag.value
-                    $0.cell.accessoryType = .disclosureIndicator
-                    $0.onCellSelection({ _, _ in
-                        if tag.key == "direction" {
-                            self.performSegue(withIdentifier: "ShowDirectionEditor", sender: tag)
-                        } else {
-                            self.performSegue(withIdentifier: "ShowTagDetails", sender: tag)
-                        }
-                    })
-            }
-        } else {
-            section
-                <<< TextRow {
-                    $0.tag = tag.key
-                    $0.title = tag.key
-                    $0.value = tag.value
-                }
+        section
+            <<< TextRow {
+                $0.tag = tag.key
+                $0.title = tag.key
+                $0.value = tag.value
         }
 
         return section
