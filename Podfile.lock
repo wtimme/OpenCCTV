@@ -4,6 +4,7 @@ PODS:
   - Eureka (4.1.1)
   - KeychainAccess (3.1.0)
   - OAuthSwift (1.2.0)
+  - Presentr (1.3.2)
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - Eureka (~> 4.1.1)
   - KeychainAccess (~> 3.1.0)
   - OAuthSwift (~> 1.2.0)
+  - Presentr (~> 1.3.2)
   - SDWebImage (~> 4.0)
   - SQLite.swift (~> 0.11.4)
   - SwiftFormat/CLI (~> 0.33.5)
@@ -37,6 +39,7 @@ SPEC REPOS:
     - Eureka
     - KeychainAccess
     - OAuthSwift
+    - Presentr
     - SDWebImage
     - SQLite.swift
     - SwiftFormat
@@ -60,6 +63,7 @@ SPEC CHECKSUMS:
   Eureka: b88fb930e42c79f8c03c373d0fcdc28c1d6c50ed
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   OAuthSwift: 7fd6855b8e4d58eb5a30d156ea9bed7a8aecd1ca
+  Presentr: 797ae6ec8904eaba4ec58a4c2065bd66e31569ea
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   SwiftFormat: 13fd81206cf4453c19f1a5c51768c8c0d9165c30
@@ -68,6 +72,6 @@ SPEC CHECKSUMS:
   SwiftOverpass: c51be67304756a15c13629b2d9eee0df05c97ce3
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 0b491d7a7caeaec31dd2b3ebdc0f8fbaa37ee140
+PODFILE CHECKSUM: 29b7dee634ed71c9ef7c72718f5437fe883fab4a
 
 COCOAPODS: 1.5.0

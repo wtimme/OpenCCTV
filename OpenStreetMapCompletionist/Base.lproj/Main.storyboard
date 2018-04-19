@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -214,6 +215,103 @@
             </objects>
             <point key="canvasLocation" x="3958" y="806"/>
         </scene>
+        <!--Bicycle Parking-->
+        <scene sceneID="52h-Wz-YaB">
+            <objects>
+                <viewController storyboardIdentifier="CapacityEditorViewController" id="HRj-oD-6G2" customClass="CapacityEditorViewController" customModule="OpenStreetMapCompletionist" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Vt-x5-HTB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How many bikes can be parked here?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yIQ-V9-NdI">
+                                <rect key="frame" x="12" y="88" width="335" height="211"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="Capacity" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="12" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ka3-DW-YRn">
+                                <rect key="frame" x="12" y="323" width="351" height="21"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="textChanged:" destination="HRj-oD-6G2" eventType="editingChanged" id="WS7-EN-0GN"/>
+                                </connections>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="oXO-Ex-zzI">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7H-8I-FGc">
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="44"/>
+                                        <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <state key="normal" title="Can't tell">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancel:" destination="HRj-oD-6G2" eventType="touchUpInside" id="FgK-Kw-wpc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvb-B4-ILs">
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="44"/>
+                                        <color key="backgroundColor" red="0.270588249" green="0.78823530669999997" blue="0.3843137324" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="save:" destination="HRj-oD-6G2" eventType="touchUpInside" id="5qT-SQ-uUM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="SAO-sM-bpo"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yIQ-V9-NdI" firstAttribute="leading" secondItem="SgU-tF-3g5" secondAttribute="leading" constant="12" id="9ym-uf-TOK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yIQ-V9-NdI" secondAttribute="trailing" constant="12" id="B7i-C0-ciI"/>
+                            <constraint firstItem="Ka3-DW-YRn" firstAttribute="top" secondItem="yIQ-V9-NdI" secondAttribute="bottom" priority="749" constant="24" id="BzI-7g-sL0"/>
+                            <constraint firstItem="oXO-Ex-zzI" firstAttribute="leading" secondItem="SgU-tF-3g5" secondAttribute="leading" id="Ddc-3o-sJI"/>
+                            <constraint firstItem="oXO-Ex-zzI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Ka3-DW-YRn" secondAttribute="bottom" priority="752" constant="2" id="EDp-U2-Jfd"/>
+                            <constraint firstItem="SgU-tF-3g5" firstAttribute="trailing" secondItem="Ka3-DW-YRn" secondAttribute="trailing" constant="12" id="GR6-u9-F80"/>
+                            <constraint firstItem="SgU-tF-3g5" firstAttribute="trailing" secondItem="oXO-Ex-zzI" secondAttribute="trailing" id="Idc-om-rai"/>
+                            <constraint firstItem="yIQ-V9-NdI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SgU-tF-3g5" secondAttribute="top" constant="6" id="JV3-Sa-57s"/>
+                            <constraint firstItem="oXO-Ex-zzI" firstAttribute="top" secondItem="Ka3-DW-YRn" secondAttribute="bottom" priority="749" constant="24" id="XvQ-KS-1bp"/>
+                            <constraint firstItem="Ka3-DW-YRn" firstAttribute="centerY" secondItem="6Vt-x5-HTB" secondAttribute="centerY" priority="749" id="apr-mg-phA"/>
+                            <constraint firstItem="Ka3-DW-YRn" firstAttribute="leading" secondItem="SgU-tF-3g5" secondAttribute="leading" constant="12" id="kTs-tY-4t5"/>
+                            <constraint firstItem="yIQ-V9-NdI" firstAttribute="top" secondItem="SgU-tF-3g5" secondAttribute="top" priority="748" constant="24" id="llw-Yf-u8S"/>
+                            <constraint firstItem="Ka3-DW-YRn" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yIQ-V9-NdI" secondAttribute="bottom" priority="752" constant="2" id="qle-yE-OjJ"/>
+                            <constraint firstAttribute="bottom" secondItem="oXO-Ex-zzI" secondAttribute="bottom" id="xbf-i2-RGe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SgU-tF-3g5"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Bicycle Parking" id="fqf-VB-NgI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Vxt-IU-VIB">
+                            <connections>
+                                <action selector="dismiss" destination="HRj-oD-6G2" id="LSL-95-EAg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Details" id="uyR-uX-uDl">
+                            <connections>
+                                <action selector="showNodeDetails:" destination="HRj-oD-6G2" id="9Cd-0F-48w"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="questionLabel" destination="yIQ-V9-NdI" id="kCW-v2-bql"/>
+                        <outlet property="saveButton" destination="bvb-B4-ILs" id="6CH-6M-ZYs"/>
+                        <outlet property="stackView" destination="oXO-Ex-zzI" id="U24-Qt-eIn"/>
+                        <outlet property="textField" destination="Ka3-DW-YRn" id="AFQ-uD-vrt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HBY-pT-Q6Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3999" y="-399"/>
+        </scene>
         <!--Search Wiki-->
         <scene sceneID="kwF-Rp-wq2">
             <objects>
@@ -319,8 +417,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="S7Q-lY-QNX"/>
+        <segue reference="Dz4-JF-eMh"/>
         <segue reference="6lb-SB-r3Y"/>
-        <segue reference="qti-t9-0oO"/>
+        <segue reference="a1n-Pr-Pau"/>
     </inferredMetricsTieBreakers>
 </document>

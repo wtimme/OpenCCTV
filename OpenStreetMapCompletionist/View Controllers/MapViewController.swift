@@ -12,17 +12,31 @@ import MapKit
 import SwiftIcons
 import SwiftLocation
 import SafariServices
+import Presentr
 
 class MapViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var centerOnDeviceLocationBarButtonItem: UIBarButtonItem!
 
     private let dataProvider: OSMDataProviding = OverpassOSMDataProvider(interpreterURL: URL(string: "https://overpass-api.de/api/interpreter")!,
-                                                                         downloadStrategy: OSMDataDownloadStrategy(maximumRadiusInMeters: 4000))
+                                                                         downloadStrategy: OSMDataDownloadStrategy(maximumRadiusInMeters: 6500))
     
     private let changeHandler: OSMChangeHandling = InMemoryChangeHandler()
     
     private let viewModel: MapViewModelProtocol
+    
+    let presenter: Presentr = {
+        let width = ModalSize.fluid(percentage: 0.9)
+        let height = ModalSize.fluid(percentage: 0.40)
+        let customType = PresentationType.custom(width: width, height: height, center: .center)
+        
+        let customPresenter = Presentr(presentationType: customType)
+        customPresenter.transitionType = .coverVertical
+        customPresenter.roundCorners = true
+        customPresenter.keyboardTranslationType = .compress
+        
+        return customPresenter
+    }()
 
     required init?(coder aDecoder: NSCoder) {
         let viewModel = MapViewModel(locationProvider: LocationProvider(locatorManager: Locator),
@@ -94,6 +108,24 @@ class MapViewController: UIViewController {
             super.prepare(for: segue, sender: sender)
         }
     }
+    
+    private func presentCard(for node: Node) {
+        
+        guard let capacityEditorViewController = storyboard?.instantiateViewController(withIdentifier: "CapacityEditorViewController") as? CapacityEditorViewController else { return }
+        
+        if let updatedNode = changeHandler.get(id: node.id) {
+            capacityEditorViewController.node = updatedNode
+        } else {
+            capacityEditorViewController.node = node
+        }
+        
+        capacityEditorViewController.changeHandler = changeHandler
+        capacityEditorViewController.delegate = self
+        
+        let navigationController = UINavigationController(rootViewController: capacityEditorViewController)
+        
+        customPresentViewController(presenter, viewController: navigationController, animated: true)
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -102,11 +134,13 @@ extension MapViewController: MKMapViewDelegate {
         viewModel.regionDidChange(mapView.region)
     }
 
-    func mapView(_: MKMapView, didSelect view: MKAnnotationView) {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if
             let annotation = view.annotation as? OverpassNodeAnnotation,
             let node = dataProvider.node(id: annotation.nodeId) {
-            performSegue(withIdentifier: "ShowNodeDetails", sender: node)
+            presentCard(for: node)
+            
+            mapView.deselectAnnotation(annotation, animated: false)
         }
     }
 
@@ -164,5 +198,13 @@ extension MapViewController: MapViewModelDelegate {
         }
 
         centerOnDeviceLocationBarButtonItem.setIcon(icon: .mapicons(.locationArrow), iconSize: 30, color: iconColor)
+    }
+}
+
+extension MapViewController: CapacityEditorViewControllerDelegate {
+    func showDetails(for node: Node, andAdd key: String?) {
+        presentedViewController?.dismiss(animated: true, completion: {
+            self.performSegue(withIdentifier: "ShowNodeDetails", sender: node)
+        })
     }
 }
