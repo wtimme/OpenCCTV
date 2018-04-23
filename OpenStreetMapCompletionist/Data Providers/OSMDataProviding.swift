@@ -83,20 +83,3 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
 extension Notification.Name {
     static let osmDataProviderDidAddAnnotations = Notification.Name("osmDataProviderDidAddAnnotations")
 }
-
-extension Node {
-    init?(swiftOverpassNode: OverpassNode) {
-        guard let id = Int(swiftOverpassNode.id) else {
-            return nil
-        }
-
-        let coordinate = CLLocationCoordinate2D(latitude: swiftOverpassNode.latitude, longitude: swiftOverpassNode.longitude)
-        guard CLLocationCoordinate2DIsValid(coordinate) else {
-            return nil
-        }
-
-        self.id = id
-        self.coordinate = coordinate
-        self.rawTags = swiftOverpassNode.tags
-    }
-}
