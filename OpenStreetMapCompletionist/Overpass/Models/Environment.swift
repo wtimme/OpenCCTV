@@ -16,6 +16,14 @@ struct Environment {
 }
 
 extension Environment {
+    static var current: Environment {
+        guard let currentEnvironment = Environment.development else {
+            fatalError("Unable to determine the environment. Please make sure that the Info.plist contains a proper OAuth configuration.")
+        }
+        
+        return currentEnvironment
+    }
+    
     static var development: Environment? = {
         Environment.loadInfoDictionaryConfiguration("Development")
     }()
