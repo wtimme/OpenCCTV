@@ -21,6 +21,8 @@ PODS:
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
+  - AEXML (~> 4.2.2)
+  - Alamofire (~> 4.7.0)
   - Eureka (~> 4.1.1)
   - KeychainAccess (~> 3.1.0)
   - OAuthSwift (~> 1.2.0)
@@ -72,6 +74,6 @@ SPEC CHECKSUMS:
   SwiftOverpass: c51be67304756a15c13629b2d9eee0df05c97ce3
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 29b7dee634ed71c9ef7c72718f5437fe883fab4a
+PODFILE CHECKSUM: 6d61e1052e43358456cab291b37513947208f30b
 
 COCOAPODS: 1.5.0

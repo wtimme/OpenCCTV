@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="OpenStreetMap server" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+    <node id="1337" changeset="112711" timestamp="2018-04-07T16:21:56Z" version="4" visible="true" user="peterpan" uid="6520" lat="53.2474088" lon="10.4098694">
+        <tag k="amenity" v="bicycle_parking"/>
+    </node>
+</osm>
