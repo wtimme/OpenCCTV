@@ -20,18 +20,25 @@ protocol ChangeReviewViewModelDelegate: class {
     
     func showDetailsForNode(_ node: Node)
     
+    /// Asks the delegate to perform the OAuth login flow that lets the user authenticate against the OpenStreetMap API.
+    ///
+    /// - Parameter completion: Closure that should be called when the login flow finished.
+    func performOAuthLoginFlow(completion: @escaping (Error?) -> Void)
+    
 }
 
 class ChangeReviewViewModel: NSObject {
     
     let changeHandler: OSMChangeHandling
     let nodeDataProvider: OSMDataProviding
+    let oauthHandler: OAuthHandling
     
     weak var delegate: ChangeReviewViewModelDelegate?
     
-    init(changeHandler: OSMChangeHandling, nodeDataProvider: OSMDataProviding) {
+    init(changeHandler: OSMChangeHandling, nodeDataProvider: OSMDataProviding, oauthHandler: OAuthHandling) {
         self.changeHandler = changeHandler
         self.nodeDataProvider = nodeDataProvider
+        self.oauthHandler = oauthHandler
         
         super.init()
         
@@ -72,6 +79,18 @@ class ChangeReviewViewModel: NSObject {
         guard let node = changeHandler.get(id: id) else { return }
         
         delegate?.showDetailsForNode(node)
+    }
+    
+    func startUpload(_ completion: @escaping (Error?) -> Void) {
+        if !oauthHandler.isAuthorized {
+            delegate?.performOAuthLoginFlow(completion: { (error) in
+                if let error = error {
+                    completion(error)
+                } else {
+                    completion(nil)
+                }
+            })
+        }
     }
 
 }

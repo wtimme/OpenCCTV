@@ -15,6 +15,7 @@ class ChangeReviewViewModelTestCase: XCTestCase {
     
     var changeHandlerMock: ChangeHandlerMock!
     var nodeDataProviderMock: OSMDataProviderMock!
+    var oauthHandlerMock: OAuthHandlerMock!
     var viewModel: ChangeReviewViewModel!
     
     var delegateMock: ChangeReviewViewModelDelegateMock!
@@ -24,8 +25,10 @@ class ChangeReviewViewModelTestCase: XCTestCase {
         
         changeHandlerMock = ChangeHandlerMock()
         nodeDataProviderMock = OSMDataProviderMock()
+        oauthHandlerMock = OAuthHandlerMock()
         viewModel = ChangeReviewViewModel(changeHandler: changeHandlerMock,
-                                          nodeDataProvider: nodeDataProviderMock)
+                                          nodeDataProvider: nodeDataProviderMock,
+                                          oauthHandler: oauthHandlerMock)
         
         delegateMock = ChangeReviewViewModelDelegateMock()
         viewModel.delegate = delegateMock
@@ -107,6 +110,16 @@ class ChangeReviewViewModelTestCase: XCTestCase {
                                         object: updatedNode)
         
         XCTAssertEqual(delegateMock.nodeToReloadSectionFor, updatedNode)
+    }
+    
+    // MARK: Start Upload
+    
+    func testStartUploadShouldAskTheDelegateToPerformOAuthLoginFlowIfNotAuthorized() {
+        oauthHandlerMock.isAuthorized = false
+        
+        viewModel.startUpload { _ in }
+        
+        XCTAssertTrue(delegateMock.didCallPerformOAuthLoginFlow)
     }
     
     // MARK: Helper

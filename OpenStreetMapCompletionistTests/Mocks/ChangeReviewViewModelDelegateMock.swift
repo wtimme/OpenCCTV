@@ -18,6 +18,11 @@ class ChangeReviewViewModelDelegateMock: NSObject, ChangeReviewViewModelDelegate
     /// The `Node` that the delegate was asked to reload the section for.
     var nodeToReloadSectionFor: Node?
     
+    var didCallPerformOAuthLoginFlow = false
+    
+    /// The error that is returned when the login flow is performed.
+    var oauthLoginFlowError: Error?
+    
     public private(set) var wasAskedToUpdateView = false
     
     func updateViewFromViewModel() {
@@ -30,6 +35,12 @@ class ChangeReviewViewModelDelegateMock: NSObject, ChangeReviewViewModelDelegate
 
     func showDetailsForNode(_ node: Node) {
         nodeToPresent = node
+    }
+    
+    func performOAuthLoginFlow(completion: @escaping (Error?) -> Void) {
+        didCallPerformOAuthLoginFlow = true
+        
+        completion(oauthLoginFlowError)
     }
     
 }

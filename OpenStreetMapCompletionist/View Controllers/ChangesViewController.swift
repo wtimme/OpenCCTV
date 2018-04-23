@@ -13,14 +13,19 @@ class ChangesViewController: FormViewController {
     var changeHandler: OSMChangeHandling!
     var nodeDataProvider: OSMDataProviding!
     private var viewModel: ChangeReviewViewModel!
+    private var oauthHandler: OAuthHandling!
     
     @IBOutlet var uploadBarButtonItem: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        oauthHandler = OAuthHandler(environment: .current,
+                                    keychainHandler: KeychainAccessKeychainHandler())
+        
         viewModel = ChangeReviewViewModel(changeHandler: changeHandler,
-                                          nodeDataProvider: nodeDataProvider)
+                                          nodeDataProvider: nodeDataProvider,
+                                          oauthHandler: oauthHandler)
         viewModel.delegate = self
         
         setupForm()
@@ -155,6 +160,10 @@ extension ChangesViewController: ChangeReviewViewModelDelegate {
     
     func showDetailsForNode(_ node: Node) {
         self.performSegue(withIdentifier: "ShowNodeDetails", sender: node)
+    }
+    
+    func performOAuthLoginFlow(completion: @escaping (Error?) -> Void) {
+        oauthHandler.authorize(from: self, completion)
     }
     
 }
