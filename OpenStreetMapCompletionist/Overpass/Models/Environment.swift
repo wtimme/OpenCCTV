@@ -9,6 +9,8 @@
 import Foundation
 
 struct Environment {
+    let apiBaseURL: URL
+    
     // OAuth
     let oauthBaseURL: URL
     let oauthConsumerKey: String
@@ -42,7 +44,8 @@ extension Environment {
             return nil
         }
 
-        return Environment(oauthBaseURL: baseURL,
+        return Environment(apiBaseURL: baseURL,
+                           oauthBaseURL: baseURL,
                            oauthConsumerKey: consumerKey,
                            oauthConsumerSecret: consumerSecret)
     }
