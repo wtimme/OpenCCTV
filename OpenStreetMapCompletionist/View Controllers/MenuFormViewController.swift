@@ -14,12 +14,8 @@ class MenuFormViewController: FormViewController {
     static let OAuthSectionTag = "OAuthSectionTag"
 
     required init?(coder aDecoder: NSCoder) {
-        guard let environment = Environment.development else {
-            fatalError("Unable to load the environment. Please check the 'OAuth Environments' settings in the Info.plist")
-            return nil
-        }
-
-        oauthHandler = OAuthHandler(environment: environment,
+        
+        oauthHandler = OAuthHandler(environment: .current,
                                     keychainHandler: KeychainAccessKeychainHandler())
 
         super.init(coder: aDecoder)
