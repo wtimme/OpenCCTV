@@ -229,7 +229,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="Capacity" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="12" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ka3-DW-YRn">
+                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="fill" contentVerticalAlignment="center" placeholder="Capacity" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="12" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ka3-DW-YRn">
                                 <rect key="frame" x="12" y="323" width="351" height="21"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
