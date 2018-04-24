@@ -33,6 +33,8 @@ class ChangesViewController: FormViewController {
         uploadBarButtonItem.isEnabled = viewModel.isUploadButtonEnabled
     }
     
+    private static let uploadRowTag = "uploadRowTag"
+    
     private func setupForm() {
         if viewModel.isExplanatorySectionVisible {
             form +++ Section("No changes yet")
@@ -53,6 +55,10 @@ class ChangesViewController: FormViewController {
             }
             
             form +++ Section()
+                <<< ButtonRow {
+                    $0.tag = ChangesViewController.uploadRowTag
+                    $0.title = "Upload"
+            }
                 <<< ButtonRow {
                     $0.title = "Revert all changes"
                     $0.cell.tintColor = .red
@@ -165,6 +171,11 @@ extension ChangesViewController: ChangeReviewViewModelDelegate {
     
     func updateViewFromViewModel() {
         uploadBarButtonItem.isEnabled = viewModel.isUploadButtonEnabled
+        
+        if let uploadButtonRow = form.rowBy(tag: ChangesViewController.uploadRowTag) as? ButtonRow {
+            uploadButtonRow.disabled = Condition(booleanLiteral: !viewModel.isUploadButtonEnabled)
+            uploadButtonRow.evaluateDisabled()
+        }
     }
     
     func showDetailsForNode(_ node: Node) {
