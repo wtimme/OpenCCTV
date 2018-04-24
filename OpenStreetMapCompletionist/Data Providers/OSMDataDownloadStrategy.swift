@@ -34,6 +34,3 @@ struct OSMDataDownloadStrategy {
 protocol RegionDownloadLimiting {
     func shouldDownloadData(for region: MKCoordinateRegion) -> Bool
 }
-
-class RegionDownloadLimiter: NSObject {
-}
