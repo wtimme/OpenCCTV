@@ -11,6 +11,17 @@ import Foundation
 import Alamofire
 import AEXML
 
+/// An area on the map.
+///
+/// It can be used to query the OpenStreetMap API:
+/// https://wiki.openstreetmap.org/wiki/API_v0.6#Retrieving_map_data_by_bounding_box:_GET_.2Fapi.2F0.6.2Fmap
+struct BoundingBox {
+    let left: Double
+    let bottom: Double
+    let right: Double
+    let top: Double
+}
+
 protocol APIClientProtocol {
     
     func downloadNode(id: Int, _ completion: @escaping (Node?, Error?) -> Void)
