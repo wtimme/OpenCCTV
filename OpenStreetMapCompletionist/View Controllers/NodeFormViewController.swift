@@ -49,8 +49,9 @@ class NodeFormViewController: FormViewController {
                 $0.value = "\(node.coordinate.longitude)"
             }
 
-        let tagSections = makeTagSections(node.rawTags)
-        form.append(contentsOf: tagSections)
+        for (key, value) in node.rawTags {
+            form +++ makeRawTagSection(key: key, value: value)
+        }
 
         form +++ Section()
             <<< LabelRow {
@@ -74,34 +75,28 @@ class NodeFormViewController: FormViewController {
         }
     }
 
-    private func makeTagSections(_ keyValueTags: [String: String]) -> [Section] {
-        var sections = [Section]()
-
-        for (key, value) in keyValueTags {
-            let tagSection = Section(footer: "Searching wiki for details...") {
-                $0.tag = sectionTag(key)
+    private func makeRawTagSection(key: String, value: String?) -> Section {
+        let tagSection = Section(footer: "Searching wiki for details...") {
+            $0.tag = sectionTag(key)
+        }
+        
+        tagSection
+            <<< TextRow {
+                $0.tag = key
+                $0.title = key
+                $0.value = value
+        }
+        
+        // Start searching for details.
+        tagProvider?.findSingleTag((key: key, value: value), { [weak self] requestedRawTag, resolvedTag in
+            if let tag = resolvedTag {
+                self?.tags[tag.key] = tag
             }
             
-            tagSection
-                <<< TextRow {
-                    $0.tag = key
-                    $0.title = key
-                    $0.value = value
-                }
-
-            sections.append(tagSection)
-
-            // Start searching for details.
-            tagProvider?.findSingleTag((key: key, value: value), { [weak self] requestedRawTag, resolvedTag in
-                if let tag = resolvedTag {
-                    self?.tags[tag.key] = tag
-                }
-
-                self?.updateTagDetails(rawTag: requestedRawTag, resolvedTag: resolvedTag)
-            })
-        }
-
-        return sections
+            self?.updateTagDetails(rawTag: requestedRawTag, resolvedTag: resolvedTag)
+        })
+        
+        return tagSection
     }
 
     private func updateTagDetails(rawTag: (key: String, value: String?), resolvedTag: Tag?) {
