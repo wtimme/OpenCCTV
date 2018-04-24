@@ -41,8 +41,6 @@ protocol MapViewModelProtocol {
 }
 
 class MapViewModel: NSObject, MapViewModelProtocol {
-    let locationProvider: LocationProviding
-    let osmDataProvider: OSMDataProviding
 
     weak var delegate: MapViewModelDelegate?
 
@@ -71,6 +69,11 @@ class MapViewModel: NSObject, MapViewModelProtocol {
                                                name: .osmDataProviderDidAddAnnotations,
                                                object: nil)
     }
+    
+    // MARK: Private
+    
+    private let locationProvider: LocationProviding
+    private let osmDataProvider: OSMDataProviding
 
     // MARK: MapViewModelProtocol
 
