@@ -16,6 +16,7 @@
 		64045B29208E7A8B00EFF8FC /* Node_OverpassNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64045B28208E7A8B00EFF8FC /* Node_OverpassNode.swift */; };
 		64045B2D208E9B2700EFF8FC /* HTTPRequestHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64045B2C208E9B2700EFF8FC /* HTTPRequestHandling.swift */; };
 		64045B31208E9B8200EFF8FC /* AlamofireHTTPRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64045B30208E9B8200EFF8FC /* AlamofireHTTPRequestHandler.swift */; };
+		64045B33208E9F4F00EFF8FC /* APIClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64045B32208E9F4F00EFF8FC /* APIClientMock.swift */; };
 		64045B36208EA33700EFF8FC /* BoundingBox_MKCoordinateRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64045B34208EA17B00EFF8FC /* BoundingBox_MKCoordinateRegion.swift */; };
 		64045B38208EAA6500EFF8FC /* GetRegionByBoundingBox.xml in Resources */ = {isa = PBXBuildFile; fileRef = 64045B37208EAA6500EFF8FC /* GetRegionByBoundingBox.xml */; };
 		6435EE7B207BF5F600A97726 /* OAuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE7A207BF5F600A97726 /* OAuthHandler.swift */; };
@@ -96,6 +97,7 @@
 		64045B28208E7A8B00EFF8FC /* Node_OverpassNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node_OverpassNode.swift; sourceTree = "<group>"; };
 		64045B2C208E9B2700EFF8FC /* HTTPRequestHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestHandling.swift; sourceTree = "<group>"; };
 		64045B30208E9B8200EFF8FC /* AlamofireHTTPRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireHTTPRequestHandler.swift; sourceTree = "<group>"; };
+		64045B32208E9F4F00EFF8FC /* APIClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMock.swift; sourceTree = "<group>"; };
 		64045B34208EA17B00EFF8FC /* BoundingBox_MKCoordinateRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBox_MKCoordinateRegion.swift; sourceTree = "<group>"; };
 		64045B37208EAA6500EFF8FC /* GetRegionByBoundingBox.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GetRegionByBoundingBox.xml; sourceTree = "<group>"; };
 		6435EE7A207BF5F600A97726 /* OAuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthHandler.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				6469147620837F260053AA53 /* ChangeReviewViewModelDelegateMock.swift */,
 				6469147D208392A00053AA53 /* TagProviderMock.swift */,
 				644A1BD920895D0300602668 /* OAuthHandlerMock.swift */,
+				64045B32208E9F4F00EFF8FC /* APIClientMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -717,6 +720,7 @@
 				647C420A2076B7300002B068 /* MapViewModelTestCase.swift in Sources */,
 				6469147720837F260053AA53 /* ChangeReviewViewModelDelegateMock.swift in Sources */,
 				64FDDE3320794557001428B3 /* OSMDataProviderMock.swift in Sources */,
+				64045B33208E9F4F00EFF8FC /* APIClientMock.swift in Sources */,
 				64045B20208E6D9F00EFF8FC /* Node_XMLTestCase.swift in Sources */,
 				646914752083792E0053AA53 /* NodeDiffTestCase.swift in Sources */,
 				64F1C41F208209D300B85FB2 /* NodeTestCase.swift in Sources */,
