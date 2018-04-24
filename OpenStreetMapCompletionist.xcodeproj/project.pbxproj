@@ -17,6 +17,7 @@
 		64045B2D208E9B2700EFF8FC /* HTTPRequestHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64045B2C208E9B2700EFF8FC /* HTTPRequestHandling.swift */; };
 		64045B31208E9B8200EFF8FC /* AlamofireHTTPRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64045B30208E9B8200EFF8FC /* AlamofireHTTPRequestHandler.swift */; };
 		64045B36208EA33700EFF8FC /* BoundingBox_MKCoordinateRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64045B34208EA17B00EFF8FC /* BoundingBox_MKCoordinateRegion.swift */; };
+		64045B38208EAA6500EFF8FC /* GetRegionByBoundingBox.xml in Resources */ = {isa = PBXBuildFile; fileRef = 64045B37208EAA6500EFF8FC /* GetRegionByBoundingBox.xml */; };
 		6435EE7B207BF5F600A97726 /* OAuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE7A207BF5F600A97726 /* OAuthHandler.swift */; };
 		6435EE7D207BFAEA00A97726 /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE7C207BFAEA00A97726 /* KeychainHandler.swift */; };
 		6435EE7F207C07CC00A97726 /* MenuFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE7E207C07CC00A97726 /* MenuFormViewController.swift */; };
@@ -96,6 +97,7 @@
 		64045B2C208E9B2700EFF8FC /* HTTPRequestHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestHandling.swift; sourceTree = "<group>"; };
 		64045B30208E9B8200EFF8FC /* AlamofireHTTPRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireHTTPRequestHandler.swift; sourceTree = "<group>"; };
 		64045B34208EA17B00EFF8FC /* BoundingBox_MKCoordinateRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBox_MKCoordinateRegion.swift; sourceTree = "<group>"; };
+		64045B37208EAA6500EFF8FC /* GetRegionByBoundingBox.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GetRegionByBoundingBox.xml; sourceTree = "<group>"; };
 		6435EE7A207BF5F600A97726 /* OAuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthHandler.swift; sourceTree = "<group>"; };
 		6435EE7C207BFAEA00A97726 /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
 		6435EE7E207C07CC00A97726 /* MenuFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuFormViewController.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				64045B25208E6F6600EFF8FC /* GetNodeById.xml */,
+				64045B37208EAA6500EFF8FC /* GetRegionByBoundingBox.xml */,
 			);
 			path = "Test XML";
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64045B26208E6F6600EFF8FC /* GetNodeById.xml in Resources */,
+				64045B38208EAA6500EFF8FC /* GetRegionByBoundingBox.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

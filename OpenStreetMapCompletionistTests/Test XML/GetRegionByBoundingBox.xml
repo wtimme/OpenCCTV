@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="OpenStreetMap server" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+    <bounds minlat="50.0460823" minlon="10.4088895" maxlat="51.2494371" maxlon="12.4119410"/>
+    <node id="1" changeset="2" timestamp="2017-02-03T13:21:32Z" version="3" visible="true" user="johndoe" uid="404" lat="50.1374088" lon="11.4393498">
+        <tag k="amenity" v="bicycle_parking"/>
+    </node>
+</osm>
