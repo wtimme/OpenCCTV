@@ -32,7 +32,7 @@ class APIClient: NSObject, APIClientProtocol {
     // MARK: APIClientProtocol
     
     func downloadNode(id: Int, _ completion: @escaping (Node?, Error?) -> Void) {
-        let url = baseURL.appendingPathComponent("/api/0.6/node/\(id)")
+        let url = baseURL.appendingPathComponent("api/0.6/node/\(id)")
         
         Alamofire.request(url).response { response in
             if let error = response.error {
