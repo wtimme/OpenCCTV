@@ -16,6 +16,8 @@ protocol OSMChangeHandling {
     var stagedNodeIds: Set<Int> { get }
     func stage(nodeId: Int)
     func unstage(nodeId: Int)
+    
+    func revertAllChanges()
 }
 
 extension Notification.Name {
@@ -57,6 +59,13 @@ class InMemoryChangeHandler: NSObject, OSMChangeHandling {
     
     func unstage(nodeId: Int) {
         stagedNodeIds.remove(nodeId)
+    }
+    
+    // MARK: OSMChangeHandling - Reverting
+    
+    func revertAllChanges() {
+        changedNodes.removeAll()
+        stagedNodeIds.removeAll()
     }
 
 }

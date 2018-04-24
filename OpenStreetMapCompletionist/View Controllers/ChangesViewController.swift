@@ -51,6 +51,15 @@ class ChangesViewController: FormViewController {
                 <<< TextAreaRow {
                     $0.placeholder = "Add tags to a couple of nodes"
             }
+            
+            form +++ Section()
+                <<< ButtonRow {
+                    $0.title = "Revert all changes"
+                    $0.cell.tintColor = .red
+                    $0.onCellSelection { _,_ in
+                        self.viewModel.revertAllChanges()
+                    }
+            }
         }
     }
     
@@ -164,6 +173,28 @@ extension ChangesViewController: ChangeReviewViewModelDelegate {
     
     func performOAuthLoginFlow(completion: @escaping (Error?) -> Void) {
         oauthHandler.authorize(from: self, completion)
+    }
+    
+    func askForConfirmationBeforeRevertingChanges(_ completion: @escaping (Bool) -> Void) {
+        let alertController = UIAlertController(title: "All of your changes will be lost and cannot be recovered. Are you sure that you want to continue?",
+                                                message: nil,
+                                                preferredStyle: .alert)
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel) { _ in
+            completion(false)
+        }
+        alertController.addAction(cancelAction)
+        
+        let confirmAction = UIAlertAction(title: "Revert all changes", style: .destructive) { _ in
+            completion(true)
+        }
+        alertController.addAction(confirmAction)
+        
+        present(alertController, animated: true)
+        
+    }
+    
+    func dismiss() {
+        dismiss(animated: true, completion: nil)
     }
     
 }

@@ -25,6 +25,14 @@ protocol ChangeReviewViewModelDelegate: class {
     /// - Parameter completion: Closure that should be called when the login flow finished.
     func performOAuthLoginFlow(completion: @escaping (Error?) -> Void)
     
+    /// Asks the delegate to ask the user for an additional confirmation before reverting all changes.
+    ///
+    /// - Parameter completion: Closure that the delegate uses to communicate the decision back to the view model.
+    func askForConfirmationBeforeRevertingChanges(_ completion: @escaping (Bool) -> Void)
+    
+    /// Asks the delegate to dismiss the whole interface.
+    func dismiss()
+    
 }
 
 class ChangeReviewViewModel: NSObject {
@@ -90,6 +98,16 @@ class ChangeReviewViewModel: NSObject {
                     completion(nil)
                 }
             })
+        }
+    }
+    
+    func revertAllChanges() {
+        delegate?.askForConfirmationBeforeRevertingChanges { [weak self] confirmed in
+            guard confirmed else { return }
+            
+            self?.changeHandler.revertAllChanges()
+            
+            self?.delegate?.dismiss()
         }
     }
 

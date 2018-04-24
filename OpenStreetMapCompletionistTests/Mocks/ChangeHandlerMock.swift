@@ -33,5 +33,12 @@ class ChangeHandlerMock: NSObject, OSMChangeHandling {
     func unstage(nodeId: Int) {
         stagedNodeIds.remove(nodeId)
     }
+    
+    // MARK: Reverting changes
+    
+    func revertAllChanges() {
+        changedNodes.removeAll()
+        stagedNodeIds.removeAll()
+    }
 
 }

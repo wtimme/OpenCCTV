@@ -43,4 +43,8 @@ class ChangeReviewViewModelDelegateMock: NSObject, ChangeReviewViewModelDelegate
         completion(oauthLoginFlowError)
     }
     
+    func askForConfirmationBeforeRevertingChanges(_ completion: @escaping (Bool) -> Void) { }
+    
+    func dismiss() { }
+    
 }
