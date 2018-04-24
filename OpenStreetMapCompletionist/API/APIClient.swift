@@ -19,22 +19,26 @@ protocol APIClientProtocol {
 
 class APIClient: NSObject, APIClientProtocol {
     
-    init(baseURL: URL, oauthHandler: OAuthHandling) {
+    init(baseURL: URL,
+         oauthHandler: OAuthHandling,
+         requestHandler: HTTPRequestHandling = AlamofireHTTPRequestHandler()) {
         self.baseURL = baseURL
         self.oauthHandler = oauthHandler
+        self.requestHandler = requestHandler
     }
     
     // MARK: Private
     
     private let baseURL: URL
     private let oauthHandler: OAuthHandling
+    private let requestHandler: HTTPRequestHandling
     
     // MARK: APIClientProtocol
     
     func downloadNode(id: Int, _ completion: @escaping (Node?, Error?) -> Void) {
         let url = baseURL.appendingPathComponent("api/0.6/node/\(id)")
         
-        Alamofire.request(url).response { response in
+        requestHandler.request(url) { response in
             if let error = response.error {
                 completion(nil, error)
                 return
