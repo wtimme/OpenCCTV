@@ -24,7 +24,9 @@ extension Node {
                 let latitudeAsString = nodeElement.attributes["lat"],
                 let latitude = CLLocationDegrees(latitudeAsString),
                 let longitudeAsString = nodeElement.attributes["lon"],
-                let longitude = CLLocationDegrees(longitudeAsString)
+                let longitude = CLLocationDegrees(longitudeAsString),
+                let versionAsString = nodeElement.attributes["version"],
+                let version = Int(versionAsString)
             else {
                 return nil
             }
@@ -52,6 +54,7 @@ extension Node {
             self.id = id
             self.coordinate = coordinate
             self.rawTags = rawTags
+            self.version = version
         } catch {
             let dataAsString = String(data: data, encoding: .utf8)
             print("Unable to create Node from XML: \(String(describing: dataAsString))")

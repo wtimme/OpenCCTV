@@ -27,7 +27,8 @@ class Node_XMLTestCase: XCTestCase {
         
         let expectedNode = Node(id: 1337,
                                 coordinate: CLLocationCoordinate2DMake(53.2474088, 10.4098694),
-                                rawTags: ["amenity": "bicycle_parking"])
+                                rawTags: ["amenity": "bicycle_parking"],
+                                version: 4)
         
         XCTAssertEqual(node, expectedNode)
     }

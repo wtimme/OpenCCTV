@@ -167,7 +167,7 @@ class NodeFormViewController: FormViewController {
             rawTags[keyValuePair.key] = value
         }
         
-        return Node(id: node.id, coordinate: node.coordinate, rawTags: rawTags)
+        return Node(id: node.id, coordinate: node.coordinate, rawTags: rawTags, version: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

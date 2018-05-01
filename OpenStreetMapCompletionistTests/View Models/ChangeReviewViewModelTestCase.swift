@@ -125,7 +125,7 @@ class ChangeReviewViewModelTestCase: XCTestCase {
     // MARK: Helper
     
     private func makeNode() -> Node {
-        return Node(id: 1, coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700), rawTags: [:])
+        return Node(id: 1, coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700), rawTags: [:], version: 6)
     }
     
 }

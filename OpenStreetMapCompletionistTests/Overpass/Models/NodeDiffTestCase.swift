@@ -33,7 +33,8 @@ class NodeDiffTestCase: XCTestCase {
     func testConvenienceInitializerShouldUseTheIdOfTheUpdatedNode() {
         let node = Node(id: 1,
                         coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700),
-                        rawTags: ["some_tag": "some value"])
+                        rawTags: ["some_tag": "some value"],
+                        version: nil)
         
         let diff = NodeDiff(node: node, originalNode: nil)
         
@@ -43,7 +44,8 @@ class NodeDiffTestCase: XCTestCase {
     func testDiffWithoutOriginalNodeShouldReportAllTagsAsNew() {
         let node = Node(id: 1,
                         coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700),
-                        rawTags: ["some_tag": "some value"])
+                        rawTags: ["some_tag": "some value"],
+                        version: nil)
         
         let diff = NodeDiff(node: node, originalNode: nil)
         
@@ -55,12 +57,14 @@ class NodeDiffTestCase: XCTestCase {
     func testDiffWithOriginalNodeShouldReportNewTagsAsAdded() {
         let originalNode = Node(id: 1,
                                 coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700),
-                                rawTags: ["old_tag": "some value"])
+                                rawTags: ["old_tag": "some value"],
+                                version: 9)
         
         let updatedNode = Node(id: 1,
                                coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700),
                                rawTags: ["old_tag": "some value",
-                                         "new_tag": "some value"])
+                                         "new_tag": "some value"],
+                               version: 9)
         
         let diff = NodeDiff(node: updatedNode, originalNode: originalNode)
         
@@ -70,11 +74,13 @@ class NodeDiffTestCase: XCTestCase {
     func testDiffWithOriginalNodeShouldReportExistingTagsWithNewValueAsUpdated() {
         let originalNode = Node(id: 1,
                                 coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700),
-                                rawTags: ["old_tag": "some value"])
+                                rawTags: ["old_tag": "some value"],
+                                version: 9)
         
         let updatedNode = Node(id: 1,
                                coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700),
-                               rawTags: ["old_tag": "a new value"])
+                               rawTags: ["old_tag": "a new value"],
+                               version: 9)
         
         let diff = NodeDiff(node: updatedNode, originalNode: originalNode)
         
@@ -84,11 +90,13 @@ class NodeDiffTestCase: XCTestCase {
     func testDiffWithOriginalNodeShouldReportTagsThatNoLongerExistAsRemoved() {
         let originalNode = Node(id: 1,
                                 coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700),
-                                rawTags: ["old_tag": "some value"])
+                                rawTags: ["old_tag": "some value"],
+                                version: 9)
         
         let updatedNode = Node(id: 1,
                                coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700),
-                               rawTags: [:])
+                               rawTags: [:],
+                               version: 9)
         
         let diff = NodeDiff(node: updatedNode, originalNode: originalNode)
         

@@ -16,14 +16,17 @@ class NodeTestCase: XCTestCase {
     func testNodeShouldNotBeConsideredEqualIfTheyHaveDifferentKeys() {
         let nodeId = 1
         let coordinate = CLLocationCoordinate2DMake(53.553100, 10.006700)
+        let version = 2
         
         let firstNode = Node(id: nodeId,
                              coordinate: coordinate,
-                             rawTags: ["1": "some value"])
+                             rawTags: ["1": "some value"],
+                             version: version)
         
         let secondNode = Node(id: nodeId,
                               coordinate: coordinate,
-                              rawTags: ["2": "some value"])
+                              rawTags: ["2": "some value"],
+                              version: version)
         
         XCTAssertNotEqual(firstNode, secondNode)
     }
@@ -31,14 +34,17 @@ class NodeTestCase: XCTestCase {
     func testNodeShouldNotBeConsideredEqualIfTheyHaveDifferentValues() {
         let nodeId = 1
         let coordinate = CLLocationCoordinate2DMake(53.553100, 10.006700)
+        let version = 2
         
         let firstNode = Node(id: nodeId,
                              coordinate: coordinate,
-                             rawTags: ["1": "some value"])
+                             rawTags: ["1": "some value"],
+                             version: version)
         
         let secondNode = Node(id: nodeId,
                               coordinate: coordinate,
-                              rawTags: ["2": "a different value"])
+                              rawTags: ["2": "a different value"],
+                              version: version)
         
         XCTAssertNotEqual(firstNode, secondNode)
     }
@@ -46,14 +52,37 @@ class NodeTestCase: XCTestCase {
     func testNodeShouldNotBeConsideredEqualIfTheyHaveDifferentNumberOfTags() {
         let nodeId = 1
         let coordinate = CLLocationCoordinate2DMake(53.553100, 10.006700)
+        let version = 2
         
         let firstNode = Node(id: nodeId,
                              coordinate: coordinate,
-                             rawTags: ["1": "some value"])
+                             rawTags: ["1": "some value"],
+                             version: version)
         
         let secondNode = Node(id: nodeId,
                               coordinate: coordinate,
-                              rawTags: ["1": "some value", "2": "another value"])
+                              rawTags: ["1": "some value", "2": "another value"],
+                              version: version)
+        
+        XCTAssertNotEqual(firstNode, secondNode)
+    }
+    
+    // MARK: Version
+    
+    func testNodeShouldNotBeConsideredEqualIfTheyHaveDifferentVersions() {
+        let nodeId = 1
+        let coordinate = CLLocationCoordinate2DMake(53.553100, 10.006700)
+        let rawTags = ["1": "some value"]
+        
+        let firstNode = Node(id: nodeId,
+                             coordinate: coordinate,
+                             rawTags: rawTags,
+                             version: 9)
+        
+        let secondNode = Node(id: nodeId,
+                              coordinate: coordinate,
+                              rawTags: rawTags,
+                              version: nil)
         
         XCTAssertNotEqual(firstNode, secondNode)
     }

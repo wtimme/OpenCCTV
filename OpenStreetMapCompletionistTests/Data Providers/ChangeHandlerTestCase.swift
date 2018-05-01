@@ -112,7 +112,7 @@ class ChangeHandlerTestCase: XCTestCase {
     }
     
     private func makeNode(rawTags: [String: String] = [:]) -> Node {
-        return Node(id: 1, coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700), rawTags: rawTags)
+        return Node(id: 1, coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700), rawTags: rawTags, version: 9)
     }
     
 }

@@ -79,7 +79,8 @@ class CapacityEditorViewController: UIViewController {
         
         let updatedNode = Node(id: node.id,
                                coordinate: node.coordinate,
-                               rawTags: rawTags)
+                               rawTags: rawTags,
+                               version: nil)
         changeHandler?.add(updatedNode)
         
         dismiss()
