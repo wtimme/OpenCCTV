@@ -12,8 +12,12 @@ import MapKit
 import SwiftOverpass
 
 protocol OSMDataProviding: class {
-    func ensureDataIsPresent(for region: MKCoordinateRegion)
+    
+    func nodes(region: MKCoordinateRegion, _ completion: @escaping ([Node]) -> Void)
+    
     func node(id: Int) -> Node?
+    
+    func ensureDataIsPresent(for region: MKCoordinateRegion)
 }
 
 class OverpassOSMDataProvider: NSObject, OSMDataProviding {
@@ -28,7 +32,21 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
     private let downloadStrategy: OSMDataDownloadStrategy
     private var discoveredNodes = Set<Node>()
 
-    private func queryOverpassForNodes(in region: MKCoordinateRegion) {
+    private func processDownloadedNodes(_ nodes: [Node]) {
+        let newNodes = Set(nodes).subtracting(discoveredNodes)
+        discoveredNodes = discoveredNodes.union(newNodes)
+        
+        let annotations = newNodes.compactMap { (node) -> MKAnnotation? in
+            OverpassNodeAnnotation(node: node)
+        }
+
+        NotificationCenter.default.post(name: .osmDataProviderDidAddAnnotations,
+                                        object: annotations)
+    }
+
+    // MARK: OSMDataProviding
+    
+    func nodes(region: MKCoordinateRegion, _ completion: @escaping ([Node]) -> Void) {
         /// TODO: Query
         let query = SwiftOverpass.query(type: .node)
         query.setBoudingBox(s: region.center.latitude - region.span.latitudeDelta * 0.5,
@@ -42,37 +60,26 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
         SwiftOverpass.api(endpoint: interpreterURL.absoluteString)
             .fetch(query) { response in
                 guard let swiftOverpassNodes = response.nodes else {
+                    completion([])
                     return
                 }
 
                 // Create our own objects from the nodes.
                 let nodes = swiftOverpassNodes.compactMap { Node(swiftOverpassNode: $0) }
-
-                self.addNodesToMapView(nodes)
-            }
-    }
-
-    private func addNodesToMapView(_ nodes: [Node]) {
-        let newNodes = Set(nodes).subtracting(discoveredNodes)
-        discoveredNodes = discoveredNodes.union(newNodes)
-
-        let annotations = newNodes.compactMap { (node) -> MKAnnotation? in
-            OverpassNodeAnnotation(node: node)
+                
+                completion(nodes)
         }
-
-        NotificationCenter.default.post(name: .osmDataProviderDidAddAnnotations,
-                                        object: annotations)
     }
-
-    // MARK: OSMDataProviding
 
     func ensureDataIsPresent(for region: MKCoordinateRegion) {
         guard downloadStrategy.allowsDownload(of: region) else {
             print("Won't query Overpass: Download strategy doesn't allow a region of this size.")
             return
         }
-
-        queryOverpassForNodes(in: region)
+        
+        nodes(region: region) { nodes in
+            self.processDownloadedNodes(nodes)
+        }
     }
 
     func node(id: Int) -> Node? {

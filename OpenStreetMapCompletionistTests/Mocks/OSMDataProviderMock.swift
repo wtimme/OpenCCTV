@@ -12,14 +12,19 @@ import MapKit
 @testable import OpenStreetMapCompletionist
 
 class OSMDataProviderMock: NSObject, OSMDataProviding {
-    var lastRegionToEnsureDataFor: MKCoordinateRegion?
-    var nodes = [Int: Node]()
+    
+    var region: MKCoordinateRegion?
+    var nodes = [Node]()
+    
+    func nodes(region: MKCoordinateRegion, _ completion: @escaping ([Node]) -> Void) {
+        completion(nodes)
+    }
 
     func ensureDataIsPresent(for region: MKCoordinateRegion) {
-        lastRegionToEnsureDataFor = region
+        self.region = region
     }
 
     func node(id: Int) -> Node? {
-        return nodes[id]
+        return nodes.first(where: { return $0.id == id })
     }
 }
