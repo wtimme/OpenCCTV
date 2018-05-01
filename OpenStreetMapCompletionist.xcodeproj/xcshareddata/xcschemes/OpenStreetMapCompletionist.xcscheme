@@ -38,26 +38,6 @@
                ReferencedContainer = "container:OpenStreetMapCompletionist.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "647C42262076D3940002B068"
-               BuildableName = "OverpassTests.xctest"
-               BlueprintName = "OverpassTests"
-               ReferencedContainer = "container:Overpass/Overpass.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "647B25FE20793E80004CF3AD"
-               BuildableName = "OSMCompletionistFrameworkTests.xctest"
-               BlueprintName = "OSMCompletionistFrameworkTests"
-               ReferencedContainer = "container:OpenStreetMapCompletionist.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
