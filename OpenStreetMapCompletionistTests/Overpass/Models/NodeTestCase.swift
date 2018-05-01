@@ -13,6 +13,25 @@ import CoreLocation
 
 class NodeTestCase: XCTestCase {
     
+    func testNodeShouldBeConsideredEqualIfAllAttributesMatch() {
+        let nodeId = 1
+        let coordinate = CLLocationCoordinate2DMake(53.553100, 10.006700)
+        let rawTags = ["1": "some value"]
+        let version = 2
+        
+        let firstNode = Node(id: nodeId,
+                             coordinate: coordinate,
+                             rawTags: rawTags,
+                             version: version)
+        
+        let secondNode = Node(id: nodeId,
+                              coordinate: coordinate,
+                              rawTags: rawTags,
+                              version: version)
+        
+        XCTAssertEqual(firstNode, secondNode)
+    }
+    
     func testNodeShouldNotBeConsideredEqualIfTheyHaveDifferentKeys() {
         let nodeId = 1
         let coordinate = CLLocationCoordinate2DMake(53.553100, 10.006700)
