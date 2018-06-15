@@ -46,18 +46,18 @@ class ChangeHandlerTestCase: XCTestCase {
     func testAddNodeShouldPostNotificationWhenNodeWasAddedForTheFirstTime() {
         let node = makeNode()
         
-        let notificationObserverMock = NotificationCenterObserverMock(notificationName: .ChangeHandlerDidAddUpdatedNode)
+        let notificationExpectation = expectation(forNotification: .ChangeHandlerDidAddUpdatedNode,
+                                                  object: nil) { (note) -> Bool in
+                                                    guard let nodeFromNotification = note.object as? Node else {
+                                                        return false
+                                                    }
+                                                    
+                                                    return nodeFromNotification == node
+        }
         
         changeHandler.add(node)
         
-        XCTAssertTrue(notificationObserverMock.didReceiveNotification)
-        
-        guard let nodeFromNotification = notificationObserverMock.object as? Node else {
-            XCTFail("The notification should contain a `Node`.")
-            return
-        }
-        
-        XCTAssertEqual(nodeFromNotification, node)
+        wait(for: [notificationExpectation], timeout: 1.0)
     }
     
     func testAddNodeShouldPostNotificationWhenAnUpdatedNodeWasAdded() {
@@ -66,19 +66,19 @@ class ChangeHandlerTestCase: XCTestCase {
         changeHandler.add(node)
         
         let updatedNode = makeNode(rawTags: ["key": "value"])
-            
-        let notificationObserverMock = NotificationCenterObserverMock(notificationName: .ChangeHandlerDidAddUpdatedNode)
         
+        let notificationExpectation = expectation(forNotification: .ChangeHandlerDidAddUpdatedNode,
+                                                  object: nil) { (note) -> Bool in
+                                                    guard let nodeFromNotification = note.object as? Node else {
+                                                        return false
+                                                    }
+                                                    
+                                                    return nodeFromNotification == updatedNode
+        }
+            
         changeHandler.add(updatedNode)
         
-        XCTAssertTrue(notificationObserverMock.didReceiveNotification)
-        
-        guard let nodeFromNotification = notificationObserverMock.object as? Node else {
-            XCTFail("The notification should contain a `Node`.")
-            return
-        }
-        
-        XCTAssertEqual(nodeFromNotification, updatedNode)
+        wait(for: [notificationExpectation], timeout: 1.0)
     }
     
     func testAddNodeShouldNotPostNotificationWhenAnEqualNodeDoesAlreadyExist() {
@@ -86,30 +86,17 @@ class ChangeHandlerTestCase: XCTestCase {
         
         changeHandler.add(node)
         
-        let notificationObserverMock = NotificationCenterObserverMock(notificationName: .ChangeHandlerDidAddUpdatedNode)
+        let notificationExpectation = expectation(forNotification: .ChangeHandlerDidAddUpdatedNode,
+                                                  object: nil,
+                                                  handler: nil)
+        notificationExpectation.isInverted = true
         
         changeHandler.add(node)
         
-        XCTAssertFalse(notificationObserverMock.didReceiveNotification)
+        wait(for: [notificationExpectation], timeout: 1.0)
     }
     
     // MARK: Helper
-    
-    class NotificationCenterObserverMock: NSObject {
-        public private(set) var didReceiveNotification = false
-        public private(set) var object: Any?
-        
-        init(notificationName: Notification.Name) {
-            super.init()
-            
-            NotificationCenter.default.addObserver(forName: notificationName,
-                                                   object: nil,
-                                                   queue: nil) { [weak self] (notification) in
-                                                    self?.didReceiveNotification = true
-                                                    self?.object = notification.object
-            }
-        }
-    }
     
     private func makeNode(rawTags: [String: String] = [:]) -> Node {
         return Node(id: 1, coordinate: CLLocationCoordinate2DMake(53.553100, 10.006700), rawTags: rawTags, version: 9)
