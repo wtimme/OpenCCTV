@@ -35,7 +35,7 @@ DEPENDENCIES:
   - "SwiftOverpass (from `git@github.com:wtimme/SwiftOverpassWrapper.git`)"
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AEXML
     - Alamofire
     - Eureka
@@ -75,4 +75,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c059ec7a4537f84ffc7d7f26e9308d6a80ea0b9b
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3
