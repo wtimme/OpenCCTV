@@ -32,7 +32,7 @@ DEPENDENCIES:
   - SwiftFormat/CLI (~> 0.33.5)
   - SwiftIcons (~> 2.0.1)
   - SwiftLocation (~> 3.2.1)
-  - "SwiftOverpass (from `git@github.com:wtimme/SwiftOverpassWrapper.git`, branch `bugfix/Fix-regular-expression-query`)"
+  - "SwiftOverpass (from `git@github.com:wtimme/SwiftOverpassWrapper.git`)"
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -51,12 +51,11 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   SwiftOverpass:
-    :branch: bugfix/Fix-regular-expression-query
     :git: "git@github.com:wtimme/SwiftOverpassWrapper.git"
 
 CHECKOUT OPTIONS:
   SwiftOverpass:
-    :commit: 9f603b347982d96381973bdf6a3d6b45ea72c223
+    :commit: 3300c70e25e727f51c60fca9e33611fd6655f9a9
     :git: "git@github.com:wtimme/SwiftOverpassWrapper.git"
 
 SPEC CHECKSUMS:
@@ -74,6 +73,6 @@ SPEC CHECKSUMS:
   SwiftOverpass: c51be67304756a15c13629b2d9eee0df05c97ce3
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 6d61e1052e43358456cab291b37513947208f30b
+PODFILE CHECKSUM: c059ec7a4537f84ffc7d7f26e9308d6a80ea0b9b
 
 COCOAPODS: 1.5.0
