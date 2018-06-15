@@ -18,11 +18,8 @@ class MapViewController: UIViewController {
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var centerOnDeviceLocationBarButtonItem: UIBarButtonItem!
 
-    private let dataProvider: OSMDataProviding = OverpassOSMDataProvider(interpreterURL: URL(string: "https://overpass-api.de/api/interpreter")!,
-                                                                         downloadStrategy: OSMDataDownloadStrategy(maximumRadiusInMeters: 6500))
-    
-    private let changeHandler: OSMChangeHandling = InMemoryChangeHandler()
-    
+    private let dataProvider: OSMDataProviding
+    private let changeHandler: OSMChangeHandling
     private let viewModel: MapViewModelProtocol
     
     let presenter: Presentr = {
@@ -39,6 +36,11 @@ class MapViewController: UIViewController {
     }()
 
     required init?(coder aDecoder: NSCoder) {
+        dataProvider = OverpassOSMDataProvider(interpreterURL: URL(string: "https://overpass-api.de/api/interpreter")!,
+                                               downloadStrategy: OSMDataDownloadStrategy(maximumRadiusInMeters: 6500))
+        
+        changeHandler = InMemoryChangeHandler(osmDataProvider: dataProvider)
+        
         let viewModel = MapViewModel(locationProvider: LocationProvider(locatorManager: Locator),
                                      osmDataProvider: dataProvider)
         self.viewModel = viewModel

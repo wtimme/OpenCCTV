@@ -13,12 +13,14 @@ import CoreLocation
 
 class ChangeHandlerTestCase: XCTestCase {
     
+    var osmDataProviderMock: OSMDataProviderMock!
     var changeHandler: OSMChangeHandling!
     
     override func setUp() {
         super.setUp()
         
-        changeHandler = InMemoryChangeHandler()
+        osmDataProviderMock = OSMDataProviderMock()
+        changeHandler = InMemoryChangeHandler(osmDataProvider: osmDataProviderMock)
     }
     
     func testNewlyAddedNodesShouldBeStagedAutomatically() {
@@ -94,6 +96,23 @@ class ChangeHandlerTestCase: XCTestCase {
         changeHandler.add(node)
         
         wait(for: [notificationExpectation], timeout: 1.0)
+    }
+    
+    func testAddNodeShouldIgnoreNodesThatAreEqualToThoseTheOSMDataProviderDiscovered() {
+        let node = makeNode(rawTags: ["some-key": "some-value"])
+        
+        // The OSM data provider already has the same information.
+        osmDataProviderMock.nodes = [node]
+        
+        let notificationExpectation = expectation(forNotification: .ChangeHandlerDidAddUpdatedNode,
+                                                  object: nil,
+                                                  handler: nil)
+        notificationExpectation.isInverted = true
+        
+        changeHandler.add(node)
+        
+        wait(for: [notificationExpectation], timeout: 1.0)
+        XCTAssertEqual(changeHandler.changedNodes.count, 0)
     }
     
     // MARK: Helper

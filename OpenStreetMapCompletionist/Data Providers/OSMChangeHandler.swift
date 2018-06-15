@@ -26,11 +26,26 @@ extension Notification.Name {
 
 class InMemoryChangeHandler: NSObject, OSMChangeHandling {
     
+    // Public
+    
     public private(set) var changedNodes = [Int: Node]()
+    
+    init(osmDataProvider: OSMDataProviding) {
+        self.osmDataProvider = osmDataProvider
+    }
+    
+    // Private
+    
+    private let osmDataProvider: OSMDataProviding
     
     // MARK: OSMChangeHandling
     
     func add(_ node: Node) {
+        guard node != osmDataProvider.node(id: node.id) else {
+            // This information matches the one on the server; ignore.
+            return
+        }
+        
         let existingNode = get(id: node.id)
         
         changedNodes[node.id] = node
