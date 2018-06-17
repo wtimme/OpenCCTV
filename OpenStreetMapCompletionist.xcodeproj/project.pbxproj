@@ -49,6 +49,7 @@
 		647C420A2076B7300002B068 /* MapViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647C42092076B7300002B068 /* MapViewModelTestCase.swift */; };
 		647C42102076B9BD0002B068 /* LocationProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647C420F2076B9BD0002B068 /* LocationProviderMock.swift */; };
 		64822FE6207A248E003698AB /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64822FE5207A248E003698AB /* UIColor+Palette.swift */; };
+		6484AD9820D4865E00AD2EAC /* AddOSMAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484AD9720D4865E00AD2EAC /* AddOSMAccountViewController.swift */; };
 		649FE42E207FF713009F5137 /* TagListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FE42D207FF712009F5137 /* TagListTableViewController.swift */; };
 		649FE43120800D31009F5137 /* UISearchBar+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FE43020800D31009F5137 /* UISearchBar+Loading.swift */; };
 		649FE43320802A0A009F5137 /* TagListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649FE43220802A0A009F5137 /* TagListViewModel.swift */; };
@@ -136,6 +137,7 @@
 		647C42092076B7300002B068 /* MapViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModelTestCase.swift; sourceTree = "<group>"; };
 		647C420F2076B9BD0002B068 /* LocationProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviderMock.swift; sourceTree = "<group>"; };
 		64822FE5207A248E003698AB /* UIColor+Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
+		6484AD9720D4865E00AD2EAC /* AddOSMAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOSMAccountViewController.swift; sourceTree = "<group>"; };
 		649FE42D207FF712009F5137 /* TagListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListTableViewController.swift; sourceTree = "<group>"; };
 		649FE43020800D31009F5137 /* UISearchBar+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Loading.swift"; sourceTree = "<group>"; };
 		649FE43220802A0A009F5137 /* TagListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewModel.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				645B7C0820792106004FA7BF /* NodeFormViewController.swift */,
 				649FE42D207FF712009F5137 /* TagListTableViewController.swift */,
 				646914662082663B0053AA53 /* ChangesViewController.swift */,
+				6484AD9720D4865E00AD2EAC /* AddOSMAccountViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				64FDDE3120793F29001428B3 /* OSMDataProviding.swift in Sources */,
 				645B7C0520791DB8004FA7BF /* LocationProvider.swift in Sources */,
 				64822FE6207A248E003698AB /* UIColor+Palette.swift in Sources */,
+				6484AD9820D4865E00AD2EAC /* AddOSMAccountViewController.swift in Sources */,
 				649FE43620810861009F5137 /* DirectionEditorViewController.swift in Sources */,
 				64045B2D208E9B2700EFF8FC /* HTTPRequestHandling.swift in Sources */,
 				649FE42E207FF713009F5137 /* TagListTableViewController.swift in Sources */,

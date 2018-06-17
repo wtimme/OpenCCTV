@@ -124,6 +124,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="YUJ-HS-G4O" kind="show" identifier="AddOSMAccount" id="chA-Px-jWV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4pn-dh-9YM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -161,7 +164,11 @@
                                 <action selector="didTapCancelButton" destination="NKN-wM-k4t" id="Hvf-eg-8LY"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Upload" id="7rk-dG-EYo"/>
+                        <barButtonItem key="rightBarButtonItem" title="Upload" id="7rk-dG-EYo">
+                            <connections>
+                                <segue destination="YUJ-HS-G4O" kind="show" id="qgq-nA-Eyv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="uploadBarButtonItem" destination="7rk-dG-EYo" id="5ct-aM-uPj"/>
@@ -400,6 +407,57 @@
             </objects>
             <point key="canvasLocation" x="3958" y="1859"/>
         </scene>
+        <!--Add OSM Account-->
+        <scene sceneID="zq3-cB-a0W">
+            <objects>
+                <viewController title="Add OSM Account" id="YUJ-HS-G4O" customClass="AddOSMAccountViewController" customModule="OpenStreetMapCompletionist" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0WJ-Zz-h4h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="ui5-gq-Vhf">
+                                <rect key="frame" x="24" y="214.5" width="327" height="239"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ready to submit your changes?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27t-WE-R3h">
+                                        <rect key="frame" x="0.0" y="0.0" width="327" height="63.5"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great! Before we can upload your data to the OpenStreetMap server, you need to login and authorize OpenStreetMapCompletionist." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aW-8v-gmK">
+                                        <rect key="frame" x="0.0" y="92.5" width="327" height="81.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8T6-Uw-HMt">
+                                        <rect key="frame" x="0.0" y="203" width="327" height="36"/>
+                                        <color key="backgroundColor" red="0.270588249" green="0.78823530669999997" blue="0.3843137324" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                        <state key="normal" title="Connect with OpenStreetMap">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="performLogin" destination="YUJ-HS-G4O" eventType="touchUpInside" id="z0h-qa-3KE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iOP-DP-RLY" firstAttribute="trailing" secondItem="ui5-gq-Vhf" secondAttribute="trailing" constant="24" id="7lX-vT-pDj"/>
+                            <constraint firstItem="ui5-gq-Vhf" firstAttribute="leading" secondItem="iOP-DP-RLY" secondAttribute="leading" constant="24" id="Bs9-uK-k98"/>
+                            <constraint firstItem="ui5-gq-Vhf" firstAttribute="centerY" secondItem="0WJ-Zz-h4h" secondAttribute="centerY" id="uMg-mF-9d6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iOP-DP-RLY"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="woe-cp-YcW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3670" y="2630"/>
+        </scene>
         <!--Tag Details-->
         <scene sceneID="5ye-gr-JNO">
             <objects>
@@ -418,7 +476,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Dz4-JF-eMh"/>
+        <segue reference="chA-Px-jWV"/>
         <segue reference="6lb-SB-r3Y"/>
-        <segue reference="a1n-Pr-Pau"/>
+        <segue reference="qti-t9-0oO"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -45,26 +45,22 @@ class MenuFormViewController: FormViewController {
                 if self?.oauthHandler.isAuthorized ?? false {
                     self?.performLogout()
                 } else {
-                    self?.performLogin()
+                    self?.performSegue(withIdentifier: "AddOSMAccount", sender: nil)
                 }
             })
         }
 
         form +++ oauthSection
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        form.sectionBy(tag: MenuFormViewController.OAuthSectionTag)?.reload()
+    }
 
     @IBAction func didTapDoneButton() {
         dismiss(animated: true, completion: nil)
-    }
-
-    private func performLogin() {
-        oauthHandler.authorize(from: self) { [weak self] error in
-            if let error = error {
-                print("Failed to authorize: \(error.localizedDescription)")
-            }
-
-            self?.form.sectionBy(tag: MenuFormViewController.OAuthSectionTag)?.reload()
-        }
     }
 
     private func performLogout() {
