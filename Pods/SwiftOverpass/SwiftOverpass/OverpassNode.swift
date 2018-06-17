@@ -8,16 +8,12 @@
 
 import Foundation
 
-public final class OverpassNode {
+public final class OverpassNode: OverpassEntity {
     
     // MARK: - Properties
     
     /// The response which made the node
     public fileprivate(set) weak var response: OverpassResponse?
-    /// List of tag the node has
-    public let tags :[String : String]
-    /// The id of the node
-    public let id: String
     /// The latitude of the node
     public let latitude: Double
     /// The longitude of the node
@@ -28,12 +24,13 @@ public final class OverpassNode {
     /**
      Creates a `OverpassNode`
     */
-    internal init(id: String, lat: Double, lon: Double, tags: [String : String], response: OverpassResponse) {
-        self.id = id
+    internal init(id: String, lat: Double, lon: Double, tags: [String : String], meta: Meta?, response: OverpassResponse) {
+        
         self.latitude = lat
         self.longitude = lon
-        self.tags = tags
         self.response = response
+        
+        super.init(id: id, tags: tags, meta: meta)
     }
     
     // MARK: Public
