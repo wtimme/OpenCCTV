@@ -58,7 +58,7 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
         query.tags["capacity"] = OverpassTag(key: "capacity", value: ".", isNegation: true, isRegex: true)
 
         SwiftOverpass.api(endpoint: interpreterURL.absoluteString)
-            .fetch(query) { response in
+            .fetch(query, verbosity: .meta) { response in
                 guard let swiftOverpassNodes = response.nodes else {
                     completion([])
                     return

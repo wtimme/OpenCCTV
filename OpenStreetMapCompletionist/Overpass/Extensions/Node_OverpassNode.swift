@@ -24,6 +24,6 @@ extension Node {
         self.id = id
         self.coordinate = coordinate
         self.rawTags = swiftOverpassNode.tags
-        self.version = nil
+        self.version = swiftOverpassNode.meta?.version
     }
 }
