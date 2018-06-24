@@ -32,7 +32,7 @@ DEPENDENCIES:
   - SwiftFormat/CLI (~> 0.33.5)
   - SwiftIcons (~> 2.0.1)
   - SwiftLocation (~> 3.2.1)
-  - "SwiftOverpass (from `git@github.com:wtimme/SwiftOverpassWrapper.git`, branch `feature/Meta-properties-WIP`)"
+  - "SwiftOverpass (from `git@github.com:wtimme/SwiftOverpassWrapper.git`, branch `refactoring/Improve-OpenStreetMap-elements`)"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -51,12 +51,12 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   SwiftOverpass:
-    :branch: feature/Meta-properties-WIP
+    :branch: refactoring/Improve-OpenStreetMap-elements
     :git: "git@github.com:wtimme/SwiftOverpassWrapper.git"
 
 CHECKOUT OPTIONS:
   SwiftOverpass:
-    :commit: dad705e2115edd82fff879b04a9c7cdcd383a165
+    :commit: c9491972327636abdd8b0c17d6da3cd8e1b725e8
     :git: "git@github.com:wtimme/SwiftOverpassWrapper.git"
 
 SPEC CHECKSUMS:
@@ -74,6 +74,6 @@ SPEC CHECKSUMS:
   SwiftOverpass: c51be67304756a15c13629b2d9eee0df05c97ce3
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 791a7e8d94b410a9f7511da0d3238daf5da3988f
+PODFILE CHECKSUM: 98fa07abf9d7d9207b41ee9733526114562184db
 
 COCOAPODS: 1.5.3

@@ -12,16 +12,12 @@ import CoreLocation
 
 extension Node {
     init?(swiftOverpassNode: OverpassNode) {
-        guard let id = Int(swiftOverpassNode.id) else {
-            return nil
-        }
-        
         let coordinate = CLLocationCoordinate2D(latitude: swiftOverpassNode.latitude, longitude: swiftOverpassNode.longitude)
         guard CLLocationCoordinate2DIsValid(coordinate) else {
             return nil
         }
         
-        self.id = id
+        self.id = swiftOverpassNode.id
         self.coordinate = coordinate
         self.rawTags = swiftOverpassNode.tags
         self.version = swiftOverpassNode.meta?.version
