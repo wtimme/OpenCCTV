@@ -12,15 +12,16 @@ import OSMSwift
 
 class OAuthHandlerMock: NSObject, OAuthHandling {
     
-    var authorizeViewController: UIViewController?
-    var authorizationError: Error?
+    var startOAuthFlowFromViewController: UIViewController?
+    var startOAuthFlowCredentials: OAuthCredentials?
+    var startOAuthFlowCredentialsError: Error?
     
     // MARK: OAuthHandling
     
     func startOAuthFlow(from viewController: UIViewController, _ completion: @escaping (OAuthCredentials?, Error?) -> Void) {
-        authorizeViewController = viewController
+        startOAuthFlowFromViewController = viewController
         
-        completion(nil, authorizationError)
+        completion(startOAuthFlowCredentials, startOAuthFlowCredentialsError)
     }
     
     

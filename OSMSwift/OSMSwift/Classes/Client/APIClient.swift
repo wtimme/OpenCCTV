@@ -32,12 +32,14 @@ public class APIClient: APIClientProtocol {
     // MARK: Private
     
     private let baseURL: URL
+    private var keychainHandler: KeychainHandling
     private let oauthHandler: OAuthHandling
     
     // MARK: Public
     
-    public init(baseURL: URL, oauthHandler: OAuthHandling) {
+    public init(baseURL: URL, keychainHandler: KeychainHandling, oauthHandler: OAuthHandling) {
         self.baseURL = baseURL
+        self.keychainHandler = keychainHandler
         self.oauthHandler = oauthHandler
     }
     
@@ -45,17 +47,20 @@ public class APIClient: APIClientProtocol {
     
     public func addAccountUsingOAuth(from presentingViewController: UIViewController,
                                      _ completion: @escaping (Error?) -> Void) {
-        oauthHandler.startOAuthFlow(from: presentingViewController) { (_, error) in
+        oauthHandler.startOAuthFlow(from: presentingViewController) { [weak self] (credentials, error) in
             guard error == nil else {
                 completion(error)
                 return
             }
-        }
-    }
-    
-    public func loginUsingOAuth(from presentingViewController: UIViewController, _ completion: @escaping (Error?) -> Void) {
-        oauthHandler.startOAuthFlow(from: presentingViewController) { (credentials, error) in
-            // TODO: Implement me
+            
+            guard let credentials = credentials else {
+                assertionFailure("There should be either credentials or an error.")
+                return
+            }
+            
+            self?.keychainHandler.oauthCredentials = credentials
+            
+            completion(nil)
         }
     }
     

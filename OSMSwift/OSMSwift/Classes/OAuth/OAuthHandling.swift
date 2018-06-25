@@ -8,9 +8,14 @@
 import Foundation
 import UIKit
 
-public struct OAuthCredentials {
+public struct OAuthCredentials: Equatable {
     let token: String
     let secret: String
+    
+    public init(token: String, secret: String) {
+        self.token = token
+        self.secret = secret
+    }
 }
 
 public protocol OAuthHandling {

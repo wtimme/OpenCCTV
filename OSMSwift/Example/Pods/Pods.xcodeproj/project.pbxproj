@@ -17,6 +17,7 @@
 		5D45D40C1A39B16D21B11092239A80C6 /* OSMSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C0A3ED7ECBE2F96660BF6C681C2E88C5 /* OSMSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCBF1EED873F61C6D46CE37FA5C39D3 /* DispatchQueue+Alamofire.swift */; };
 		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B030D27CAC730C5EB0F22390645310 /* ServerTrustPolicy.swift */; };
+		64AB8F4720E1A7F600E6BF4D /* KeychainHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8F4620E1A7F600E6BF4D /* KeychainHandling.swift */; };
 		724E7C6BEFA3157608AA724BE0D8DEDC /* OAuthHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D0A3052FB7B4C254198578F1522985 /* OAuthHandling.swift */; };
 		73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D0533E4EC2277AAAC8888328EC5A64B /* Foundation.framework */; };
 		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D73DD9EF275A3C56569E2B1CA8026 /* SessionDelegate.swift */; };
@@ -91,7 +92,7 @@
 		1E230A0448B394DE26E688DAC8E6201E /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		203FC9EFD125F9C6E9891BC6335FA9E1 /* OSMSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OSMSwift.xcconfig; sourceTree = "<group>"; };
 		210971763CB2FC0DC4E378271A37BE32 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
-		258130B1DE0A4892A7C387C4DFFC242D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		258130B1DE0A4892A7C387C4DFFC242D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		28FB036F8A84DE577CAC74EC100A6966 /* Pods-OSMSwiftCombined-OSMSwift_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OSMSwiftCombined-OSMSwift_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		32B030D27CAC730C5EB0F22390645310 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		33A04B5D27E86AF4B84D95E21CF3F452 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
@@ -100,7 +101,7 @@
 		443320D070699EBCF80BF87B28D59B64 /* Pods-OSMSwiftCombined-OSMSwift_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OSMSwiftCombined-OSMSwift_Example.release.xcconfig"; sourceTree = "<group>"; };
 		44D19BF464F968C53AB57C90F7BA32C1 /* OSMSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OSMSwift-dummy.m"; sourceTree = "<group>"; };
 		46CDAC6C1187C5467E576980E1062C8B /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
-		490FA9B31AFDC05EC295FEFF0D2259D8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		490FA9B31AFDC05EC295FEFF0D2259D8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		4A3341D2D77424EE3E2DA24D3704E537 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AF006B0AD5765D1BFA8253C2DCBB126 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		4FBF07B7B3D90781DF6593D3C57DADCA /* Pods-OSMSwiftCombined-OSMSwift_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OSMSwiftCombined-OSMSwift_Tests-umbrella.h"; sourceTree = "<group>"; };
@@ -108,6 +109,7 @@
 		55D39665796B853ECE68EA60CBE38283 /* Pods-OSMSwiftCombined-OSMSwift_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OSMSwiftCombined-OSMSwift_Example-umbrella.h"; sourceTree = "<group>"; };
 		5846ED86B83CEFD532CF09C40956406D /* Pods-OSMSwiftCombined-OSMSwift_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OSMSwiftCombined-OSMSwift_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		61D920D6E48023BCBF18CD83450D05F5 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		64AB8F4620E1A7F600E6BF4D /* KeychainHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandling.swift; sourceTree = "<group>"; };
 		661AE51EB0FB10183BB7C627C0841240 /* OSMSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OSMSwift-prefix.pch"; sourceTree = "<group>"; };
 		6639346628280A0D0FAD35196BF56108 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
 		66A46F517F0AF7E85A16D723F6406896 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
@@ -117,16 +119,16 @@
 		85D0A3052FB7B4C254198578F1522985 /* OAuthHandling.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OAuthHandling.swift; sourceTree = "<group>"; };
 		86FC52B6857A74C6B4ED390EB9641FC9 /* APIClient.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		87882A1F5A92C8138D54545E51D51E6F /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
-		8A42D8EABBCC7FF46178E4C300B33A87 /* Pods_OSMSwiftCombined_OSMSwift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OSMSwiftCombined_OSMSwift_Tests.framework; path = "Pods-OSMSwiftCombined-OSMSwift_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A42D8EABBCC7FF46178E4C300B33A87 /* Pods_OSMSwiftCombined_OSMSwift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSMSwiftCombined_OSMSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A5E71C2F5EEC4898C6F90BCC4984668 /* Pods-OSMSwiftCombined-OSMSwift_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OSMSwiftCombined-OSMSwift_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		8FB802DB2C06CC9F273A0E9E1C21623D /* Pods-OSMSwiftCombined-OSMSwift_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OSMSwiftCombined-OSMSwift_Example-dummy.m"; sourceTree = "<group>"; };
-		92010FC1351686CB5B9789E3B815F7F4 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		92010FC1351686CB5B9789E3B815F7F4 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9BBC07E2DC334F6495153FCEC21BB825 /* Pods-OSMSwiftCombined-OSMSwift_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OSMSwiftCombined-OSMSwift_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		A01C037B4034EDA3D7955BC5E4E9D9D6 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
 		AC2739742371FFCB544176FCDD1F32BF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B029DBC43E49A740F12B5E4D2E6DD452 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
-		B5A084917123EFF411CDD6F88A2AAC75 /* OSMSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OSMSwift.framework; path = OSMSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5A084917123EFF411CDD6F88A2AAC75 /* OSMSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OSMSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A3ED7ECBE2F96660BF6C681C2E88C5 /* OSMSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OSMSwift-umbrella.h"; sourceTree = "<group>"; };
 		C1125CFF358146AD64B4F22BAC2ECEAB /* Pods-OSMSwiftCombined-OSMSwift_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OSMSwiftCombined-OSMSwift_Example-resources.sh"; sourceTree = "<group>"; };
 		C5CABDF37492F6DC14FA32FB49C11568 /* Pods-OSMSwiftCombined-OSMSwift_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OSMSwiftCombined-OSMSwift_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -138,9 +140,9 @@
 		E5A8AA5F9EDED0A0BDDE7E830BF4AEE0 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		EA43B43C67726B5CBE6F884D393F66CE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0476ABD14175B646236167A4ABC5DB0 /* Pods-OSMSwiftCombined-OSMSwift_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OSMSwiftCombined-OSMSwift_Tests-dummy.m"; sourceTree = "<group>"; };
-		F1C986C90C40AB17B4A1FDB52EF71B0F /* OSMSwift.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = OSMSwift.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F1C986C90C40AB17B4A1FDB52EF71B0F /* OSMSwift.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = OSMSwift.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F5450C2C9DD39281B40C28BF9D9AB67A /* Pods-OSMSwiftCombined-OSMSwift_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OSMSwiftCombined-OSMSwift_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		FC01011C0CE94D3808D7699DC4A88B80 /* Pods_OSMSwiftCombined_OSMSwift_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OSMSwiftCombined_OSMSwift_Example.framework; path = "Pods-OSMSwiftCombined-OSMSwift_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC01011C0CE94D3808D7699DC4A88B80 /* Pods_OSMSwiftCombined_OSMSwift_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSMSwiftCombined_OSMSwift_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 		09515869DDBAA86FC3D1AF77F8F818D5 /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
+				64AB8F4620E1A7F600E6BF4D /* KeychainHandling.swift */,
 				85D0A3052FB7B4C254198578F1522985 /* OAuthHandling.swift */,
 			);
 			name = OAuth;
@@ -229,7 +232,6 @@
 				B029DBC43E49A740F12B5E4D2E6DD452 /* Validation.swift */,
 				2E5925946A4DE3B8F7E4137BACAD9618 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -520,6 +522,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64AB8F4720E1A7F600E6BF4D /* KeychainHandling.swift in Sources */,
 				196BA58D5268C4CEAC4CC6FDA2DCC121 /* APIClient.swift in Sources */,
 				724E7C6BEFA3157608AA724BE0D8DEDC /* OAuthHandling.swift in Sources */,
 				EF71A156E1A8E0C7A0FFEC1C96A41C14 /* OSMSwift-dummy.m in Sources */,

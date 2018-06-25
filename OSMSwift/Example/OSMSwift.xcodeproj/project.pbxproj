@@ -16,6 +16,7 @@
 		64AB8F3B20E194EA00E6BF4D /* APIClientTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8F3A20E194EA00E6BF4D /* APIClientTestCase.swift */; };
 		64AB8F4120E1966400E6BF4D /* OAuthHandlerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8F4020E1966400E6BF4D /* OAuthHandlerMock.swift */; };
 		64AB8F4520E19CD300E6BF4D /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8F4420E19CD300E6BF4D /* MockError.swift */; };
+		64AB8F4A20E1A86400E6BF4D /* KeychainHandlerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8F4820E1A86200E6BF4D /* KeychainHandlerMock.swift */; };
 		797D084105A21DB82A99DB5F /* Pods_OSMSwiftCombined_OSMSwift_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FCEA25B9777DD405EBA76C /* Pods_OSMSwiftCombined_OSMSwift_Example.framework */; };
 		B71D98B6FF404B9FC63200AC /* Pods_OSMSwift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93BD68C8610DC3B1BCDE637 /* Pods_OSMSwift_Tests.framework */; };
 		FACC02E0E145EFADD964CCA2 /* Pods_OSMSwiftCombined_OSMSwift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8444DB25A8856377767B650A /* Pods_OSMSwiftCombined_OSMSwift_Tests.framework */; };
@@ -49,6 +50,7 @@
 		64AB8F3A20E194EA00E6BF4D /* APIClientTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTestCase.swift; sourceTree = "<group>"; };
 		64AB8F4020E1966400E6BF4D /* OAuthHandlerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OAuthHandlerMock.swift; path = Mocks/OAuthHandlerMock.swift; sourceTree = "<group>"; };
 		64AB8F4420E19CD300E6BF4D /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MockError.swift; path = Mocks/MockError.swift; sourceTree = "<group>"; };
+		64AB8F4820E1A86200E6BF4D /* KeychainHandlerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainHandlerMock.swift; path = Mocks/KeychainHandlerMock.swift; sourceTree = "<group>"; };
 		8444DB25A8856377767B650A /* Pods_OSMSwiftCombined_OSMSwift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSMSwiftCombined_OSMSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D56AE1575FA14643BFFC1E8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		9A7AFFCCFBD68611B76D3127 /* Pods-OSMSwift_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSMSwift_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSMSwift_Tests/Pods-OSMSwift_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,8 +174,9 @@
 		64AB8F3F20E1964D00E6BF4D /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				64AB8F4020E1966400E6BF4D /* OAuthHandlerMock.swift */,
 				64AB8F4420E19CD300E6BF4D /* MockError.swift */,
+				64AB8F4020E1966400E6BF4D /* OAuthHandlerMock.swift */,
+				64AB8F4820E1A86200E6BF4D /* KeychainHandlerMock.swift */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64AB8F4A20E1A86400E6BF4D /* KeychainHandlerMock.swift in Sources */,
 				64AB8F4120E1966400E6BF4D /* OAuthHandlerMock.swift in Sources */,
 				64AB8F4520E19CD300E6BF4D /* MockError.swift in Sources */,
 				64AB8F3B20E194EA00E6BF4D /* APIClientTestCase.swift in Sources */,
