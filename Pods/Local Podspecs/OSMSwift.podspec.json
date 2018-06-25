@@ -1,0 +1,27 @@
+{
+  "name": "OSMSwift",
+  "version": "0.1.0",
+  "summary": "A Swift client framework for the OpenStreetMap API v0.6",
+  "description": "The framework aims to allow for easy editing of OpenStreetMap data.",
+  "homepage": "https://github.com/wtimme/OSMSwift",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "wtimme": "wtimme@users.noreply.github.com"
+  },
+  "source": {
+    "git": "https://github.com/wtimme/OSMSwift.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "OSMSwift/Classes/**/*",
+  "dependencies": {
+    "Alamofire": [
+      "~> 4.7.0"
+    ]
+  }
+}

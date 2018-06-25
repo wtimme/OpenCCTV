@@ -7,6 +7,8 @@ PODS:
   - OAuthSwiftAlamofire (0.1.0):
     - Alamofire
     - OAuthSwift
+  - OSMSwift (0.1.0):
+    - Alamofire (~> 4.7.0)
   - Presentr (1.3.2)
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
@@ -30,6 +32,7 @@ DEPENDENCIES:
   - KeychainAccess (~> 3.1.0)
   - OAuthSwift (~> 1.2.0)
   - OAuthSwiftAlamofire
+  - OSMSwift (from `./OSMSwift`)
   - Presentr (~> 1.3.2)
   - SDWebImage (~> 4.0)
   - SQLite.swift (~> 0.11.4)
@@ -55,6 +58,8 @@ SPEC REPOS:
     - SwiftyJSON
 
 EXTERNAL SOURCES:
+  OSMSwift:
+    :path: "./OSMSwift"
   SwiftOverpass:
     :branch: refactoring/Improve-OpenStreetMap-elements
     :git: "git@github.com:wtimme/SwiftOverpassWrapper.git"
@@ -71,6 +76,7 @@ SPEC CHECKSUMS:
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   OAuthSwift: 7fd6855b8e4d58eb5a30d156ea9bed7a8aecd1ca
   OAuthSwiftAlamofire: 20bb998ac506f82c3bab0625fbc98a9c6fca783f
+  OSMSwift: 4f3828411d075c903c318bfd23a964b9b4a70197
   Presentr: 797ae6ec8904eaba4ec58a4c2065bd66e31569ea
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
@@ -80,6 +86,6 @@ SPEC CHECKSUMS:
   SwiftOverpass: c51be67304756a15c13629b2d9eee0df05c97ce3
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: b176e460f378aa37dd98d0a3ac488369533d3176
+PODFILE CHECKSUM: e9e07305a406cb8ef2cc445e68f4b821c9c23959
 
 COCOAPODS: 1.5.3

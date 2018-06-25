@@ -1,0 +1,6 @@
+framework module OSMSwift {
+  umbrella header "OSMSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}

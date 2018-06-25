@@ -25,4 +25,6 @@ target 'OpenStreetMapCompletionist' do
   
   pod 'SwiftFormat/CLI', '~> 0.33.5'
 
+  pod 'OSMSwift', :path => './OSMSwift'
+
 end

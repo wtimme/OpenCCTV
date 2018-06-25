@@ -1,0 +1,23 @@
+PODS:
+  - Alamofire (4.7.2)
+  - OSMSwift (0.1.0):
+    - Alamofire (~> 4.7.0)
+
+DEPENDENCIES:
+  - OSMSwift (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+
+EXTERNAL SOURCES:
+  OSMSwift:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  OSMSwift: 4f3828411d075c903c318bfd23a964b9b4a70197
+
+PODFILE CHECKSUM: 7a06a0c7fab0107d81989cdb78e3b7248c959cad
+
+COCOAPODS: 1.5.3
