@@ -27,6 +27,21 @@ class APIClientTestCase: XCTestCase {
                            oauthHandler: oauthHandlerMock)
     }
     
+    // MARK: Authentication Status
+    
+    func testIsAuthenticatedShouldReturnTrueWhenTheKeychainContainsCredentials() {
+        keychainHandlerMock.oauthCredentials = OAuthCredentials(token: "sample-token",
+                                                                secret: "sample-secret")
+        
+        XCTAssertTrue(client.isAuthenticated)
+    }
+    
+    func testIsAuthenticatedShouldReturnFalseWhenTheKeychainDoesNotContainCredentials() {
+        keychainHandlerMock.oauthCredentials = nil
+        
+        XCTAssertFalse(client.isAuthenticated)
+    }
+    
     // MARK: OAuth
     
     func testStartOAuthFlowImmediatelyExecuteTheClosureIfTheOAuthHandlerExperiencedAnError() {

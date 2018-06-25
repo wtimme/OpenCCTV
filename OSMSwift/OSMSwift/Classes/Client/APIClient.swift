@@ -9,6 +9,8 @@ import Foundation
 
 public protocol APIClientProtocol {
     
+    var isAuthenticated: Bool { get }
+    
     func addAccountUsingOAuth(from presentingViewController: UIViewController,
                               _ completion: @escaping (Error?) -> Void)
     
@@ -44,6 +46,10 @@ public class APIClient: APIClientProtocol {
     }
     
     // MARK: APIClientProtocol
+    
+    public var isAuthenticated: Bool {
+        return nil != keychainHandler.oauthCredentials
+    }
     
     public func addAccountUsingOAuth(from presentingViewController: UIViewController,
                                      _ completion: @escaping (Error?) -> Void) {
