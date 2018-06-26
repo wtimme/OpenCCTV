@@ -10,13 +10,13 @@ import UIKit
 
 class AddOSMAccountViewController: UIViewController {
 
-    let oauthHandler: OAuthHandling
+    let oauthHandler: OldOAuthHandling
     
     static let OAuthSectionTag = "OAuthSectionTag"
     
     required init?(coder aDecoder: NSCoder) {
         
-        oauthHandler = OAuthHandler(environment: .current,
+        oauthHandler = OldOAuthHandler(environment: .current,
                                     keychainHandler: KeychainAccessKeychainHandler())
         
         super.init(coder: aDecoder)

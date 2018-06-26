@@ -10,7 +10,7 @@ import UIKit
 
 @testable import OpenStreetMapCompletionist
 
-class OAuthHandlerMock: NSObject, OAuthHandling {
+class OAuthHandlerMock: NSObject, OldOAuthHandling {
     
     var authorizeViewController: UIViewController?
     var authorizationError: Error?

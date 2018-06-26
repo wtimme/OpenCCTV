@@ -39,11 +39,11 @@ class ChangeReviewViewModel: NSObject {
     
     let changeHandler: OSMChangeHandling
     let nodeDataProvider: OSMDataProviding
-    let oauthHandler: OAuthHandling
+    let oauthHandler: OldOAuthHandling
     
     weak var delegate: ChangeReviewViewModelDelegate?
     
-    init(changeHandler: OSMChangeHandling, nodeDataProvider: OSMDataProviding, oauthHandler: OAuthHandling) {
+    init(changeHandler: OSMChangeHandling, nodeDataProvider: OSMDataProviding, oauthHandler: OldOAuthHandling) {
         self.changeHandler = changeHandler
         self.nodeDataProvider = nodeDataProvider
         self.oauthHandler = oauthHandler

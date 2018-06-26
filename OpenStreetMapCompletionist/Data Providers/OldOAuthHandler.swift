@@ -1,5 +1,5 @@
 //
-//  OAuthHandler.swift
+//  OldOAuthHandler.swift
 //  OpenStreetMapCompletionist
 //
 //  Created by Wolfgang Timme on 4/9/18.
@@ -10,13 +10,13 @@ import Foundation
 
 import OAuthSwift
 
-protocol OAuthHandling {
+protocol OldOAuthHandling {
     func authorize(from viewController: UIViewController, _ completion: @escaping (Error?) -> Void)
     var isAuthorized: Bool { get }
     func removeCredentials()
 }
 
-class OAuthHandler: NSObject, OAuthHandling {
+class OldOAuthHandler: NSObject, OldOAuthHandling {
     private let oauthSwift: OAuth1Swift
     private let keychainHandler: KeychainHandling
 

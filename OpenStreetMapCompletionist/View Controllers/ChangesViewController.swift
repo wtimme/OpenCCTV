@@ -13,14 +13,14 @@ class ChangesViewController: FormViewController {
     var changeHandler: OSMChangeHandling!
     var nodeDataProvider: OSMDataProviding!
     private var viewModel: ChangeReviewViewModel!
-    private var oauthHandler: OAuthHandling!
+    private var oauthHandler: OldOAuthHandling!
     
     @IBOutlet var uploadBarButtonItem: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        oauthHandler = OAuthHandler(environment: .current,
+        oauthHandler = OldOAuthHandler(environment: .current,
                                     keychainHandler: KeychainAccessKeychainHandler())
         
         viewModel = ChangeReviewViewModel(changeHandler: changeHandler,
