@@ -17,7 +17,7 @@ class AddOSMAccountViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         
         oauthHandler = OldOAuthHandler(environment: .current,
-                                    keychainHandler: KeychainAccessKeychainHandler())
+                                    keychainHandler: OldKeychainAccessKeychainHandler())
         
         super.init(coder: aDecoder)
     }

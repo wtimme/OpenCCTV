@@ -18,10 +18,10 @@ protocol OldOAuthHandling {
 
 class OldOAuthHandler: NSObject, OldOAuthHandling {
     private let oauthSwift: OAuth1Swift
-    private let keychainHandler: KeychainHandling
+    private let keychainHandler: OldKeychainHandling
 
     init(environment: Environment,
-         keychainHandler: KeychainHandling) {
+         keychainHandler: OldKeychainHandling) {
         oauthSwift = OAuth1Swift(consumerKey: environment.oauthConsumerKey,
                                  consumerSecret: environment.oauthConsumerSecret,
                                  requestTokenUrl: environment.oauthBaseURL.appendingPathComponent("oauth/request_token").absoluteString,

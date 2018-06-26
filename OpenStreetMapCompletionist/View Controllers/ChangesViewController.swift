@@ -21,7 +21,7 @@ class ChangesViewController: FormViewController {
         super.viewDidLoad()
         
         oauthHandler = OldOAuthHandler(environment: .current,
-                                    keychainHandler: KeychainAccessKeychainHandler())
+                                    keychainHandler: OldKeychainAccessKeychainHandler())
         
         viewModel = ChangeReviewViewModel(changeHandler: changeHandler,
                                           nodeDataProvider: nodeDataProvider,

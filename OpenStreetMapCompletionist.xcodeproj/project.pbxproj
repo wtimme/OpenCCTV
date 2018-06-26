@@ -16,7 +16,7 @@
 		64045B36208EA33700EFF8FC /* BoundingBox_MKCoordinateRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64045B34208EA17B00EFF8FC /* BoundingBox_MKCoordinateRegion.swift */; };
 		64045B38208EAA6500EFF8FC /* GetRegionByBoundingBox.xml in Resources */ = {isa = PBXBuildFile; fileRef = 64045B37208EAA6500EFF8FC /* GetRegionByBoundingBox.xml */; };
 		6435EE7B207BF5F600A97726 /* OldOAuthHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE7A207BF5F600A97726 /* OldOAuthHandler.swift */; };
-		6435EE7D207BFAEA00A97726 /* KeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE7C207BFAEA00A97726 /* KeychainHandler.swift */; };
+		6435EE7D207BFAEA00A97726 /* OldKeychainHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE7C207BFAEA00A97726 /* OldKeychainHandler.swift */; };
 		6435EE7F207C07CC00A97726 /* MenuFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE7E207C07CC00A97726 /* MenuFormViewController.swift */; };
 		6435EE81207C193F00A97726 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE80207C193F00A97726 /* Environment.swift */; };
 		6435EE84207C257900A97726 /* OSMDataDownloadStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6435EE83207C257900A97726 /* OSMDataDownloadStrategy.swift */; };
@@ -94,7 +94,7 @@
 		64045B34208EA17B00EFF8FC /* BoundingBox_MKCoordinateRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBox_MKCoordinateRegion.swift; sourceTree = "<group>"; };
 		64045B37208EAA6500EFF8FC /* GetRegionByBoundingBox.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GetRegionByBoundingBox.xml; sourceTree = "<group>"; };
 		6435EE7A207BF5F600A97726 /* OldOAuthHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldOAuthHandler.swift; sourceTree = "<group>"; };
-		6435EE7C207BFAEA00A97726 /* KeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHandler.swift; sourceTree = "<group>"; };
+		6435EE7C207BFAEA00A97726 /* OldKeychainHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldKeychainHandler.swift; sourceTree = "<group>"; };
 		6435EE7E207C07CC00A97726 /* MenuFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuFormViewController.swift; sourceTree = "<group>"; };
 		6435EE80207C193F00A97726 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		6435EE83207C257900A97726 /* OSMDataDownloadStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMDataDownloadStrategy.swift; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 				645B7C0420791DB8004FA7BF /* LocationProvider.swift */,
 				64FDDE3020793F29001428B3 /* OSMDataProviding.swift */,
 				6435EE7A207BF5F600A97726 /* OldOAuthHandler.swift */,
-				6435EE7C207BFAEA00A97726 /* KeychainHandler.swift */,
+				6435EE7C207BFAEA00A97726 /* OldKeychainHandler.swift */,
 				6435EE83207C257900A97726 /* OSMDataDownloadStrategy.swift */,
 				6435EE85207C2DD500A97726 /* OSMTagProvider.swift */,
 				64F1C41A2082070600B85FB2 /* OSMChangeHandler.swift */,
@@ -660,7 +660,7 @@
 				646FC52D20753241008E0EDB /* AppDelegate.swift in Sources */,
 				6435EE7F207C07CC00A97726 /* MenuFormViewController.swift in Sources */,
 				6435EE81207C193F00A97726 /* Environment.swift in Sources */,
-				6435EE7D207BFAEA00A97726 /* KeychainHandler.swift in Sources */,
+				6435EE7D207BFAEA00A97726 /* OldKeychainHandler.swift in Sources */,
 				6435EE86207C2DD500A97726 /* OSMTagProvider.swift in Sources */,
 				6457008020755DEE0061A81D /* MapViewModel.swift in Sources */,
 				64691473208378690053AA53 /* NodeDiff.swift in Sources */,

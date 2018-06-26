@@ -1,5 +1,5 @@
 //
-//  KeychainHandler.swift
+//  OldKeychainHandler.swift
 //  OpenStreetMapCompletionist
 //
 //  Created by Wolfgang Timme on 4/9/18.
@@ -15,7 +15,7 @@ enum ItemKeyEntry: String {
     case oauthTokenSecret
 }
 
-protocol KeychainHandling {
+protocol OldKeychainHandling {
     /// Returns the stored value for the given key.
     ///
     /// - Parameter key: The key to get the value for.
@@ -35,7 +35,7 @@ protocol KeychainHandling {
     func removeValue(for key: ItemKeyEntry)
 }
 
-class KeychainAccessKeychainHandler: NSObject, KeychainHandling {
+class OldKeychainAccessKeychainHandler: NSObject, OldKeychainHandling {
     private let keychain: Keychain
 
     init(service: String = "de.wtimme.osm-completionist.dev") {
