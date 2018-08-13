@@ -54,8 +54,7 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
                             w: region.center.longitude - region.span.longitudeDelta * 0.5,
                             e: region.center.longitude + region.span.longitudeDelta * 0.5)
         query.hasTag("amenity", equals: "bicycle_parking")
-        //        query.doesNotHaveTag("capacity")
-        query.tags["capacity"] = OverpassTag(key: "capacity", value: ".", isNegation: true, isRegex: true)
+        query.doesNotHaveTag("capacity")
 
         SwiftOverpass.api(endpoint: interpreterURL.absoluteString)
             .fetch(query, verbosity: .meta) { response in
