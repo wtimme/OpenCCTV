@@ -18,6 +18,8 @@ class OAuthHandlerMock: NSObject, OAuthHandling {
     
     // MARK: OAuthHandling
     
+    func setupClientCredentials(_ credentials: OAuthCredentials) {}
+    
     func startOAuthFlow(from viewController: UIViewController, _ completion: @escaping (OAuthCredentials?, Error?) -> Void) {
         startOAuthFlowFromViewController = viewController
         

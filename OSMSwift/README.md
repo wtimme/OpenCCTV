@@ -1,28 +1,14 @@
 # OSMSwift
 
-[![CI Status](https://img.shields.io/travis/wtimme/OSMSwift.svg?style=flat)](https://travis-ci.org/wtimme/OSMSwift)
-[![Version](https://img.shields.io/cocoapods/v/OSMSwift.svg?style=flat)](https://cocoapods.org/pods/OSMSwift)
-[![License](https://img.shields.io/cocoapods/l/OSMSwift.svg?style=flat)](https://cocoapods.org/pods/OSMSwift)
-[![Platform](https://img.shields.io/cocoapods/p/OSMSwift.svg?style=flat)](https://cocoapods.org/pods/OSMSwift)
+This framework allows you to build clients that utilize the OpenStreetMap API.
 
-## Example
+## Tests
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
-
-## Installation
-
-OSMSwift is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'OSMSwift'
-```
+Use the workspace from the Example directory to run the tests.
 
 ## Author
 
-wtimme, wtimme@users.noreply.github.com
+@wtimme
 
 ## License
 

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		460A43A935DBBDE093644280 /* Pods_OSMSwift_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6306F8A844BE92BFC5EC3930 /* Pods_OSMSwift_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -17,8 +16,9 @@
 		64AB8F4120E1966400E6BF4D /* OAuthHandlerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8F4020E1966400E6BF4D /* OAuthHandlerMock.swift */; };
 		64AB8F4520E19CD300E6BF4D /* MockError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8F4420E19CD300E6BF4D /* MockError.swift */; };
 		64AB8F4A20E1A86400E6BF4D /* KeychainHandlerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8F4820E1A86200E6BF4D /* KeychainHandlerMock.swift */; };
+		64AB8F4F20E1B6F300E6BF4D /* HTTPRequestHandlerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AB8F4E20E1B6F300E6BF4D /* HTTPRequestHandlerMock.swift */; };
+		64B9F8EC20E2E270003A3270 /* Permissions.xml in Resources */ = {isa = PBXBuildFile; fileRef = 64B9F8EA20E2E266003A3270 /* Permissions.xml */; };
 		797D084105A21DB82A99DB5F /* Pods_OSMSwiftCombined_OSMSwift_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FCEA25B9777DD405EBA76C /* Pods_OSMSwiftCombined_OSMSwift_Example.framework */; };
-		B71D98B6FF404B9FC63200AC /* Pods_OSMSwift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93BD68C8610DC3B1BCDE637 /* Pods_OSMSwift_Tests.framework */; };
 		FACC02E0E145EFADD964CCA2 /* Pods_OSMSwiftCombined_OSMSwift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8444DB25A8856377767B650A /* Pods_OSMSwiftCombined_OSMSwift_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +51,8 @@
 		64AB8F4020E1966400E6BF4D /* OAuthHandlerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OAuthHandlerMock.swift; path = Mocks/OAuthHandlerMock.swift; sourceTree = "<group>"; };
 		64AB8F4420E19CD300E6BF4D /* MockError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MockError.swift; path = Mocks/MockError.swift; sourceTree = "<group>"; };
 		64AB8F4820E1A86200E6BF4D /* KeychainHandlerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainHandlerMock.swift; path = Mocks/KeychainHandlerMock.swift; sourceTree = "<group>"; };
+		64AB8F4E20E1B6F300E6BF4D /* HTTPRequestHandlerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HTTPRequestHandlerMock.swift; path = Mocks/HTTPRequestHandlerMock.swift; sourceTree = "<group>"; };
+		64B9F8EA20E2E266003A3270 /* Permissions.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Permissions.xml; path = XML/Permissions/Permissions.xml; sourceTree = "<group>"; };
 		8444DB25A8856377767B650A /* Pods_OSMSwiftCombined_OSMSwift_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OSMSwiftCombined_OSMSwift_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D56AE1575FA14643BFFC1E8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		9A7AFFCCFBD68611B76D3127 /* Pods-OSMSwift_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OSMSwift_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OSMSwift_Tests/Pods-OSMSwift_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -68,7 +70,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				460A43A935DBBDE093644280 /* Pods_OSMSwift_Example.framework in Frameworks */,
 				797D084105A21DB82A99DB5F /* Pods_OSMSwiftCombined_OSMSwift_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,7 +78,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B71D98B6FF404B9FC63200AC /* Pods_OSMSwift_Tests.framework in Frameworks */,
 				FACC02E0E145EFADD964CCA2 /* Pods_OSMSwiftCombined_OSMSwift_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +146,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				64B9F8E920E2E212003A3270 /* XML */,
 				64AB8F3F20E1964D00E6BF4D /* Mocks */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 				64AB8F3A20E194EA00E6BF4D /* APIClientTestCase.swift */,
@@ -177,8 +178,17 @@
 				64AB8F4420E19CD300E6BF4D /* MockError.swift */,
 				64AB8F4020E1966400E6BF4D /* OAuthHandlerMock.swift */,
 				64AB8F4820E1A86200E6BF4D /* KeychainHandlerMock.swift */,
+				64AB8F4E20E1B6F300E6BF4D /* HTTPRequestHandlerMock.swift */,
 			);
 			name = Mocks;
+			sourceTree = "<group>";
+		};
+		64B9F8E920E2E212003A3270 /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				64B9F8EA20E2E266003A3270 /* Permissions.xml */,
+			);
+			name = XML;
 			sourceTree = "<group>";
 		};
 		DBCB7821213341ECDB0E22F2 /* Frameworks */ = {
@@ -252,6 +262,7 @@
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -290,6 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64B9F8EC20E2E270003A3270 /* Permissions.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,13 +333,23 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-OSMSwiftCombined-OSMSwift_Tests/Pods-OSMSwiftCombined-OSMSwift_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AEXML/AEXML.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/OAuthSwiftAlamofire/OAuthSwiftAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/OSMSwift/OSMSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftOverpass/SwiftOverpass.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AEXML.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwiftAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OSMSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOverpass.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -341,13 +363,23 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-OSMSwiftCombined-OSMSwift_Example/Pods-OSMSwiftCombined-OSMSwift_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AEXML/AEXML.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/OAuthSwiftAlamofire/OAuthSwiftAlamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/OSMSwift/OSMSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftOverpass/SwiftOverpass.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AEXML.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuthSwiftAlamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OSMSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOverpass.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -389,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64AB8F4A20E1A86400E6BF4D /* KeychainHandlerMock.swift in Sources */,
+				64AB8F4F20E1B6F300E6BF4D /* HTTPRequestHandlerMock.swift in Sources */,
 				64AB8F4120E1966400E6BF4D /* OAuthHandlerMock.swift in Sources */,
 				64AB8F4520E19CD300E6BF4D /* MockError.swift in Sources */,
 				64AB8F3B20E194EA00E6BF4D /* APIClientTestCase.swift in Sources */,
@@ -532,6 +565,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OSMSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -550,6 +584,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = OSMSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
@@ -564,6 +599,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CBEAD8717DB1667CA9FB1491 /* Pods-OSMSwiftCombined-OSMSwift_Tests.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -576,6 +613,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -585,6 +623,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D4F8A2F3F9E3B19F5FDCF262 /* Pods-OSMSwiftCombined-OSMSwift_Tests.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -593,6 +633,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};

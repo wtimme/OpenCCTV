@@ -20,6 +20,8 @@ public struct OAuthCredentials: Equatable {
 
 public protocol OAuthHandling {
     
+    func setupClientCredentials(_ credentials: OAuthCredentials)
+    
     /// Starts the OAuth flow for obtaining `OAuthCredentials`.
     ///
     /// - Parameters:

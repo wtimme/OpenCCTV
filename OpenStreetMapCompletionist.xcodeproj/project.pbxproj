@@ -56,7 +56,7 @@
 		64F1C41F208209D300B85FB2 /* NodeTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F1C41E208209D300B85FB2 /* NodeTestCase.swift */; };
 		64FDDE3120793F29001428B3 /* OSMDataProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDDE3020793F29001428B3 /* OSMDataProviding.swift */; };
 		64FDDE3320794557001428B3 /* OSMDataProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FDDE3220794557001428B3 /* OSMDataProviderMock.swift */; };
-		EE8F71E51A6B51EFBFE3FF50 /* Pods_OpenStreetMapCompletionist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D48C3638DBAC4E53FAAE2F9F /* Pods_OpenStreetMapCompletionist.framework */; };
+		77298283E7A6A8004E2A0CF5 /* Pods_OpenStreetMapCompletionist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF3CD13759DB45C5ACC75F8 /* Pods_OpenStreetMapCompletionist.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +83,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		086809197CA9109509D5CA43 /* Pods-App-OpenStreetMapCompletionist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-OpenStreetMapCompletionist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-App-OpenStreetMapCompletionist/Pods-App-OpenStreetMapCompletionist.debug.xcconfig"; sourceTree = "<group>"; };
+		20417810E7E11691BCF2677E /* Pods_App_OpenStreetMapCompletionist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App_OpenStreetMapCompletionist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BF3CD13759DB45C5ACC75F8 /* Pods_OpenStreetMapCompletionist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenStreetMapCompletionist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B0783A00E1A7C6C48EA67E /* Pods-OpenStreetMapCompletionist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenStreetMapCompletionist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenStreetMapCompletionist/Pods-OpenStreetMapCompletionist.debug.xcconfig"; sourceTree = "<group>"; };
 		4C9A709A1EE0EDDF12BBD5CF /* Pods-AppAndTests-OpenStreetMapCompletionist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppAndTests-OpenStreetMapCompletionist.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppAndTests-OpenStreetMapCompletionist/Pods-AppAndTests-OpenStreetMapCompletionist.release.xcconfig"; sourceTree = "<group>"; };
 		64019CAC207A1C90002CFEF1 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -130,6 +133,7 @@
 		647C420F2076B9BD0002B068 /* LocationProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProviderMock.swift; sourceTree = "<group>"; };
 		64822FE5207A248E003698AB /* UIColor+Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		6484AD9720D4865E00AD2EAC /* AddOSMAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOSMAccountViewController.swift; sourceTree = "<group>"; };
+		649838C320E2D7CB00513B1E /* Pods_App_OpenStreetMapCompletionist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_App_OpenStreetMapCompletionist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		649FE42D207FF712009F5137 /* TagListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListTableViewController.swift; sourceTree = "<group>"; };
 		649FE43020800D31009F5137 /* UISearchBar+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Loading.swift"; sourceTree = "<group>"; };
 		649FE43220802A0A009F5137 /* TagListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListViewModel.swift; sourceTree = "<group>"; };
@@ -140,11 +144,11 @@
 		64F1C41E208209D300B85FB2 /* NodeTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTestCase.swift; sourceTree = "<group>"; };
 		64FDDE3020793F29001428B3 /* OSMDataProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMDataProviding.swift; sourceTree = "<group>"; };
 		64FDDE3220794557001428B3 /* OSMDataProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSMDataProviderMock.swift; sourceTree = "<group>"; };
+		88413233A85A69AA773A4D45 /* Pods-App-OpenStreetMapCompletionist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-App-OpenStreetMapCompletionist.release.xcconfig"; path = "Pods/Target Support Files/Pods-App-OpenStreetMapCompletionist/Pods-App-OpenStreetMapCompletionist.release.xcconfig"; sourceTree = "<group>"; };
 		88854F2F6C4D6DE5A04E06AB /* Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppAndTests-OpenStreetMapCompletionist/Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig"; sourceTree = "<group>"; };
 		984939D46028388E429B1C8B /* Pods_OpenStreetMapCompletionistTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenStreetMapCompletionistTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0A486E2F9A2224442B17492 /* Pods-OpenStreetMapCompletionist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenStreetMapCompletionist.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenStreetMapCompletionist/Pods-OpenStreetMapCompletionist.release.xcconfig"; sourceTree = "<group>"; };
 		B2C57E741881C31683B6B4A8 /* Pods_AppAndTests_OpenStreetMapCompletionist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppAndTests_OpenStreetMapCompletionist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D48C3638DBAC4E53FAAE2F9F /* Pods_OpenStreetMapCompletionist.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OpenStreetMapCompletionist.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,7 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE8F71E51A6B51EFBFE3FF50 /* Pods_OpenStreetMapCompletionist.framework in Frameworks */,
+				77298283E7A6A8004E2A0CF5 /* Pods_OpenStreetMapCompletionist.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,9 +173,11 @@
 		30309D1C17475C3F62A774E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D48C3638DBAC4E53FAAE2F9F /* Pods_OpenStreetMapCompletionist.framework */,
+				649838C320E2D7CB00513B1E /* Pods_App_OpenStreetMapCompletionist.framework */,
 				B2C57E741881C31683B6B4A8 /* Pods_AppAndTests_OpenStreetMapCompletionist.framework */,
 				984939D46028388E429B1C8B /* Pods_OpenStreetMapCompletionistTests.framework */,
+				20417810E7E11691BCF2677E /* Pods_App_OpenStreetMapCompletionist.framework */,
+				3BF3CD13759DB45C5ACC75F8 /* Pods_OpenStreetMapCompletionist.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -183,6 +189,8 @@
 				A0A486E2F9A2224442B17492 /* Pods-OpenStreetMapCompletionist.release.xcconfig */,
 				88854F2F6C4D6DE5A04E06AB /* Pods-AppAndTests-OpenStreetMapCompletionist.debug.xcconfig */,
 				4C9A709A1EE0EDDF12BBD5CF /* Pods-AppAndTests-OpenStreetMapCompletionist.release.xcconfig */,
+				086809197CA9109509D5CA43 /* Pods-App-OpenStreetMapCompletionist.debug.xcconfig */,
+				88413233A85A69AA773A4D45 /* Pods-App-OpenStreetMapCompletionist.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -479,7 +487,7 @@
 				646FC52620753241008E0EDB /* Frameworks */,
 				646FC52720753241008E0EDB /* Resources */,
 				645BF664207535AA002209CE /* Embed Frameworks */,
-				40776541A4D4B9FC2EEBC99F /* [CP] Embed Pods Frameworks */,
+				FF2CC6BA4ACB595B90D8C8BE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -573,7 +581,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		40776541A4D4B9FC2EEBC99F /* [CP] Embed Pods Frameworks */ = {
+		645B7BF92078C99C004FA7BF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" --disable \"sortedImports,trailingCommas\" \"${SRCROOT}/\" --exclude \"${PODS_ROOT}\" --wraparguments afterfirst";
+		};
+		8993C4A44E8DFA19DEB24992 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OpenStreetMapCompletionist-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF2CC6BA4ACB595B90D8C8BE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -615,37 +654,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OpenStreetMapCompletionist/Pods-OpenStreetMapCompletionist-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		645B7BF92078C99C004FA7BF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" --disable \"sortedImports,trailingCommas\" \"${SRCROOT}/\" --exclude \"${PODS_ROOT}\" --wraparguments afterfirst";
-		};
-		8993C4A44E8DFA19DEB24992 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OpenStreetMapCompletionist-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

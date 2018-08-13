@@ -10,8 +10,16 @@
 
 class KeychainHandlerMock: KeychainHandling {
     
+    var mockedOAuthCredentials: OAuthCredentials?
+    
     // MARK: KeychainHandling
     
-    var oauthCredentials: OAuthCredentials?
+    func setCredentials(_ credentials: OAuthCredentials?) {
+        mockedOAuthCredentials = credentials
+    }
+    
+    var oauthCredentials: OAuthCredentials? {
+        return mockedOAuthCredentials
+    }
 
 }

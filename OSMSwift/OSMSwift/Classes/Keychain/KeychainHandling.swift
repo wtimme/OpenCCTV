@@ -9,6 +9,8 @@ import Foundation
 
 public protocol KeychainHandling {
     
-    var oauthCredentials: OAuthCredentials? { get set }
+    var oauthCredentials: OAuthCredentials? { get }
+    
+    func setCredentials(_ credentials: OAuthCredentials?)
     
 }

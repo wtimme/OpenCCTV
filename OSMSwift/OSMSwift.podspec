@@ -20,15 +20,14 @@ The framework aims to allow for easy editing of OpenStreetMap data.
   s.author           = { 'wtimme' => 'wtimme@users.noreply.github.com' }
   s.source           = { :git => 'https://github.com/wtimme/OSMSwift.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'OSMSwift/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'OSMSwift' => ['OSMSwift/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'Alamofire', '~> 4.7.0'
+  s.dependency 'OAuthSwift', '~> 1.2.0'
+  s.dependency 'KeychainAccess', '~> 3.1.0'
+  s.dependency 'AEXML', '~> 4.2.2'
+  s.dependency 'OAuthSwiftAlamofire', '~> 0.2.0'
+  s.dependency 'SwiftOverpass'
 end

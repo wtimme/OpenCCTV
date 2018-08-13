@@ -16,12 +16,27 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "10.0"
   },
   "source_files": "OSMSwift/Classes/**/*",
   "dependencies": {
     "Alamofire": [
       "~> 4.7.0"
+    ],
+    "OAuthSwift": [
+      "~> 1.2.0"
+    ],
+    "KeychainAccess": [
+      "~> 3.1.0"
+    ],
+    "AEXML": [
+      "~> 4.2.2"
+    ],
+    "OAuthSwiftAlamofire": [
+      "~> 0.2.0"
+    ],
+    "SwiftOverpass": [
+
     ]
   }
 }
