@@ -53,14 +53,14 @@ class NodeFormViewController: FormViewController {
             form +++ makeRawTagSection(key: key, value: value)
         }
 
-        form +++ Section()
-            <<< LabelRow {
-                $0.title = "Add Tag"
-                $0.cell.accessoryType = .disclosureIndicator
-                $0.onCellSelection({ _, _ in
-                    self.performSegue(withIdentifier: "ShowTagSearch", sender: nil)
-                })
-            }
+//        form +++ Section()
+//            <<< LabelRow {
+//                $0.title = "Add Tag"
+//                $0.cell.accessoryType = .disclosureIndicator
+//                $0.onCellSelection({ _, _ in
+//                    self.performSegue(withIdentifier: "ShowTagSearch", sender: nil)
+//                })
+//            }
 
         if let nodeDetailsURL = URL(string: "https://www.openstreetmap.org/node/\(node.id)") {
             form +++ Section()
@@ -81,7 +81,7 @@ class NodeFormViewController: FormViewController {
         }
         
         tagSection
-            <<< TextRow {
+            <<< LabelRow {
                 $0.tag = key
                 $0.title = key
                 $0.value = value
@@ -119,7 +119,7 @@ class NodeFormViewController: FormViewController {
         section.tag = sectionTag(tag)
 
         section
-            <<< TextRow {
+            <<< LabelRow {
                 $0.tag = tag.key
                 $0.title = tag.key
                 $0.value = tag.value
