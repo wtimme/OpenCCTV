@@ -204,9 +204,20 @@ extension MapViewController: MapViewModelDelegate {
 }
 
 extension MapViewController: CapacityEditorViewControllerDelegate {
-    func showDetails(for node: Node, andAdd key: String?) {
-        presentedViewController?.dismiss(animated: true, completion: {
+    func showDetails(for node: Node, andAdd key: String? = nil) {
+        func performShowDetailsSegue() {
             self.performSegue(withIdentifier: "ShowNodeDetails", sender: node)
-        })
+        }
+        
+        if let presentedViewController = presentedViewController {
+            // Another view controller is currently being presented, probably the card asking for the capacity.
+            presentedViewController.dismiss(animated: true, completion: {
+                performShowDetailsSegue()
+            })
+        } else {
+            performShowDetailsSegue()
+        }
+        
+        
     }
 }
