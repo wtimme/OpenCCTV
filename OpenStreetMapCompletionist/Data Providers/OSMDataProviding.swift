@@ -53,8 +53,8 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
                             n: region.center.latitude + region.span.latitudeDelta * 0.5,
                             w: region.center.longitude - region.span.longitudeDelta * 0.5,
                             e: region.center.longitude + region.span.longitudeDelta * 0.5)
-        query.hasTag("amenity", equals: "bicycle_parking")
-        query.doesNotHaveTag("capacity")
+        query.hasTag("man_made", equals: "surveillance")
+        query.hasTag("surveillance:type", equals: "camera")
 
         SwiftOverpass.api(endpoint: interpreterURL.absoluteString)
             .fetch(query, verbosity: .meta) { response in

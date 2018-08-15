@@ -17,7 +17,7 @@ class NodeAnnotationView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
-        image = UIImage(icon: .mapicons(MapiconsType.bicycling),
+        image = UIImage(icon: .openIconic(OpenIconicType.eye),
                         size: CGSize(width: NodeAnnotationView.annotationDimension, height: NodeAnnotationView.annotationDimension))
         
         backgroundColor = UIColor(white: 1, alpha: 0.9)
