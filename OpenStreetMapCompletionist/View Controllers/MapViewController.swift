@@ -140,7 +140,7 @@ extension MapViewController: MKMapViewDelegate {
         if
             let annotation = view.annotation as? OverpassNodeAnnotation,
             let node = dataProvider.node(id: annotation.nodeId) {
-            presentCard(for: node)
+            showDetails(for: node)
             
             mapView.deselectAnnotation(annotation, animated: false)
         }
