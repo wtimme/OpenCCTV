@@ -19,10 +19,18 @@ enum Endpoint: String {
 
 public protocol APIClientProtocol {
     
+    /// Flag whether the client is authenticated.
     var isAuthenticated: Bool { get }
     
+    /// Removes the credentials, logging the client out.
     func logout()
     
+    /// Authenticates the client by presenting a view controller with the OAuth flow.
+    /// When successful, the client stores the credentials in the Keychain and is authenticated.
+    ///
+    /// - Parameters:
+    ///   - presentingViewController: The view controller from which the OAuth flow should be presented.
+    ///   - completion: Closure that is executed once the account was added or an error occurred.
     func addAccountUsingOAuth(from presentingViewController: UIViewController,
                               _ completion: @escaping (Error?) -> Void)
     
