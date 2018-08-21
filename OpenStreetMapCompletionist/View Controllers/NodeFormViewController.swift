@@ -29,7 +29,7 @@ class NodeFormViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Node Details"
+        title = "Camera Details"
 
         setupForm()
     }
