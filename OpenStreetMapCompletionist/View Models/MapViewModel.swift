@@ -23,10 +23,16 @@ protocol MapViewModelDelegate: class {
     ///
     /// - Parameter hasTrouble: Flag whether the app had problems determining the device location.
     func indicateTroubleWithLocation(_ hasTrouble: Bool)
+    
+    /// Asks the delegate to update the visibility of the network activity indicator.
+    func updateNetworkActivityIndicatorVisibility()
 }
 
 protocol MapViewModelProtocol {
     var delegate: MapViewModelDelegate? { get set }
+    
+    /// Indicates whether the network indicator is visible that indicates network requests in progress.
+    var isNetworkActivityIndicatorVisible: Bool { get }
 
     func regionDidChange(_ region: MKCoordinateRegion)
 
@@ -70,6 +76,11 @@ class MapViewModel: NSObject, MapViewModelProtocol {
                                        selector: #selector(didReceiveOSMDataProviderAddedAnnotationsNotification(_:)),
                                        name: .osmDataProviderDidAddAnnotations,
                                        object: nil)
+        
+        notificationCenter.addObserver(self,
+                                       selector: #selector(didReceiveDataProviderDidUpdateRequestsInProgressNotification(_:)),
+                                       name: .osmDataProviderDidUpdateRequestsInProgress,
+                                       object: nil)
     }
     
     // MARK: Private
@@ -78,6 +89,10 @@ class MapViewModel: NSObject, MapViewModelProtocol {
     private let osmDataProvider: OSMDataProviding
 
     // MARK: MapViewModelProtocol
+    
+    var isNetworkActivityIndicatorVisible: Bool {
+        return osmDataProvider.areRequestsInProgress
+    }
 
     func regionDidChange(_ region: MKCoordinateRegion) {
         osmDataProvider.ensureDataIsPresent(for: region)
@@ -119,6 +134,12 @@ class MapViewModel: NSObject, MapViewModelProtocol {
         }
 
         delegate?.addAnnotations(annotations)
+    }
+    
+    // MARK: Private methods
+    
+    @objc func didReceiveDataProviderDidUpdateRequestsInProgressNotification(_: Notification) {
+        delegate?.updateNetworkActivityIndicatorVisibility()
     }
 }
 

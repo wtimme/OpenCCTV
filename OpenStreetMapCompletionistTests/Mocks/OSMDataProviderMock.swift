@@ -23,6 +23,8 @@ class OSMDataProviderMock: NSObject, OSMDataProviding {
     func ensureDataIsPresent(for region: MKCoordinateRegion) {
         self.region = region
     }
+    
+    var areRequestsInProgress = false
 
     func node(id: Int) -> Node? {
         return nodes.first(where: { return $0.id == id })

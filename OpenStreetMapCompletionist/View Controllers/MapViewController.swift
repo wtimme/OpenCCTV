@@ -201,6 +201,10 @@ extension MapViewController: MapViewModelDelegate {
 
         centerOnDeviceLocationBarButtonItem.setIcon(icon: .mapicons(.locationArrow), iconSize: 30, color: iconColor)
     }
+    
+    func updateNetworkActivityIndicatorVisibility() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = viewModel.isNetworkActivityIndicatorVisible
+    }
 }
 
 extension MapViewController: CapacityEditorViewControllerDelegate {

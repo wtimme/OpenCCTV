@@ -77,6 +77,31 @@ class MapViewModelTestCase: XCTestCase {
 
         XCTAssertTrue(canCoordinatesConsideredToBeEqual(mapViewRegion.center, deviceCoordinate))
     }
+    
+    // MARK: Network Activity Indicator
+    
+    func testIsNetworkActivityIndicatorVisibleShouldReturnTrueIfTheDataProviderHasRequestsInProgress() {
+        osmDataProviderMock.areRequestsInProgress = true
+        
+        XCTAssertTrue(viewModel.isNetworkActivityIndicatorVisible)
+    }
+    
+    func testIsNetworkActivityIndicatorVisibleShouldReturnFalseIfTheDataProviderDoesNotHaveRequestsInProgress() {
+        osmDataProviderMock.areRequestsInProgress = false
+        
+        XCTAssertFalse(viewModel.isNetworkActivityIndicatorVisible)
+    }
+    
+    // MARK: Request In Progress Changed Notification
+    
+    func testViewModelAsksDelegateToUpdateTheNetworkActivityIndicatorVisibilityWhenReceivingARequestInProgressChangedNotification() {
+        for callNumber in 1...3 {
+            notificationCenter.post(name: .osmDataProviderDidUpdateRequestsInProgress,
+                                    object: osmDataProviderMock)
+            
+            XCTAssertEqual(viewModelDelegateMock.numberOfUpdateNetworkActivityIndicatorVisibilityCalls, callNumber)
+        }
+    }
 }
 
 extension XCTestCase {
