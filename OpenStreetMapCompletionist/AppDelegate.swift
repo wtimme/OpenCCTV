@@ -9,10 +9,15 @@
 import UIKit
 
 import OAuthSwift
+import FTLinearActivityIndicator
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+        UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
+    }
 
     func application(_: UIApplication, open url: URL, options _: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
         if url.host == "oauth-callback" {

@@ -17,6 +17,9 @@ target 'OpenStreetMapCompletionist' do
   # Networking/API
   pod 'Alamofire', '~> 4.7.0'
   pod 'AEXML', '~> 4.2.2'
+  
+  # Loading indicator
+  pod 'FTLinearActivityIndicator'
 
   pod 'OAuthSwift', '~> 1.2.0'
   pod 'KeychainAccess', '~> 3.1.0'
