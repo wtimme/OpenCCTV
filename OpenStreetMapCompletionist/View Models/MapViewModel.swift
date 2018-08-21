@@ -56,7 +56,9 @@ class MapViewModel: NSObject, MapViewModelProtocol {
         return false
     }
 
-    init(locationProvider: LocationProviding, osmDataProvider: OSMDataProviding) {
+    init(locationProvider: LocationProviding,
+         osmDataProvider: OSMDataProviding,
+         notificationCenter: NotificationCenter = .default) {
         self.locationProvider = locationProvider
         self.osmDataProvider = osmDataProvider
 
@@ -64,10 +66,10 @@ class MapViewModel: NSObject, MapViewModelProtocol {
 
         locationProvider.delegate = self
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didReceiveOSMDataProviderAddedAnnotationsNotification(_:)),
-                                               name: .osmDataProviderDidAddAnnotations,
-                                               object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(didReceiveOSMDataProviderAddedAnnotationsNotification(_:)),
+                                       name: .osmDataProviderDidAddAnnotations,
+                                       object: nil)
     }
     
     // MARK: Private

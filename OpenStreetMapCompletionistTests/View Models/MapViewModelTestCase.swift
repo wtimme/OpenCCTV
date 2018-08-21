@@ -15,6 +15,7 @@ import CoreLocation
 class MapViewModelTestCase: XCTestCase {
     var locationProviderMock: LocationProviderMock!
     var osmDataProviderMock: OSMDataProviderMock!
+    var notificationCenter: NotificationCenter!
     var viewModelDelegateMock: MapViewModelDelegateMock!
     var viewModel: MapViewModel!
 
@@ -23,15 +24,18 @@ class MapViewModelTestCase: XCTestCase {
 
         locationProviderMock = LocationProviderMock()
         osmDataProviderMock = OSMDataProviderMock()
+        notificationCenter = NotificationCenter()
         viewModelDelegateMock = MapViewModelDelegateMock()
 
         viewModel = MapViewModel(locationProvider: locationProviderMock,
-                                 osmDataProvider: osmDataProviderMock)
+                                 osmDataProvider: osmDataProviderMock,
+                                 notificationCenter: notificationCenter)
         viewModel.delegate = viewModelDelegateMock
     }
 
     override func tearDown() {
         viewModel = nil
+        notificationCenter = nil
 
         super.tearDown()
     }
