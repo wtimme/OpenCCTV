@@ -37,7 +37,7 @@ class MapViewController: UIViewController {
 
     required init?(coder aDecoder: NSCoder) {
         dataProvider = OverpassOSMDataProvider(interpreterURL: URL(string: "https://overpass-api.de/api/interpreter")!,
-                                               downloadStrategy: OSMDataDownloadStrategy(maximumRadiusInMeters: 6500))
+                                               downloadStrategy: OSMDataDownloadStrategy(maximumRadiusInMeters: 30_000))
         
         changeHandler = InMemoryChangeHandler(osmDataProvider: dataProvider)
         
