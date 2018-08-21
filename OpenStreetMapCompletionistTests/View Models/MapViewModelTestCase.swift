@@ -35,7 +35,10 @@ class MapViewModelTestCase: XCTestCase {
 
     override func tearDown() {
         viewModel = nil
+        locationProviderMock = nil
+        osmDataProviderMock = nil
         notificationCenter = nil
+        viewModelDelegateMock = nil
 
         super.tearDown()
     }
