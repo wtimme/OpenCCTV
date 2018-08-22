@@ -8,6 +8,7 @@
 
 import UIKit
 
+import AlamofireNetworkActivityIndicator
 import OAuthSwift
 import FTLinearActivityIndicator
 
@@ -16,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func applicationDidFinishLaunching(_ application: UIApplication) {
-        UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
+        setupNetworkActivityIndicator()
     }
 
     func application(_: UIApplication, open url: URL, options _: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -24,5 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             OAuthSwift.handle(url: url)
         }
         return true
+    }
+    
+    // MARK: Private methods
+    
+    private func setupNetworkActivityIndicator() {
+        // Let Alamofire automatically take care of the network activity indicator's state.
+        NetworkActivityIndicatorManager.shared.isEnabled = true
+        
+        // For iPhone X, we need display a custom network activity indicator above the battery indicator.
+        UIApplication.configureLinearNetworkActivityIndicatorIfNeeded()
     }
 }

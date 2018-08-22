@@ -18,9 +18,6 @@ protocol OSMDataProviding: class {
     func node(id: Int) -> Node?
     
     func ensureDataIsPresent(for region: MKCoordinateRegion)
-    
-    /// Indicates whether there are API requests in progress.
-    var areRequestsInProgress: Bool { get }
 }
 
 class OverpassOSMDataProvider: NSObject, OSMDataProviding {
@@ -35,15 +32,6 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
     private let downloadStrategy: OSMDataDownloadStrategy
     private var discoveredNodes = Set<Node>()
     
-    private var numberOfRequestsInProgress = 0 {
-        didSet {
-            guard numberOfRequestsInProgress != oldValue else { return }
-            
-            NotificationCenter.default.post(name: .osmDataProviderDidUpdateRequestsInProgress,
-                                            object: self)
-        }
-    }
-
     private func processDownloadedNodes(_ nodes: [Node]) {
         let newNodes = Set(nodes).subtracting(discoveredNodes)
         discoveredNodes = discoveredNodes.union(newNodes)
@@ -67,12 +55,9 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
                             e: region.center.longitude + region.span.longitudeDelta * 0.5)
         query.hasTag("man_made", equals: "surveillance")
         query.hasTag("surveillance:type", equals: "camera")
-        
-        numberOfRequestsInProgress += 1
 
         SwiftOverpass.api(endpoint: interpreterURL.absoluteString)
             .fetch(query, verbosity: .meta) { response in
-                self.numberOfRequestsInProgress -= 1
                 
                 guard let swiftOverpassNodes = response.nodes else {
                     completion([])
@@ -100,13 +85,8 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
     func node(id: Int) -> Node? {
         return discoveredNodes.first(where: { $0.id == id })
     }
-    
-    var areRequestsInProgress: Bool {
-        return 0 < numberOfRequestsInProgress
-    }
 }
 
 extension Notification.Name {
     static let osmDataProviderDidAddAnnotations = Notification.Name("osmDataProviderDidAddAnnotations")
-    static let osmDataProviderDidUpdateRequestsInProgress = Notification.Name("osmDataProviderDidUpdateRequestsInProgress")
 }

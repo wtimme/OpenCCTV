@@ -16,6 +16,7 @@ target 'OpenStreetMapCompletionist' do
   
   # Networking/API
   pod 'Alamofire', '~> 4.7.0'
+  pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
   pod 'AEXML', '~> 4.2.2'
   
   # Loading indicator
