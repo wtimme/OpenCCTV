@@ -48,18 +48,17 @@ class OverpassOSMDataProvider: NSObject, OSMDataProviding {
     
     func nodes(region: MKCoordinateRegion, _ completion: @escaping ([Node]) -> Void) {
         /// TODO: Query
-        let query = SwiftOverpass.query(type: .node)
-        query.setBoudingBox(s: region.center.latitude - region.span.latitudeDelta * 0.5,
-                            n: region.center.latitude + region.span.latitudeDelta * 0.5,
-                            w: region.center.longitude - region.span.longitudeDelta * 0.5,
-                            e: region.center.longitude + region.span.longitudeDelta * 0.5)
+        let query = NodeQuery()
+        query.boundingBox = BoudingBox(s: region.center.latitude - region.span.latitudeDelta * 0.5,
+                                       n: region.center.latitude + region.span.latitudeDelta * 0.5,
+                                       w: region.center.longitude - region.span.longitudeDelta * 0.5,
+                                       e: region.center.longitude + region.span.longitudeDelta * 0.5)
         query.hasTag("man_made", equals: "surveillance")
         query.hasTag("surveillance:type", equals: "camera")
 
         SwiftOverpass.api(endpoint: interpreterURL.absoluteString)
-            .fetch(query, verbosity: .meta) { response in
-                
-                guard let swiftOverpassNodes = response.nodes else {
+            .fetch(query, verbosity: .meta, order: nil) { response, _ in
+                guard let swiftOverpassNodes = response?.nodes else {
                     completion([])
                     return
                 }

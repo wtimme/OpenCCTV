@@ -7,7 +7,7 @@ target 'OpenStreetMapCompletionist' do
   use_frameworks!
 
   # Pods for OpenStreetMapCompletionist
-  pod 'SwiftOverpass', :git => 'git@github.com:wtimme/SwiftOverpassWrapper.git', :branch => 'refactoring/Improve-OpenStreetMap-elements'
+  pod 'SwiftOverpass', :git => 'git@github.com:wtimme/SwiftOverpassWrapper.git', :branch => 'feature/17_Allow_easier_use_of_models_for_3rd_parties'
   pod 'SwiftIcons', '~> 2.0.1'
   pod 'SwiftLocation', '~> 3.2.1'
   pod 'Eureka', '~> 4.1.1'

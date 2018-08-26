@@ -28,7 +28,7 @@ PODS:
   - SwiftIcons (2.0.1)
   - SwiftLocation (3.2.1):
     - SwiftyJSON (~> 4.0.0-alpha.1)
-  - SwiftOverpass (1.0.3):
+  - SwiftOverpass (2.0.0):
     - AEXML (~> 4.2.2)
     - Alamofire (~> 4.5)
   - SwiftyJSON (4.0.0)
@@ -48,7 +48,7 @@ DEPENDENCIES:
   - SwiftFormat/CLI (~> 0.33.5)
   - SwiftIcons (~> 2.0.1)
   - SwiftLocation (~> 3.2.1)
-  - "SwiftOverpass (from `git@github.com:wtimme/SwiftOverpassWrapper.git`, branch `refactoring/Improve-OpenStreetMap-elements`)"
+  - "SwiftOverpass (from `git@github.com:wtimme/SwiftOverpassWrapper.git`, branch `feature/17_Allow_easier_use_of_models_for_3rd_parties`)"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -72,12 +72,12 @@ EXTERNAL SOURCES:
   OSMSwift:
     :path: "./OSMSwift"
   SwiftOverpass:
-    :branch: refactoring/Improve-OpenStreetMap-elements
+    :branch: feature/17_Allow_easier_use_of_models_for_3rd_parties
     :git: "git@github.com:wtimme/SwiftOverpassWrapper.git"
 
 CHECKOUT OPTIONS:
   SwiftOverpass:
-    :commit: c9491972327636abdd8b0c17d6da3cd8e1b725e8
+    :commit: afa067261731723681382004171ca3c9448daa9f
     :git: "git@github.com:wtimme/SwiftOverpassWrapper.git"
 
 SPEC CHECKSUMS:
@@ -96,9 +96,9 @@ SPEC CHECKSUMS:
   SwiftFormat: 13fd81206cf4453c19f1a5c51768c8c0d9165c30
   SwiftIcons: e475a56ae2c2da40672dbf16061ca5dd5cee7dbb
   SwiftLocation: 603153e718a5b4a1e1f114346c2d5e13c16b69da
-  SwiftOverpass: c51be67304756a15c13629b2d9eee0df05c97ce3
+  SwiftOverpass: c31ea9c142c892d52d535a2eb47c6f3cfa3c93cc
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 20eaaada96eb140e62420d28a47ae17d99aecf2d
+PODFILE CHECKSUM: 1aaab2e8abc1aedfd7d62f18a2851ed444f9f4f6
 
 COCOAPODS: 1.5.3

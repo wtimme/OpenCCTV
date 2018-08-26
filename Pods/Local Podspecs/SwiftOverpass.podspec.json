@@ -1,6 +1,6 @@
 {
   "name": "SwiftOverpass",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "summary": "A wrapper of Overpass API.",
   "homepage": "https://github.com/holyturt/SwiftOverpassWrapper",
   "license": {
@@ -17,7 +17,7 @@
   "requires_arc": true,
   "source": {
     "git": "https://github.com/holyturt/SwiftOverpassWrapper.git",
-    "tag": "v1.0.3",
+    "tag": "v2.0.0",
     "submodules": true
   },
   "source_files": "SwiftOverpass/**/*.{h,swift}",
