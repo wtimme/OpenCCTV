@@ -1,6 +1,10 @@
+# OpenCCTV
+
+Utilizing data from OpenStreetMap, the app fetches nearby cameras and displays them on an `MKMapView`.
+
 ## Inspiration
 
-This project is inspired by [the _StreetComplete_ app for Android][1].
+Initially, the project was inspired by [the _StreetComplete_ app for Android][1] that lets users complete missing information for OpenStreetMap.
 
 ## Sources
 
