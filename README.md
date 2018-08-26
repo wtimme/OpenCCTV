@@ -2,6 +2,13 @@
 
 Utilizing data from OpenStreetMap, the app fetches nearby cameras and displays them on an `MKMapView`.
 
+## Features
+
+The application is developed in an MVP approach. At the moment, you can
+- pan around the map and lazily load cameras
+- view raw OpenStreetMap tags for the cameras
+- view the camera nodes on OpenStreetMap
+
 ## Screenshots
 
 ![Screenshot of the map][2]
